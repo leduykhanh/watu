@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "sdkVersion": "21.0.0",
+    "android": {
+      "package": "com.wat.v1"
+    },
+    "ios": {
+      "bundleIdentifier": "com.wat.v1"
+    },
+    "name": "wat",
+    "slug": "wat",
+    "version": "0.2.0",
+    "icon": "./assets/images/splash.png",
+    "loading": {
+      "backgroundImage": "./assets/images/logo.png",
+      "backgroundColor": "#222127"
+    }
+  },
+  "name": "wat",
+  "displayName": "Wat"
+}
