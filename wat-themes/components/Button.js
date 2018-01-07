@@ -375,6 +375,17 @@ export default (variables = variable) => {
 				},
 				backgroundColor: null,
 			},
+      ".wat": {
+        "NativeBase.Text": {
+          color: "white",
+        },
+        "NativeBase.IconNB": {
+          color: "white",
+        },
+        "NativeBase.Icon": {
+          color: "white",
+        },
+      },
 		},
 
 		".small": {
@@ -421,7 +432,7 @@ export default (variables = variable) => {
 		"NativeBase.Icon": {
 			color: variables.inverseTextColor,
 			fontSize: 24,
-			marginHorizontal: 16,
+			marginHorizontal: 2,
 			paddingTop: platform === "ios" ? 2 : undefined,
 		},
 		"NativeBase.IconNB": {

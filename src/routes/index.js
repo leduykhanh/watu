@@ -13,7 +13,7 @@ import DrawerContent from '../components/drawer/DrawerContent';
 import MessageBar from '../components/MessageBar';
 
 import {
-  LoginScreen, DashboardScreen, ProfileScreen
+  LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen
  } from '../screens';
 
 
@@ -41,11 +41,13 @@ if (Platform.OS === 'android') {
 }
 
 const Routes = () => {
+
   return (
     <Router>
       <Overlay>
         <Stack key='root'>
           <Scene key="dashboard"  hideNavBar initial component={DashboardScreen} title="Dashboard" titleStyle={styles.sceneHeaderStyle} />
+          <Scene key="qrscan" hideNavBar component={QrScanScreen} />
           <Lightbox key="lightbox">
 
             <Scene key="login"  component={LoginScreen} hideNavBar />
@@ -57,13 +59,13 @@ const Routes = () => {
             key="drawer"
             drawerPosition='right'
             contentComponent={DrawerContent}
+          >
 
-            >
-            
             <Scene key="profile" navTransparent component={ProfileScreen} title="Profile" titleStyle={styles.sceneHeaderStyle}/>
 
+
           </Drawer>
- 
+
 
         </Stack>
         <Scene component={MessageBar} />

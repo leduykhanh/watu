@@ -150,12 +150,12 @@ export default {
   topTabBarActiveBorderColor: platform === "ios" ? "#007aff" : "#007aff",
 
   // Header
-  toolbarBtnColor: platform === "ios" ? "#007aff" : "#007aff",
+  toolbarBtnColor: platform === "ios" ? "#FFF" : "#007aff",
   toolbarDefaultBg: platform === "ios" ? "rgb(249,174,24)" : "#3F51B5",
   toolbarHeight: platform === "ios" ? 64 : 56,
   toolbarIconSize: platform === "ios" ? 20 : 22,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
-  toolbarInputColor: platform === "ios" ? "#CECDD2" : "#fff",
+  toolbarInputColor: platform === "ios" ? "#FFF" : "#fff",
   searchBarHeight: platform === "ios" ? 30 : 40,
   toolbarInverseBg: "#222",
   toolbarTextColor: platform === "ios" ? "#000" : "#fff",

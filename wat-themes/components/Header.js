@@ -75,19 +75,20 @@ export default (variables = variable) => {
 				"NativeBase.IconNB": {
 					color: variables.toolbarBtnColor,
 				},
-				paddingHorizontal: variables.buttonPadding,
+
+				paddingHorizontal: 2,
 			},
-			paddingHorizontal: 15,
+			paddingHorizontal: 2,
 		},
 		".searchBar": {
 			"NativeBase.Item": {
 				"NativeBase.Icon": {
 					backgroundColor: "transparent",
-					color: variables.dropdownLinkColor,
+					color: variables.toolbarDefaultBg,
 					fontSize: variables.toolbarSearchIconSize,
 					alignItems: "center",
 					marginTop: 2,
-					paddingRight: 10,
+					paddingRight: 1,
 					paddingLeft: 10,
 				},
 				"NativeBase.IconNB": {
@@ -107,6 +108,7 @@ export default (variables = variable) => {
 				height: variables.searchBarHeight,
 				borderColor: "transparent",
 				backgroundColor: variables.toolbarInputColor,
+				marginLeft: 10,
 			},
 			"NativeBase.Button": {
 				".transparent": {
@@ -114,7 +116,7 @@ export default (variables = variable) => {
 						fontWeight: "500",
 					},
 					paddingHorizontal: null,
-					paddingLeft: platform === "ios" ? 10 : null,
+					paddingLeft: platform === "ios" ? 1 : null,
 				},
 				paddingHorizontal: platform === "ios" ? undefined : null,
 				width: platform === "ios" ? undefined : 0,

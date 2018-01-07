@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+import { Container, Header, Item, Input, Icon, Button, Text, Badge } from 'native-base';
 
 const HeaderComponent = (props) => {
 	return (
 	     <Header searchBar rounded>
 	     
-	     <Button transparent>
-            <Icon name='ios-qr-scanner' />
+	        <Button transparent>
+            <Icon onPress={() => Actions.replace('qrscan')} name='ios-qr-scanner' />
           </Button>
           <Item>
             <Icon name="ios-search" />
             <Input placeholder="Search" />
           </Item>
-          <Button transparent>
-            <Icon name='ios-locate-outline' />
-          </Button>
-          <Button transparent>
+          <Button transparent badge vertical>
             <Icon name='ios-cart' />
           </Button>
         </Header>)
