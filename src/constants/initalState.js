@@ -31,6 +31,13 @@ export default initalState = {
   device: {
     token: null,
     deviceId: null
+  },
+  home: {
+    promotions: {
+      list: [],
+      loading: false,
+      loaded: false
+    }
   }
   
 };

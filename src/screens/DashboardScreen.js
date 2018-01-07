@@ -4,36 +4,82 @@ import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Ti
 import { Actions } from 'react-native-router-flux';
 import {bindActionCreators} from 'redux';
 
-import { ScrollView, TouchableHighlight, Image } from 'react-native';
+import { ScrollView, TouchableHighlight, Image, Dimensions } from 'react-native';
 
-
-import * as actions from '../actions/profileActions';
 import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import ProfileSummary from '../components/profile/ProfileSummary';
-import * as deviceActions from '../actions/deviceActions';
+import * as actions from '../actions/homeActions';
 
-import {Section} from '../components/common';
-import { NUMBER_ACTIVITIES_ON_DASHBOARD } from '../constants';
-import styles from './styles';
+import Swiper from 'react-native-swiper'
+
 
 import deviceTokenHelper from '../utils/deviceTokenHelper';
 
 import {getDeviceId} from '../utils/persistStore';
+const { width } = Dimensions.get('window')
+const styles = {
+  container: {
+    flex: 1
+  },
+
+  wrapper: {
+  },
+
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'transparent'
+  },
+
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB'
+  },
+
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5'
+  },
+
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9'
+  },
+
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+
+  image: {
+    width,
+    flex: 1
+  }
+}
 
 
 class Dashboard extends Component {
   
   async componentDidMount() {
-    const {sendToken, updateToken} = this.props.deviceActions;
-    //const {token, deviceId} = this.props.device;
-    const { isProfileLoadCalled, selectedSubscription } = this.props.profile;
-    const deviceId = await getDeviceId();
-    
-    deviceTokenHelper(token => {
-      deviceId ? updateToken(token, deviceId) : sendToken(token);
-    });
+    console.log(this.props.actions);
+    // const {sendToken, updateToken} = this.props.deviceActions;
+    // //const {token, deviceId} = this.props.device;
+    // const { isProfileLoadCalled, selectedSubscription } = this.props.profile;
+    // const deviceId = await getDeviceId();
+    //
+    // deviceTokenHelper(token => {
+    //   deviceId ? updateToken(token, deviceId) : sendToken(token);
+    // });
+    this.props.actions.getPromotions();
     
   }
   
@@ -48,16 +94,43 @@ class Dashboard extends Component {
 
   render() {
 
-
-    
     return (
       <Container>
         
         <ImageBackground>
           <Header />
           <Content>
-            
-            <Text>Home</Text>
+
+            <Swiper style={{}} height={240} showsPagination={false}
+                    onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+                    paginationStyle={{
+                      bottom: -23, left: null, right: 10
+                    }} loop>
+              {this.props.home.promotions.list.map(
+                (item) => {
+                  const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
+                  const topTexts = toptext.split(" ");
+                  return(
+                  <View style={styles.slide}>
+                    <Image resizeMode='stretch' style={styles.image} source={{uri: item.image}}/>
+                    <View style={{backgroundColor: "rgba(0, 0, 0, 0.5)", top: -70, padding: 10, alignSelf: 'stretch', width:'auto'}}>
+                      <Text white fs20>{item.bigtitle}</Text>
+                      <Text white fs12>{item.smalltitle}</Text>
+                    </View>
+                    <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
+                      borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
+                      {topTexts.map(t =>
+                        <Text style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
+                          backgroundColor: toptext_bgcolor}}>{t}</Text>
+                      )}
+
+                    </View>
+                  </View>)
+                }
+              )}
+
+
+            </Swiper>
 
           </Content>
           
@@ -74,10 +147,12 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
+//   console.log(state)
   return {
     user: state.user,
     profile: state.profile,
-    device: state.device
+    device: state.device,
+    home: state.home
   };
 }
 

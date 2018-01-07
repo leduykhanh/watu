@@ -111,7 +111,6 @@ export default class App extends React.Component {
     )
   }
   render() {
-   console.log('adad' ,this.state.store )
     if (!this.state.isReady) {
       return <Spinner />;
     }

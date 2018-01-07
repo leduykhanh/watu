@@ -101,7 +101,12 @@ export default (variables = variable) => {
     },
     '.fs18': {
       fontSize: 18,
-      
+    },
+    '.fs20': {
+      fontSize: 20,
+    },
+    '.fs12': {
+      fontSize: 12,
     },
     '.caption': {
       fontSize: 11,

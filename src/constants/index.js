@@ -18,7 +18,7 @@ const MOCK_API_URL = '';
 
 export const GET_PROFILE_API = BASE_API_URL + '/profile';
 export const CHANGE_PASSWORD_API = BASE_API_URL + '/profile/changePassword';
-export const GET_WALLET_API = BASE_API_URL + '/wallet';
+export const GET_PROMOTIONS_API = BASE_API_URL + '?type=promotions';
 export const MOCK_GET_WALLET_API = MOCK_API_URL + '/wallet';
 export const GET_LOOKUP_API = BASE_API_URL + '/lookup';
 export const GET_BANK_LIST_API = BASE_API_URL + '/koku/bankaccount';
@@ -56,6 +56,11 @@ export const SEND_PUSH_TOKEN = 'SEND_PUSH_TOKEN';
 export const UPDATE_PUSH_TOKEN = 'UPDATE_PUSH_TOKEN';
 export const SET_DEVICE_ID = 'SET_DEVICE_ID';
 export const SET_DEVICE_ID_FAIL = 'SET_DEVICE_ID_FAIL';
+
+export const GET_PROMOTION_PENDING = 'GET_PROMOTION_PENDING';
+export const GET_PROMOTION_SUCCESS = 'GET_PROMOTION_SUCCESS';
+export const GET_PROMOTION_FAILED = 'GET_PROMOTION_FAILED';
+
 
 
 export {initalState};
