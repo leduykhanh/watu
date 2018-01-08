@@ -10,6 +10,11 @@ export default (variables = variable) => {
     },
     '.big':{
       fontSize: 30
+    },
+    '.new-shop': {
+      fontSize: 16,
+      color: variables.toolbarDefaultBg,
+      marginRight: 6,
     }
   };
 

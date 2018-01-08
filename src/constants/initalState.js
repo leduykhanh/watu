@@ -47,6 +47,11 @@ export default initalState = {
       list: [],
       loading: false,
       loaded: false
+    },
+    highratingshops: {
+      list: [],
+      loading: false,
+      loaded: false
     }
   }
   

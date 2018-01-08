@@ -11,3 +11,7 @@ export function getNewshops() {
 export function getCategories() {
   return serverCall.get(constants.GET_CAT_API);
 }
+
+export function getHighRatingsShop() {
+  return serverCall.get(constants.GET_HIGHRATINGSHOPS_API);
+}

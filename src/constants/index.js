@@ -20,6 +20,7 @@ export const GET_PROFILE_API = BASE_API_URL + '/profile';
 export const CHANGE_PASSWORD_API = BASE_API_URL + '/profile/changePassword';
 export const GET_PROMOTIONS_API = BASE_API_URL + '?type=promotions';
 export const GET_NEWSHOPS_API = BASE_API_URL + '?type=newshops';
+export const GET_HIGHRATINGSHOPS_API = BASE_API_URL + '?type=highratingshops';
 export const MOCK_GET_WALLET_API = MOCK_API_URL + '/wallet';
 export const GET_LOOKUP_API = BASE_API_URL + '/lookup';
 export const GET_CAT_API = BASE_API_URL + '?type=category';
@@ -66,9 +67,13 @@ export const GET_NEWSHOP_PENDING = 'GET_NEWSHOP_PENDING';
 export const GET_NEWSHOP_SUCCESS = 'GET_NEWSHOP_SUCCESS';
 export const GET_NEWSHOP_FAILED = 'GET_NEWSHOP_FAILED';
 
-export const GET_CAT_PENDING = 'GET_CATP_PENDING';
+export const GET_CAT_PENDING = 'GET_CAT_PENDING';
 export const GET_CAT_SUCCESS = 'GET_CAT_SUCCESS';
 export const GET_CAT_FAILED = 'GET_CAT_FAILED';
+
+export const GET_HIGHRATINGSHOPS_PENDING = 'GET_HIGHRATINGSHOPS_PENDING';
+export const GET_HIGHRATINGSHOPS_SUCCESS = 'GET_HIGHRATINGSHOPS_SUCCESS';
+export const GET_HIGHRATINGSHOPS_FAILED = 'GET_HIGHRATINGSHOPS_FAILED';
 
 
 export {initalState};

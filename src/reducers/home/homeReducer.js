@@ -58,7 +58,29 @@ export function homeReducer(state = constant.initalState.home, action) {
         ...state
       };
     }
+    case constant.GET_NEWSHOP_FAILED: {
+      return {
+        ...state
+      };
+    }
+    case constant.GET_HIGHRATINGSHOPS_PENDING: {
+      return {
+        ...state
+      };
+    }
 
+    case constant.GET_HIGHRATINGSHOPS_SUCCESS: {
+      return {
+        ...state,
+        highratingshops: {list: action.payload, loaded: true},
+      };
+    }
+
+    case constant.GET_HIGHRATINGSHOPS_FAILED: {
+      return {
+        ...state
+      };
+    }
 
     default:
       return state;

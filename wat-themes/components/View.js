@@ -36,6 +36,9 @@ export default (variables = variable) => {
     '.center':{
       alignItems: 'center'
     },
+    '.center-h': {
+      justifyContent: 'center'
+    },
     '.with-shadow': {
       shadowOffset: {
         width: 0,
@@ -51,6 +54,9 @@ export default (variables = variable) => {
 			marginRight: 30,
 			marginBottom: 15,
     },
+    '.space-between':{
+      justifyContent: 'space-between',
+    },
     '.border-bottom':{
       borderBottomWidth:1,
       marginLeft: 20,
@@ -60,7 +66,13 @@ export default (variables = variable) => {
       paddingTop:10,
       paddingBottom:10,
       borderColor: '#7e7e7e'
-    }
+    },
+    '.m-t-5': {
+      marginTop: 5
+    },
+    '.m-r-10': {
+      marginRight: 10
+    },
   };
 
   return viewTheme;

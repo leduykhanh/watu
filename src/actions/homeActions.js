@@ -73,3 +73,26 @@ export function getCategories() {
   }
 }
 
+export function getHighRatingsShop() {
+  return dispatch => {
+
+    dispatch({
+      type: constants.GET_HIGHRATINGSHOPS_PENDING
+    });
+
+    HomeApi.getHighRatingsShop().then((response) => {
+      dispatch({
+        type: constants.GET_HIGHRATINGSHOPS_SUCCESS,
+        payload: response.data.results
+      });
+    }).catch((error) => {
+
+      dispatch({
+        type: constants.GET_HIGHRATINGSHOPS_FAILED,
+        error
+      });
+
+    });
+
+  }
+}

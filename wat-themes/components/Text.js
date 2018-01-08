@@ -118,6 +118,9 @@ export default (variables = variable) => {
       textDecorationColor: "#557ffb",
       color: '#557ffb'
     },
+    '.theme' : {
+      color: variables.toolbarDefaultBg
+    },
     backgroundColor:'transparent'
   };
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, List } from 'native-base';
+import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, List, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import {bindActionCreators} from 'redux';
 
@@ -12,7 +12,9 @@ import Header from '../components/layout/Header';
 import NewShopItem from '../components/home/NewShopItem';
 import * as actions from '../actions/homeActions';
 
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import StarRating from 'react-native-star-rating';
 
 
 import deviceTokenHelper from '../utils/deviceTokenHelper';
@@ -62,7 +64,8 @@ const styles = {
 
   image: {
     width,
-    flex: 1
+    flex: 1,
+    height: 240
   }
 }
 
@@ -70,7 +73,6 @@ const styles = {
 class Dashboard extends Component {
   
   async componentDidMount() {
-    console.log(this.props.actions);
     // const {sendToken, updateToken} = this.props.deviceActions;
     // //const {token, deviceId} = this.props.device;
     // const { isProfileLoadCalled, selectedSubscription } = this.props.profile;
@@ -82,6 +84,7 @@ class Dashboard extends Component {
     this.props.actions.getPromotions();
     this.props.actions.getNewshops();
     this.props.actions.getCategories();
+    this.props.actions.getHighRatingsShop();
   }
   
   // static componentWillUpdate(nextProps) {
@@ -91,67 +94,123 @@ class Dashboard extends Component {
     // }
     
   // }
-  
+  renderCategories(){
+    return (
+      <View style={{height: 300}}>
+        {/*<Swiper height={240} showsPagination={false}*/}
+        {/*onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}*/}
+        {/*loop>*/}
+        {this.props.home.categories.list.map(
+          (item) => {
+            console.log(item.image)
+            return
+            <Text>dadaddd</Text>
+          }
+        )
+        }
+        {/*</Swiper>*/}
+      </View>
+    )
+  }
+  renderNewShops(){
+    return (
+      <ScrollView horizontal containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
+        {
+          this.props.home.newShops.list.map(
+            (item) => <NewShopItem key={item.id} item={item}/>
+          )
+        }
+      </ScrollView>
+    );
+  }
+  renderPromotions(){
+    return (
+      <View style={{height: 240}}>
+        <Swiper autoplay height={240} showsPagination={false}
+                onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+                loop>
+          {this.props.home.promotions.list.map(
+            (item) => {
+              const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
+              const topTexts = toptext.split(" ");
+              return(
+                <View key={item.id} style={styles.slide}>
+                  <Image  style={styles.image} source={{uri: item.image}}/>
+                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 155, padding: 10,
+                    position:'absolute', alignSelf: 'stretch', width:'auto'}}>
+                    <Text white fs20>{item.bigtitle}</Text>
+                    <Text white fs12>{item.smalltitle}</Text>
+                  </View>
+                  <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
+                    borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
+                    {topTexts.map(t =>
+                      <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
+                        backgroundColor: toptext_bgcolor}}>{t}</Text>
+                    )}
+
+                  </View>
+                </View>)
+            }
+          )}
+
+        </Swiper>
+      </View>
+    );
+  }
+  renderHighRatings(){
+    return (
+      <View style={{height: 240}}>
+        <Swiper autoplay height={240} showsPagination={false}
+                onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+                loop>
+          {this.props.home.highratingshops.list.map(
+            (item) => {
+              return(
+                <View key={item.id} style={styles.slide}>
+                  <Image  style={styles.image} source={{uri: item.image}}/>
+                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 150, padding: 10,
+                    position:'absolute', alignSelf: 'stretch', width}}>
+                    <Text white fs20>{item.name}</Text>
+                    <View horizontal space-between>
+                      <View horizontal>
+                        <View m-r-10>
+                          <StarRating
+                            disabled={false}
+                            maxStars={5}
+                            rating={item.totalrate}
+                            starSize={15}
+                            starColor={'rgb(249,174,24)'}
+                            selectedStar={(rating) => console.log(rating)}
+                          />
+                        </View>
+                        <Text white fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
+                      </View>
+                      <View horizontal>
+                        <Icon new-shop name="ios-pin" />
+                        <Text white fs12 theme>Get direction</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>)
+            }
+          )}
+
+        </Swiper>
+      </View>
+    );
+  }
 
   render() {
-    //console.log(this.props.home.categories);
+    // console.log(this.props.home.highratingshops.list);
     return (
       <Container>
           <Header />
           <Content containerStyle={{paddingBottom:100}}>
-            <View style={{height: 300}}>
-              <Swiper height={240} showsPagination={false}
-                      onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
-                      loop>
-                {this.props.home.categories.list.map(
-                  (item) => {
-                    <View key={item.id} style={styles.slide}>
-                      <Image style={{width: 100, height:100}} source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}/>
-                    </View>
-                  }
-                )
-                }
-              </Swiper>
-            </View>
-            <View style={{height: 300}}>
-              <Swiper autoplay height={240} showsPagination={false}
-                      onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
-                       loop>
-                {this.props.home.promotions.list.map(
-                  (item) => {
-                    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
-                    const topTexts = toptext.split(" ");
-                    return(
-                    <View key={item.id} style={styles.slide}>
-                      <Image resizeMode='stretch' style={styles.image} source={{uri: item.image}}/>
-                      <View style={{backgroundColor: "rgba(0, 0, 0, 0.5)", top: -70, padding: 10, alignSelf: 'stretch', width:'auto'}}>
-                        <Text white fs20>{item.bigtitle}</Text>
-                        <Text white fs12>{item.smalltitle}</Text>
-                      </View>
-                      <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
-                        borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
-                        {topTexts.map(t =>
-                          <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
-                            backgroundColor: toptext_bgcolor}}>{t}</Text>
-                        )}
 
-                      </View>
-                    </View>)
-                  }
-                )}
-
-              </Swiper>
-            </View>
+            {this.renderPromotions()}
             <Text>New shops</Text>
-            <ScrollView horizontal containerStyle={{width: 142, height: 542, flex:1}}>
-            {
-              this.props.home.newShops.list.map(
-                (item) => <NewShopItem key={item.id} item={item}/>
-              )
-            }
-          </ScrollView>
-
-            <Text>dad</Text>
+            {this.renderNewShops()}
+            {this.renderHighRatings()}
 
           </Content>
           
