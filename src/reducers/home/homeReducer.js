@@ -22,12 +22,43 @@ export function homeReducer(state = constant.initalState.home, action) {
         ...state
       };
     }
-
-    case constant.STATE_LOGOUT_SUCCESS: {
+    case constant.GET_NEWSHOP_PENDING: {
       return {
-        ...constant.initalState.home
+        ...state
       };
     }
+
+    case constant.GET_NEWSHOP_SUCCESS: {
+      return {
+        ...state,
+        newShops: {list: action.payload, loaded: true},
+      };
+    }
+
+    case constant.GET_NEWSHOP_FAILED: {
+      return {
+        ...state
+      };
+    }
+    case constant.GET_CAT_PENDING: {
+      return {
+        ...state
+      };
+    }
+
+    case constant.GET_CAT_SUCCESS: {
+      return {
+        ...state,
+        categories: {list: action.payload, loaded: true},
+      };
+    }
+
+    case constant.GET_CAT_FAILED: {
+      return {
+        ...state
+      };
+    }
+
 
     default:
       return state;

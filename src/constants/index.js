@@ -19,9 +19,10 @@ const MOCK_API_URL = '';
 export const GET_PROFILE_API = BASE_API_URL + '/profile';
 export const CHANGE_PASSWORD_API = BASE_API_URL + '/profile/changePassword';
 export const GET_PROMOTIONS_API = BASE_API_URL + '?type=promotions';
+export const GET_NEWSHOPS_API = BASE_API_URL + '?type=newshops';
 export const MOCK_GET_WALLET_API = MOCK_API_URL + '/wallet';
 export const GET_LOOKUP_API = BASE_API_URL + '/lookup';
-export const GET_BANK_LIST_API = BASE_API_URL + '/koku/bankaccount';
+export const GET_CAT_API = BASE_API_URL + '?type=category';
 export const GET_KOKU_RATE_API = BASE_API_URL + '/rate';
 export const DEVICE_API = BASE_API_URL + '/device';
 export const SIGNUP_LINK = BASE_API_URL + '/account/signup';
@@ -61,6 +62,13 @@ export const GET_PROMOTION_PENDING = 'GET_PROMOTION_PENDING';
 export const GET_PROMOTION_SUCCESS = 'GET_PROMOTION_SUCCESS';
 export const GET_PROMOTION_FAILED = 'GET_PROMOTION_FAILED';
 
+export const GET_NEWSHOP_PENDING = 'GET_NEWSHOP_PENDING';
+export const GET_NEWSHOP_SUCCESS = 'GET_NEWSHOP_SUCCESS';
+export const GET_NEWSHOP_FAILED = 'GET_NEWSHOP_FAILED';
+
+export const GET_CAT_PENDING = 'GET_CATP_PENDING';
+export const GET_CAT_SUCCESS = 'GET_CAT_SUCCESS';
+export const GET_CAT_FAILED = 'GET_CAT_FAILED';
 
 
 export {initalState};

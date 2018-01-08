@@ -33,7 +33,17 @@ export default initalState = {
     deviceId: null
   },
   home: {
+    categories: {
+      list: [],
+      loading: false,
+      loaded: false
+    },
     promotions: {
+      list: [],
+      loading: false,
+      loaded: false
+    },
+    newShops: {
       list: [],
       loading: false,
       loaded: false

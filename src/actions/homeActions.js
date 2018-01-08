@@ -1,5 +1,5 @@
 import * as constants from '../constants';
-import * as PromotionApi from '../api/PromotionApi';
+import * as HomeApi from '../api/HomeApi';
 
 export function getPromotions() {
   return dispatch => {
@@ -8,8 +8,7 @@ export function getPromotions() {
       type: constants.GET_PROMOTION_PENDING
     });
 
-    PromotionApi.getPromotions().then((response) => {
-      console.log(response)
+    HomeApi.getPromotions().then((response) => {
       dispatch({
         type: constants.GET_PROMOTION_SUCCESS,
         payload: response.data.results
@@ -17,7 +16,7 @@ export function getPromotions() {
     }).catch((error) => {
 
       dispatch({
-        type: constants.STATE_GET_LOOKUP_ERROR,
+        type: constants.GET_PROMOTION_FAILED,
         error
       });
 
@@ -25,3 +24,52 @@ export function getPromotions() {
 
   }
 }
+
+export function getNewshops() {
+  return dispatch => {
+
+    dispatch({
+      type: constants.GET_NEWSHOP_PENDING
+    });
+
+    HomeApi.getNewshops().then((response) => {
+      dispatch({
+        type: constants.GET_NEWSHOP_SUCCESS,
+        payload: response.data.results
+      });
+    }).catch((error) => {
+
+      dispatch({
+        type: constants.GET_NEWSHOP_FAILED,
+        error
+      });
+
+    });
+
+  }
+}
+
+export function getCategories() {
+  return dispatch => {
+
+    dispatch({
+      type: constants.GET_CAT_PENDING
+    });
+
+    HomeApi.getCategories().then((response) => {
+      dispatch({
+        type: constants.GET_CAT_SUCCESS,
+        payload: response.data.results
+      });
+    }).catch((error) => {
+
+      dispatch({
+        type: constants.GET_CAT_FAILED,
+        error
+      });
+
+    });
+
+  }
+}
+
