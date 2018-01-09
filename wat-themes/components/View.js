@@ -73,6 +73,9 @@ export default (variables = variable) => {
     '.m-r-10': {
       marginRight: 10
     },
+    '.p-l-10': {
+      paddingLeft: 10
+    },
   };
 
   return viewTheme;

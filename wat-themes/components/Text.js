@@ -108,6 +108,9 @@ export default (variables = variable) => {
     '.fs12': {
       fontSize: 12,
     },
+    '.fs14': {
+      fontSize: 14,
+    },
     '.caption': {
       fontSize: 11,
       color: 'black'

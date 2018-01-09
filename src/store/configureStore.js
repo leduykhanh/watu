@@ -23,6 +23,5 @@ export default async function configureStore() {
   const store = createStore(reducers, undefined, enhancer);
   
   //await persistStore(store, config);
-  console.log('ccc', reducers);
   return store;
 }

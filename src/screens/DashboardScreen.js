@@ -10,6 +10,7 @@ import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import NewShopItem from '../components/home/NewShopItem';
+import NearbyShopItem from '../components/home/NearbyShopItem';
 import * as actions from '../actions/homeActions';
 
 import Swiper from 'react-native-swiper';
@@ -81,10 +82,11 @@ class Dashboard extends Component {
     // deviceTokenHelper(token => {
     //   deviceId ? updateToken(token, deviceId) : sendToken(token);
     // });
+    this.props.actions.getCategories();
     this.props.actions.getPromotions();
     this.props.actions.getNewshops();
-    this.props.actions.getCategories();
     this.props.actions.getHighRatingsShop();
+    this.props.actions.getNearbyShop()
   }
   
   // static componentWillUpdate(nextProps) {
@@ -136,7 +138,7 @@ class Dashboard extends Component {
               return(
                 <View key={item.id} style={styles.slide}>
                   <Image  style={styles.image} source={{uri: item.image}}/>
-                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 155, padding: 10,
+                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
                     position:'absolute', alignSelf: 'stretch', width:'auto'}}>
                     <Text white fs20>{item.bigtitle}</Text>
                     <Text white fs12>{item.smalltitle}</Text>
@@ -186,7 +188,7 @@ class Dashboard extends Component {
                         <Text white fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
                       </View>
                       <View horizontal>
-                        <Icon new-shop name="ios-pin" />
+                        <Icon new-shop name="ios-send" />
                         <Text white fs12 theme>Get direction</Text>
                       </View>
                     </View>
@@ -197,6 +199,18 @@ class Dashboard extends Component {
 
         </Swiper>
       </View>
+    );
+  }
+
+  renderNearbyShops(){
+    return (
+      <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
+        {
+          this.props.home.highratingshops.list.map(
+            (item) => <NearbyShopItem key={item.id} item={item}/>
+          )
+        }
+      </ScrollView>
     );
   }
 
@@ -211,7 +225,7 @@ class Dashboard extends Component {
             <Text>New shops</Text>
             {this.renderNewShops()}
             {this.renderHighRatings()}
-
+            {this.renderNearbyShops()}
           </Content>
           
           <Footer />

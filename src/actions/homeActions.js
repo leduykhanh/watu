@@ -96,3 +96,27 @@ export function getHighRatingsShop() {
 
   }
 }
+
+export function getNearbyShop() {
+  return dispatch => {
+
+    dispatch({
+      type: constants.GET_NEARBYSHOPS_PENDING
+    });
+
+    HomeApi.getNearbyShop().then((response) => {
+      dispatch({
+        type: constants.GET_NEARBYSHOPS_SUCCESS,
+        payload: response.data.results
+      });
+    }).catch((error) => {
+
+      dispatch({
+        type: constants.GET_NEARBYSHOPS_FAILED,
+        error
+      });
+
+    });
+
+  }
+}

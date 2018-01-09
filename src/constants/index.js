@@ -21,7 +21,7 @@ export const CHANGE_PASSWORD_API = BASE_API_URL + '/profile/changePassword';
 export const GET_PROMOTIONS_API = BASE_API_URL + '?type=promotions';
 export const GET_NEWSHOPS_API = BASE_API_URL + '?type=newshops';
 export const GET_HIGHRATINGSHOPS_API = BASE_API_URL + '?type=highratingshops';
-export const MOCK_GET_WALLET_API = MOCK_API_URL + '/wallet';
+export const GET_NEARBYSHOPS_API = BASE_API_URL + '?type=nearbyshops';
 export const GET_LOOKUP_API = BASE_API_URL + '/lookup';
 export const GET_CAT_API = BASE_API_URL + '?type=category';
 export const GET_KOKU_RATE_API = BASE_API_URL + '/rate';
@@ -74,6 +74,10 @@ export const GET_CAT_FAILED = 'GET_CAT_FAILED';
 export const GET_HIGHRATINGSHOPS_PENDING = 'GET_HIGHRATINGSHOPS_PENDING';
 export const GET_HIGHRATINGSHOPS_SUCCESS = 'GET_HIGHRATINGSHOPS_SUCCESS';
 export const GET_HIGHRATINGSHOPS_FAILED = 'GET_HIGHRATINGSHOPS_FAILED';
+
+export const GET_NEARBYSHOPS_PENDING = 'GET_NEARBYSHOPS_PENDING';
+export const GET_NEARBYSHOPS_SUCCESS = 'GET_NEARBYSHOPS_SUCCESS';
+export const GET_NEARBYSHOPS_FAILED = 'GET_NEARBYSHOPS_FAILED'
 
 
 export {initalState};

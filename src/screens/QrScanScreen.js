@@ -14,7 +14,7 @@ class QrScanScreen extends Component {
       <Container>
 
         <ImageBackground>
-          <Header />
+          <Header back/>
           <Content>
 
             <Text>QR Scan</Text>

@@ -5,9 +5,13 @@ import { Container, Header, Item, Input, Icon, Button, Text, Badge } from 'nativ
 const HeaderComponent = (props) => {
 	return (
 	     <Header searchBar rounded>
-	     
+         {props.back?
+         <Button iconRight transparent>
+           <Icon onPress={() => Actions.pop()} name='ios-arrow-back' />
+         </Button>:<Text></Text>}
+
 	        <Button transparent>
-            <Icon onPress={() => Actions.replace('qrscan')} name='ios-qr-scanner' />
+            <Icon onPress={() => Actions.qrscan()} name='ios-qr-scanner' />
           </Button>
           <Item>
             <Icon name="ios-search" />

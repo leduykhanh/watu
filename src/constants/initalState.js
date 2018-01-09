@@ -52,6 +52,11 @@ export default initalState = {
       list: [],
       loading: false,
       loaded: false
+    },
+    nearbyshops: {
+      list: [],
+      loading: false,
+      loaded: false
     }
   }
   

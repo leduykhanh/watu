@@ -60,7 +60,6 @@ export default class App extends React.Component {
     
     this.state.store = await configureStore();
     this.setState({ isReady: true});
-    console.log('ssasdad', this.state.store);
     
     getLookupData()(this.state.store.dispatch);
 
