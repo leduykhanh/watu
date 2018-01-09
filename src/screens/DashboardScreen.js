@@ -98,19 +98,22 @@ class Dashboard extends Component {
   // }
   renderCategories(){
     return (
-      <View style={{height: 300}}>
-        {/*<Swiper height={240} showsPagination={false}*/}
-        {/*onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}*/}
-        {/*loop>*/}
-        {this.props.home.categories.list.map(
-          (item) => {
-            console.log(item.image)
-            return
-            <Text>dadaddd</Text>
-          }
-        )
-        }
-        {/*</Swiper>*/}
+      <View style={{height: 100}}>
+        <Swiper height={240} showsPagination={false}
+        onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+        loop>
+          <View horizontal >
+            {
+              this.props.home.categories.list.map(
+                (item) =>
+                  <View center>
+                    <Image key={item.id} style={{width: width/5 - 15, height: width/5 - 15, margin:7}} source={{uri: item.image}}/>
+                    <Text bold fs12>{item.name}</Text>
+                  </View>
+              )
+            }
+           </View>
+          </Swiper>
       </View>
     )
   }
@@ -215,12 +218,12 @@ class Dashboard extends Component {
   }
 
   render() {
-    // console.log(this.props.home.highratingshops.list);
+    // console.log(this.props.home.categories.list);
     return (
       <Container>
           <Header />
           <Content containerStyle={{paddingBottom:100}}>
-
+            {this.renderCategories()}
             {this.renderPromotions()}
             <Text>New shops</Text>
             {this.renderNewShops()}

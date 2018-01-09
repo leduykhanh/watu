@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Footer, FooterTab, Button,  Text,View } from 'native-base';
+import { Container, Header, Footer, FooterTab, Button,  Text,View, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { Image } from 'react-native';
-import Icon from './svg/KokuIcon';
 
 export default class FooterTabs extends Component {
   
@@ -19,15 +18,15 @@ export default class FooterTabs extends Component {
             </Button>
 
             <Button vertical onPress={() => Actions.replace('wallet')} active={currentScene === '_wallet'} >
-              <Icon name="wallet" size={22} color={currentScene === '_wallet'? "#4740c7" : "grey"}/>
+              <Icon name="ios-planet" size={22} color={currentScene === '_wallet'? "#4740c7" : "grey"}/>
             </Button>
             
             <Button vertical active={currentScene === '_transaction_history'} onPress={() => Actions.replace('transaction_history')}>
-              <Icon active name="history" size={22} color={currentScene === '_transaction_history'? "#4740c7" : "grey"}/>
+              <Icon active name="ios-podium" size={22} color={currentScene === '_transaction_history'? "#4740c7" : "grey"}/>
             </Button>
 
             <Button onPress={() => Actions.drawerOpen()} vertical active={false} >
-              <Icon name="more" size={22}/>
+              <Icon name="md-person" size={22}/>
             </Button>
 
           </FooterTab>

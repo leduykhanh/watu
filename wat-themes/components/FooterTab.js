@@ -53,7 +53,7 @@ export default (variables = variable) => {
         }
       },
       "NativeBase.Icon": {
-        color: variables.tabBarTextColor
+        color: variables.toolbarDefaultBg
       },
       "NativeBase.IconNB": {
         color: variables.tabBarTextColor
