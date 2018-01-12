@@ -46,13 +46,14 @@ const Routes = () => {
     <Router>
       <Overlay>
         <Stack key='root'>
-          <Scene key="dashboard"  hideNavBar initial component={DashboardScreen} title="Dashboard" titleStyle={styles.sceneHeaderStyle} />
-          <Scene key="qrscan" hideNavBar component={QrScanScreen} />
-          <Lightbox key="lightbox">
 
+          <Lightbox key="lightbox">
+            <Scene key="dashboard"  hideNavBar initial component={DashboardScreen} title="Dashboard" titleStyle={styles.sceneHeaderStyle} />
             <Scene key="login"  component={LoginScreen} hideNavBar />
 
           </Lightbox>
+          <Scene key="profile" hideNavBar component={ProfileScreen} />
+          <Scene key="qrscan" hideNavBar component={QrScanScreen} />
           <Drawer
             hideNavBar
             hideDrawerButton
@@ -62,7 +63,7 @@ const Routes = () => {
           >
 
             <Scene key="profile" navTransparent component={ProfileScreen} title="Profile" titleStyle={styles.sceneHeaderStyle}/>
-
+            <Scene key="qrscan" hideNavBar component={QrScanScreen} />
 
           </Drawer>
 

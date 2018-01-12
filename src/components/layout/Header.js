@@ -18,7 +18,7 @@ const HeaderComponent = (props) => {
             <Input placeholder="Search" />
           </Item>
           <Button transparent badge vertical>
-            <Icon name='ios-cart' />
+            <Icon onPress={() => Actions.login()} name='ios-cart' />
           </Button>
         </Header>)
 }

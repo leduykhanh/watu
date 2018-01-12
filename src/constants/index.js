@@ -4,7 +4,8 @@ const apiVersion = 'v0.2';
 
 // Staging
 const BASE_API_URL = 'http://watu1.haizzz.com/api/';
-export const LOGIN_API = BASE_API_URL + 'type=login';
+export const LOGIN_API = BASE_API_URL + '?type=login';
+export const REGISTER_API = BASE_API_URL + '?type=register';
 
 // Development
 // const BASE_API_URL = '';

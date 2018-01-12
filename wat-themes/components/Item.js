@@ -200,18 +200,20 @@ export default (variables = variable) => {
 			},
 		},
 		'.login': {
-			borderColor: variables.blueWithAHintOfPurple,
-      
+			borderColor: 'rgb(206,206,206)',
+
       // shadowColor: '#000',
       // shadowOffset: { width: 0, height: 2 },
       // shadowOpacity: 0.5,
       // shadowRadius: 2,
-      
+
       //textShadowOffset: { width: 0, height: 0 },
-      
+
 			//borderWidth: variables.borderWidth,
-      borderWidth: 2,
-			paddingLeft:10
+      borderWidth: 0.5,
+			paddingLeft:0,
+			marginBottom: 10,
+			marginTop: 5
 		},
 
 		borderWidth: variables.borderWidth * 2,
@@ -222,7 +224,7 @@ export default (variables = variable) => {
 		backgroundColor: 'transparent',
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginLeft: 2
+		// marginLeft: 2
 	};
 
 	return itemTheme;
