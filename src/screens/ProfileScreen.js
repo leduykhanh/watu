@@ -12,7 +12,7 @@ const tabProps = {
   },activeTextColor: 'rgb(67,72,77)'
 };
 
-class QrScanScreen extends Component {
+class ProfileScreen extends Component {
 
   render() {
 
@@ -70,4 +70,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(QrScanScreen);
+)(ProfileScreen);

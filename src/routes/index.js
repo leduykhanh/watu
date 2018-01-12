@@ -13,7 +13,7 @@ import DrawerContent from '../components/drawer/DrawerContent';
 import MessageBar from '../components/MessageBar';
 
 import {
-  LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen
+  LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen, DetailScreen
  } from '../screens';
 
 
@@ -54,6 +54,7 @@ const Routes = () => {
           </Lightbox>
           <Scene key="profile" hideNavBar component={ProfileScreen} />
           <Scene key="qrscan" hideNavBar component={QrScanScreen} />
+          <Scene key="detail" hideNavBar component={DetailScreen} />
           <Drawer
             hideNavBar
             hideDrawerButton

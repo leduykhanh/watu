@@ -25,7 +25,7 @@ export default class FooterTabs extends Component {
               <Icon active name="ios-podium" size={22} color={currentScene === '_transaction_history'? "#4740c7" : "grey"}/>
             </Button>
 
-            <Button onPress={() => Actions.profile()} vertical active={false} >
+            <Button onPress={() => Actions.login()} vertical active={false} >
               <Icon name="md-person" size={22}/>
             </Button>
 
