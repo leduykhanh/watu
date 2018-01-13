@@ -9,6 +9,7 @@ import { ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
+import Categories from '../components/home/Categories';
 import NewShopItem from '../components/home/NewShopItem';
 import NearbyShopItem from '../components/home/NearbyShopItem';
 import * as actions from '../actions/homeActions';
@@ -16,7 +17,6 @@ import * as actions from '../actions/homeActions';
 import Swiper from 'react-native-swiper';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import StarRating from 'react-native-star-rating';
-
 
 import deviceTokenHelper from '../utils/deviceTokenHelper';
 
@@ -70,7 +70,6 @@ const styles = {
   }
 }
 
-
 class Dashboard extends Component {
 
   async componentDidMount() {
@@ -96,26 +95,9 @@ class Dashboard extends Component {
     // }
 
   // }
-  renderCategories(){
-    return (
-      <View style={{height: 100}}>
-        <Swiper height={240} showsPagination={false}
-        // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
-        loop>
-          <View horizontal >
-            {
-              this.props.home.categories.list.map(
-                (item) =>
-                  <View center>
-                    <Image key={item.id} style={{width: width/5 - 15, height: width/5 - 15, margin:7}} source={{uri: item.image}}/>
-                    <Text bold fs12>{item.name}</Text>
-                  </View>
-              )
-            }
-           </View>
-          </Swiper>
-      </View>
-    )
+
+  renderCategories() {
+    return <Categories items={this.props.home.categories.list}/>
   }
   renderNewShops(){
     return (
