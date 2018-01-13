@@ -13,7 +13,7 @@ export default initalState = {
     countries: []
   },
   profile: {
-    firstName: '',
+    fname: null,
     lastName: '',
     email: '',
     avatarUrl: '',

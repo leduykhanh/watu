@@ -11,33 +11,35 @@ const serverCall = axios.create({
   maxContentLength: 50 * 1000 * 1000
 });
 
+serverCall.defaults.headers['token'] = 'UDgwU0hJSW9CZlQ2VmVGaXJ5R296cXVRS1B2Z1c2bXg0SDB4dU5mbDRPOD0';
+
 
 serverCall.interceptors.response.use(response => {
   //console.log(response.config.url, response.data, response);
   return response;
 }, error => {
-  
+
   const { code, message } = error.response.data;
-  
+
   //console.log('HTTP Error Response', error, error.response);
-  
+
   if (error.response.status === 400) {
     return Promise.reject(error);
   }
-  
+
   // if (error.response.status === 401 || error.response.status === 403) {
   //   Actions.popTo('login');
   //   return;
   // }
-  serverCall.defaults.headers['Authorization'] = '';
-  
+  serverCall.defaults.headers['token'] = '';
+
   AsyncStorage.clear();
   setOidc(null);
-  
+
   Actions.replace('login',{error: true});
 
-  
-  
+
+
   // MessageBarManager.showAlert({
   //   position: 'bottom',
   //   animationType: 'SlideFromLeft',
@@ -46,7 +48,7 @@ serverCall.interceptors.response.use(response => {
   //   duration: 3000,
   //   alertType: 'error'
   // });
-  
+
 });
 
 export default serverCall;

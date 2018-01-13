@@ -100,7 +100,7 @@ class Dashboard extends Component {
     return (
       <View style={{height: 100}}>
         <Swiper height={240} showsPagination={false}
-        onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+        // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
         loop>
           <View horizontal >
             {
@@ -132,7 +132,7 @@ class Dashboard extends Component {
     return (
       <View style={{height: 240}}>
         <Swiper autoplay height={240} showsPagination={false}
-                onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+                // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
                 loop>
           {this.props.home.promotions.list.map(
             (item) => {
@@ -233,7 +233,7 @@ class Dashboard extends Component {
             {this.renderNearbyShops()}
           </Content>
 
-          <Footer />
+          <Footer profile={this.props.profile}/>
 
       </Container>
     );

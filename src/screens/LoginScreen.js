@@ -24,8 +24,8 @@ class Login extends Component {
   // };
 
   state = {
-    username: '',
-    password: ''
+    username: 'leejangkoo+1@gmail.com',
+    password: '123456'
   };
 
 
@@ -38,6 +38,11 @@ class Login extends Component {
   onLogin() {
     this.setState({typing:false});
     this.props.actions.login(this.state.username, this.state.password);
+  }
+
+  onRegister() {
+    this.setState({typing:false});
+    this.props.actions.register(this.state.username, this.state.password);
   }
 
   renderLogin(){
@@ -110,7 +115,7 @@ class Login extends Component {
           <Text>I agree with terms and conditions</Text>
         </View>
         <View style={{ marginTop: 20 }}>
-          <Button onPress={this.onLogin.bind(this)} full small><Text bold>REGISTER</Text></Button>
+          <Button onPress={this.onRegister.bind(this)} full small><Text bold>REGISTER</Text></Button>
         </View>
 
 
