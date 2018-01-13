@@ -389,7 +389,8 @@ export default (variables = variable) => {
 		},
 
 		".small": {
-			height: 30,
+			height: 32,
+      backgroundColor: variables.toolbarDefaultBg,
 			"NativeBase.Text": {
 				fontSize: 14,
 			},
@@ -409,7 +410,7 @@ export default (variables = variable) => {
 			flexDirection: "column",
 			height: null,
 		},
-		
+
 		".blueBorder": {
 			borderColor: variables.blueWithAHintOfPurple,
 			"NativeBase.Text" : {

@@ -5,7 +5,7 @@ export default (variables = variable) => {
 
   const tabHeadingTheme = {
     flexDirection: "row",
-    backgroundColor: variables.tabDefaultBg,
+    backgroundColor: '#FFF',
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

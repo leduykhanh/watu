@@ -27,7 +27,7 @@ export default {
   btnDisabledClr: "#f1f1f1",
 
   // CheckBox
-  CheckboxRadius: platform === "ios" ? 13 : 0,
+  CheckboxRadius: platform === "ios" ? 0 : 0,
   CheckboxBorderWidth: platform === "ios" ? 1 : 2,
   CheckboxPaddingLeft: platform === "ios" ? 4 : 2,
   CheckboxPaddingBottom: platform === "ios" ? 0 : 5,
@@ -37,7 +37,7 @@ export default {
   DefaultFontSize: 17,
   checkboxBgColor: "#039BE5",
   checkboxSize: 20,
-  checkboxTickColor: "#fff",
+  checkboxTickColor: "yellow",
 
   // Segment
   segmentBackgroundColor: platform === "ios" ? "#F8F8F8" : "#3F51B5",
@@ -161,7 +161,7 @@ export default {
   toolbarTextColor: platform === "ios" ? "#000" : "#fff",
   toolbarDefaultBorder: platform === "ios" ? "#a7a6ab" : "#3F51B5",
   iosStatusbar: platform === "ios" ? "dark-content" : "light-content",
-  
+
   get statusBarColor() {
     const getColor = color(this.toolbarDefaultBg).darken(0.2);
     return typeof getColor.hex === "function" ? getColor.hex() : getColor.hexString();

@@ -1,5 +1,5 @@
 export default initalState = {
-  
+
   user: {
     rehydated: false,
     oidc: null,
@@ -20,7 +20,12 @@ export default initalState = {
     subscriptions : [],
     selectedSubscription: null,
     isProfileLoadCalled: false,
-    isGettingProfile: false
+    isGettingProfile: false,
+    history: {
+      list: [],
+      loading: false,
+      loaded: false
+    },
   },
   rule:{
     currencies:null
@@ -59,5 +64,5 @@ export default initalState = {
       loaded: false
     }
   }
-  
+
 };

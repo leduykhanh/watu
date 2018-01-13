@@ -13,7 +13,7 @@ import DrawerContent from '../components/drawer/DrawerContent';
 import MessageBar from '../components/MessageBar';
 
 import {
-  LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen
+  LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen, DetailScreen
  } from '../screens';
 
 
@@ -46,13 +46,15 @@ const Routes = () => {
     <Router>
       <Overlay>
         <Stack key='root'>
-          <Scene key="dashboard"  hideNavBar initial component={DashboardScreen} title="Dashboard" titleStyle={styles.sceneHeaderStyle} />
-          <Scene key="qrscan" hideNavBar component={QrScanScreen} />
-          <Lightbox key="lightbox">
 
+          <Lightbox key="lightbox">
+            <Scene key="dashboard"  hideNavBar initial component={DashboardScreen} title="Dashboard" titleStyle={styles.sceneHeaderStyle} />
             <Scene key="login"  component={LoginScreen} hideNavBar />
 
           </Lightbox>
+          <Scene key="profile" hideNavBar component={ProfileScreen} />
+          <Scene key="qrscan" hideNavBar component={QrScanScreen} />
+          <Scene key="detail" hideNavBar component={DetailScreen} />
           <Drawer
             hideNavBar
             hideDrawerButton
@@ -62,7 +64,7 @@ const Routes = () => {
           >
 
             <Scene key="profile" navTransparent component={ProfileScreen} title="Profile" titleStyle={styles.sceneHeaderStyle}/>
-
+            <Scene key="qrscan" hideNavBar component={QrScanScreen} />
 
           </Drawer>
 
