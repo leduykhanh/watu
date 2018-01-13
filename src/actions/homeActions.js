@@ -110,7 +110,7 @@ export function getNearbyShop() {
         payload: response.data.results
       });
     }).catch((error) => {
-
+      console.log(error)
       dispatch({
         type: constants.GET_NEARBYSHOPS_FAILED,
         error

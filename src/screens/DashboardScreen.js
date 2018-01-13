@@ -4,7 +4,7 @@ import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Ti
 import { Actions } from 'react-native-router-flux';
 import {bindActionCreators} from 'redux';
 
-import { ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
 
 import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
@@ -21,7 +21,7 @@ import StarRating from 'react-native-star-rating';
 import deviceTokenHelper from '../utils/deviceTokenHelper';
 
 import {getDeviceId} from '../utils/persistStore';
-const { width } = Dimensions.get('window')
+const { width } = Dimensions.get('window');
 const styles = {
   container: {
     flex: 1
@@ -85,7 +85,8 @@ class Dashboard extends Component {
     this.props.actions.getPromotions();
     this.props.actions.getNewshops();
     this.props.actions.getHighRatingsShop();
-    this.props.actions.getNearbyShop()
+    this.props.actions.getNearbyShop();
+
   }
 
   // static componentWillUpdate(nextProps) {
@@ -95,6 +96,28 @@ class Dashboard extends Component {
     // }
 
   // }
+
+  openGps = () => {
+    var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:'
+    var url = scheme + '37.484847,-122.148386'
+    this.openExternalApp(url)
+  }
+
+  openExternalApp = (url) => {
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        Alert.alert(
+          'ERROR',
+          'Unable to open: ' + url,
+          [
+            {text: 'OK'},
+          ]
+        );
+      }
+    });
+  }
 
   renderCategories() {
     return <Categories items={this.props.home.categories.list}/>
@@ -121,14 +144,17 @@ class Dashboard extends Component {
               const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
               const topTexts = toptext.split(" ");
               return(
-                <TouchableOpacity onPress={Actions.detail}>
                   <View key={item.id} style={styles.slide}>
                     <Image  style={styles.image} source={{uri: item.image}}/>
-                    <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
-                      position:'absolute', alignSelf: 'stretch', width:'auto'}}>
-                      <Text white fs20>{item.bigtitle}</Text>
-                      <Text white fs12>{item.smalltitle}</Text>
-                    </View>
+
+                      <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
+                        position:'absolute', alignSelf: 'stretch', width:'auto'}}>
+                        <TouchableOpacity onPress={() => Actions.detail({item: item})}>
+                          <Text white fs20>{item.bigtitle}</Text>
+                          <Text white fs12>{item.smalltitle}</Text>
+                        </TouchableOpacity>
+                      </View>
+
                     <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
                       borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
                       {topTexts.map(t =>
@@ -138,7 +164,7 @@ class Dashboard extends Component {
 
                     </View>
                   </View>
-                </TouchableOpacity>  )
+                 )
             }
           )}
 
@@ -176,7 +202,7 @@ class Dashboard extends Component {
                       </View>
                       <View horizontal>
                         <Icon new-shop name="ios-send" />
-                        <Text white fs12 theme>Get direction</Text>
+                        <Text white fs12 theme onPress={this.openGps}>Get direction</Text>
                       </View>
                     </View>
                   </View>
@@ -193,7 +219,7 @@ class Dashboard extends Component {
     return (
       <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
         {
-          this.props.home.highratingshops.list.map(
+          this.props.home.nearbyshops.list.map(
             (item) => <NearbyShopItem key={item.id} item={item}/>
           )
         }

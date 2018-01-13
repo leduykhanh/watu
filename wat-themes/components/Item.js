@@ -213,7 +213,9 @@ export default (variables = variable) => {
       borderWidth: 0.5,
 			paddingLeft:0,
 			marginBottom: 10,
-			marginTop: 5
+			marginTop: 5,
+      lineHeight: 10,
+			padding: 0
 		},
 
 		borderWidth: variables.borderWidth * 2,

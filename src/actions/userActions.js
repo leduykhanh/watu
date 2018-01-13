@@ -19,8 +19,8 @@ export function login(username:string, password:string) {
       .then((response) => {
 
         // setOidc(response.data);
-        // const  token = (response.data.result.token);
-        const token = 'UDgwU0hJSW9CZlQ2VmVGaXJ5R296cXVRS1B2Z1c2bXg0SDB4dU5mbDRPOD0=';
+        const  token = (response.data.results.token);
+        // const token = 'UDgwU0hJSW9CZlQ2VmVGaXJ5R296cXVRS1B2Z1c2bXg0SDB4dU5mbDRPOD0=';
 
         serverCall.defaults.headers['token'] =  token;
         dispatch({

@@ -8,3 +8,7 @@ export function getFullProfile() {
 export function getHistory() {
   return serverCall.get(constants.GET_HISTORY_API);
 }
+
+export function updateProfile() {
+  return serverCall.post(constants.GET_PROFILE_API);
+}

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Tabs, Tab, TabHeading } from 'native-base';
+import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Tabs, Tab,
+  TabHeading, Icon } from 'native-base';
 import {StyleSheet, Image, ScrollView} from 'react-native';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
@@ -15,13 +16,26 @@ const tabProps = {
 };
 
 class ProfileScreen extends Component {
+  state = {
+    editPersonal: false,
+    userObject: {
+      usr_mobile: null,
+      usr_fname: null,
+      usr_lname: null,
+      usr_birthday: null,
+      usr_status: null,
+      usr_email: null,
+      usr_password: null,
+      usr_avatar: null
+    }
+  };
 
   componentWillMount(){
     this.props.actions.getHistory();
   }
 
   renderHistory(){
-    console.log(this.props.profile)
+    // console.log(this.props.profile)
     // this.props.profile.history.map(
     //   item => (
     //     <View>
@@ -30,11 +44,47 @@ class ProfileScreen extends Component {
     //   )
     // );
   }
+  changeAttribute(attribute, value){
+    const userObject = this.state.userObject;
+    userObject[attribute] = value;
+    this.setState({userObject,typing:true});
+  }
+
+  onSave(){
+
+  }
 
   renderPersonalInfo() {
+    const userObject = this.state.userObject;
+    if (this.state.editPersonal)
+      return (
+        <View>
+          <Text>Profile</Text>
+          <Text>Name</Text>
+          <Item login error={false} >
+            <Input
+              value={userObject.usr_fname}
+              onChangeText={(usr_fname) => this.changeAttribute('usr_fname', usr_fname)}
+               />
+          </Item>
+          <Text>Phone</Text>
+          <Item login error={false} >
+            <Input
+              value={userObject.usr_mobile}
+              onChangeText={(usr_mobile) => this.changeAttribute('usr_mobile', usr_mobile)}
+               />
+          </Item>
+
+          <View horizontal style={{ marginTop: 20 }}>
+            <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
+            <Button onPress={() => this.setState({editPersonal: false})} full small><Text bold>Cancel</Text></Button>
+          </View>
+        </View>
+      )
     return (
       <View>
         <Text>Profile</Text>
+        <Icon name="md-create" onPress={()=> this.setState({editPersonal: true})} />
         <Text>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
         <Text>{this.props.profile.email}</Text>
       </View>

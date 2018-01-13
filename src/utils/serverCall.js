@@ -50,5 +50,14 @@ serverCall.interceptors.response.use(response => {
   // });
 
 });
-
+export function addLocation(long, lat){
+  serverCall.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    config.params = { longtitude: long, latitude: lat};
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
+}
 export default serverCall;
