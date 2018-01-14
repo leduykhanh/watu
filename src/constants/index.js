@@ -18,6 +18,7 @@ export const REGISTER_API = BASE_API_URL + '?type=register';
 const MOCK_API_URL = '';
 
 export const GET_PROFILE_API = BASE_API_URL + '?type=profile';
+export const GET_PROMOTION_DETAIL_API = BASE_API_URL + '?type=promotiondetail';
 export const GET_HISTORY_API = BASE_API_URL + '?type=history';
 export const CHANGE_PASSWORD_API = BASE_API_URL + '/profile/changePassword';
 export const GET_PROMOTIONS_API = BASE_API_URL + '?type=promotions';
