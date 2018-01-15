@@ -31,7 +31,7 @@ export default (variables = variable) => {
       marginLeft: 52,
       marginRight: 52,
       marginBottom: 15
-      
+
     },
     '.center':{
       alignItems: 'center'
@@ -67,8 +67,20 @@ export default (variables = variable) => {
       paddingBottom:10,
       borderColor: '#7e7e7e'
     },
+    '.grey': {
+      backgroundColor: 'rgb(247,247,247)'
+    },
     '.m-t-5': {
       marginTop: 5
+    },
+    '.m-l-5': {
+      marginLeft: 5
+    },
+    '.m-r-5': {
+      marginRight: 5
+    },
+    '.m-l-10': {
+      marginLeft: 10
     },
     '.m-r-10': {
       marginRight: 10

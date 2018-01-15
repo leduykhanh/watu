@@ -8,6 +8,7 @@ import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
 import * as actions from "../actions/profileActions";
+import * as ProfileApi from "../api/ProfileApi";
 
 const tabProps = {
   tabBarUnderlineStyle: { backgroundColor: "rgb(249,174,24)",
@@ -51,14 +52,16 @@ class ProfileScreen extends Component {
   }
 
   onSave(){
-
+    ProfileApi.updateProfile(this.state.userObject).then(
+      (res) => console.log(res.data)
+    )
   }
 
   renderPersonalInfo() {
     const userObject = this.state.userObject;
     if (this.state.editPersonal)
       return (
-        <View>
+        <View m-l-10 grey>
           <Text>Profile</Text>
           <Text>Name</Text>
           <Item login error={false} >
@@ -82,11 +85,17 @@ class ProfileScreen extends Component {
         </View>
       )
     return (
-      <View>
-        <Text>Profile</Text>
-        <Icon name="md-create" onPress={()=> this.setState({editPersonal: true})} />
-        <Text>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
-        <Text>{this.props.profile.email}</Text>
+      <View m-l-10 grey>
+        <Text fs12 bold>Profile</Text>
+        <Icon
+          name="md-create"
+          onPress={()=> this.setState({editPersonal: true})}
+          style={{position: 'absolute', right: 10, top: 10}}
+        />
+        <View>
+          <Text fs12>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
+          <Text fs12>{this.props.profile.email}</Text>
+        </View>
       </View>
     );
   }
