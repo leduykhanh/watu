@@ -8,6 +8,8 @@ import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platfo
 import * as api from '../api/PromotionDetailApi';
 import StarRating from 'react-native-star-rating';
 import NearbyShopItem from '../components/home/NearbyShopItem';
+import PromotionDetailItem from "../components/Detail/PromotionDetailItem";
+import openGps from '../utils/gpsHelper';
 
 const { width } = Dimensions.get('window');
 const styles = {
@@ -62,7 +64,7 @@ class DetailScreen extends Component {
               <Text white fs12>({item.shop_info.totalreviews?item.shop_info.totalreviews:0}) Reviews</Text>
               <View horizontal>
                 <Icon new-shop name="ios-send" />
-                <Text theme fs12 theme onPress={this.openGps}>Get direction</Text>
+                <Text theme fs12 theme onPress={() => openGps(item.shop_info.latitude, item.shop_info.longitude)}>Get direction</Text>
               </View>
             </View>
             <View key={item.id}>
@@ -88,7 +90,7 @@ class DetailScreen extends Component {
             <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
               {
                 item.items.map(
-                  (item) => <NearbyShopItem key={item.id} item={item}/>
+                  (item) => <PromotionDetailItem key={item.id} item={item}/>
                 )
               }
             </ScrollView>
