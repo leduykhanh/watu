@@ -149,7 +149,7 @@ class Dashboard extends Component {
 
                       <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
                         position:'absolute', alignSelf: 'stretch', width:'auto'}}>
-                        <TouchableOpacity onPress={() => Actions.detail({item: item})}>
+                        <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
                           <Text white fs20>{item.bigtitle}</Text>
                           <Text white fs12>{item.smalltitle}</Text>
                         </TouchableOpacity>

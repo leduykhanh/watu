@@ -10,8 +10,14 @@ class HeaderComponent extends Component  {
     else Actions.login();
   }
 
+  cartAction(){
+    if(this.props.profile.id) Actions.cart();
+    else Actions.login();
+  }
+
   render() {
-    // return <Text>a</Text>
+    const cartCount = this.props.cart.items.length;
+    // console.log(this.props.cart)
     return (
       <Header searchBar rounded>
         {this.props.back ?
@@ -26,8 +32,19 @@ class HeaderComponent extends Component  {
           <Icon name="ios-search"/>
           <Input placeholder="Search"/>
         </Item>
-        <Button transparent badge vertical>
-          <Icon onPress={this.scanAction.bind(this)} name='ios-cart'/>
+        <Button transparent badge>
+          <Badge style={{ 
+            position: 'absolute',
+            top: -3,
+            alignSelf: "center",
+            left: 10,
+            zIndex: 99,
+            height: 18,
+            padding: 1.7,
+            paddingHorizontal: 3}}>
+            <Text fs9>{cartCount}</Text>
+          </Badge>
+          <Icon onPress={this.cartAction.bind(this)} name='ios-cart'/>
         </Button>
       </Header>)
   }
@@ -38,6 +55,7 @@ function mapStateToProps(state) {
   return {
     profile: state.profile,
     device: state.device,
+    cart: state.cart,
   };
 }
 

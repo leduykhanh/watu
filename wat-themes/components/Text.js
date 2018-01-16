@@ -99,6 +99,9 @@ export default (variables = variable) => {
     '.bold': {
       fontWeight: 'bold',
     },
+    '.fs9': {
+      fontSize: 9,
+    },
     '.fs18': {
       fontSize: 18,
     },

@@ -52,7 +52,7 @@ class Login extends Component {
         {/*<Form keyboardShouldPersistTaps={true} >*/}
 
           <Text red style={styles.heavyMargin}>{this.props.user.error} &nbsp;</Text>
-        <Text>User name</Text>
+        <Text>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
                  style={{ shadowOpacity: 0 }}
@@ -93,7 +93,7 @@ class Login extends Component {
         {/*<Form keyboardShouldPersistTaps={true} >*/}
 
         <Text red small style={styles.heavyMargin}>{this.props.user.error} &nbsp;</Text>
-        <Text>User name</Text>
+        <Text>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
                  style={{ shadowOpacity: 0 }}

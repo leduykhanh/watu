@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon } from 'native-base';
-import Footer from '../components/layout/Footer';
+import {bindActionCreators} from 'redux';
+import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon, Footer } from 'native-base';
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
 import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
 import * as api from '../api/ShopDetailApi';
 import StarRating from 'react-native-star-rating';
+import { Actions } from 'react-native-router-flux';
 import NearbyShopItem from '../components/home/NearbyShopItem';
 import ShopDetailItem from "../components/Detail/ShopDetailItem";
-import { Actions } from 'react-native-router-flux';
 import openGps from '../utils/gpsHelper';
+import * as cartActions from '../actions/cartActions';
 
 const { width } = Dimensions.get('window');
 const styles = {
@@ -21,7 +22,7 @@ const styles = {
   }
 };
 
-class ShopDetailScreen extends Component {
+class ItemDetailScreen extends Component {
   state = {
     item: null,
     items: []
@@ -43,6 +44,10 @@ class ShopDetailScreen extends Component {
     ).catch( (error) => console.log(error));
   }
 
+  addToCart() {
+    this.props.cartActions.addToCart(this.props.item);
+  }
+
   render() {
     const item = this.state.item;
     if(item == null) return <Text>Loading</Text>
@@ -55,12 +60,10 @@ class ShopDetailScreen extends Component {
           <Content>
             <View horizontal>
               <Image source={{uri: item.image}} style={{ width: 100, height: 100, marginBottom: 12, borderRadius: 50}} />
-              <View>
-                <Text bold>{item.name}</Text>
-                <Text small>{item.address}</Text>
-              </View>
             </View>
-            <View horizontal space-between>
+            <Text bold fs16>{item.name}</Text>
+            <Text bold fs16 theme>${item.price}</Text>
+            <View horizontal>
               <StarRating
                 disabled={false}
                 maxStars={5}
@@ -70,28 +73,26 @@ class ShopDetailScreen extends Component {
                 selectedStar={(rating) => console.log(rating)}
               />
               <Text theme fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
-              <View horizontal>
-                <Icon new-shop name="ios-send" />
-                <Text theme fs12 theme onPress={() => openGps(item.latitude, item.longitude)}>Get direction</Text>
-              </View>
-            </View>
-            <View key={item.id}>
-              <Image  style={styles.image} source={{uri: item.image}}/>
-
             </View>
             <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
               {
                 this.state.items.map(
-                  (item) => <TouchableOpacity onPress={() => Actions.i_detail({item: item})}>
-                              <ShopDetailItem key={item.id} item={item}/>
-                            </TouchableOpacity>  
+                  (item) => <ShopDetailItem key={item.id} item={item}/>
                 )
               }
             </ScrollView>
 
           </Content>
-
-          <Footer />
+          <Footer>
+            <View horizontal space-between>
+              <View center-h>
+                <Text>${item.price}</Text>
+              </View>
+              <View center-h>  
+                <Button small onPress={this.addToCart.bind(this)}><Text>ADD TO CART</Text></Button>
+              </View>  
+            </View>
+          </Footer>
 
         </ImageBackground>
 
@@ -108,11 +109,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch
+    cartActions : bindActionCreators(cartActions, dispatch)
   };
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ShopDetailScreen);
+)(ItemDetailScreen);

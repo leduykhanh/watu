@@ -3,7 +3,7 @@ import { Text, Spinner, Icon, View, } from 'native-base';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import StarRating from 'react-native-star-rating';
-const PromotionDetailItem = props => {
+const ShopDetailItem = props => {
   const item = props.item;
   const width = 110;
   return (
@@ -16,7 +16,7 @@ const PromotionDetailItem = props => {
           <Text fs14 bold>{item.name}</Text>
         </View>
         <View horizontal>
-          <Text fs12>{item.description}</Text>
+          <Text fs12 style={{flexWrap: "wrap"}}>{item.description}</Text>
         </View>
         <Text fs14 bold theme>${item.price}</Text>
       </View>
@@ -24,8 +24,8 @@ const PromotionDetailItem = props => {
   );
 };
 
-PromotionDetailItem.propTypes = {
+ShopDetailItem.propTypes = {
   item: PropTypes.object.isRequired,
 };
 
-export default PromotionDetailItem;
+export default ShopDetailItem;

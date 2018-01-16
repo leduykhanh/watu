@@ -63,6 +63,9 @@ export default initalState = {
       loading: false,
       loaded: false
     }
+  },
+  cart: {
+    items: []
   }
 
 };

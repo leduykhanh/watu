@@ -2,12 +2,18 @@ import LoginScreen from './LoginScreen';
 import DashboardScreen from './DashboardScreen';
 import ProfileScreen from './ProfileScreen';
 import QrScanScreen from './QrScanScreen';
-import DetailScreen from './PromotionDetailScreen';
+import PromotionDetailScreen from './PromotionDetailScreen';
+import ShopDetailScreen from './ShopDetailScreen';
+import CartScreen from './CartScreen';
+import ItemDetailScreen from './ItemDetailScreen';
 
 export {
   LoginScreen,
   DashboardScreen,
   ProfileScreen,
   QrScanScreen,
-  DetailScreen
+  PromotionDetailScreen,
+  ShopDetailScreen,
+  CartScreen,
+  ItemDetailScreen
 };
