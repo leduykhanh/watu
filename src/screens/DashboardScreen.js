@@ -176,7 +176,7 @@ class Dashboard extends Component {
     return (
       <View style={{height: 240}}>
         <Swiper autoplay height={240} showsPagination={false}
-                onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+                // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
                 loop>
           {this.props.home.highratingshops.list.map(
             (item) => {

@@ -16,7 +16,7 @@ class HeaderComponent extends Component  {
   }
 
   render() {
-    const cartCount = this.props.cart.items.length;
+    const cartCount = this.props.cart.count;
     // console.log(this.props.cart)
     return (
       <Header searchBar rounded>
@@ -32,19 +32,25 @@ class HeaderComponent extends Component  {
           <Icon name="ios-search"/>
           <Input placeholder="Search"/>
         </Item>
-        <Button transparent badge>
-          <Badge style={{ 
+        <Button transparent badge onPress={this.cartAction.bind(this)}>
+          {cartCount > 0?
+          <Badge style={{
             position: 'absolute',
-            top: -3,
+            top: 5,
             alignSelf: "center",
             left: 10,
             zIndex: 99,
             height: 18,
-            padding: 1.7,
-            paddingHorizontal: 3}}>
-            <Text fs9>{cartCount}</Text>
+            width:18,
+            padding: 0,
+            paddingHorizontal: 0
+          }}>
+
+            <Text style={{padding:0, top: 1, left: 3, margin: 0,fontSize: 11,position: 'absolute',
+              fontWeight: "600" ,zIndex: 100, lineHeight: 14}}>{cartCount}</Text>
           </Badge>
-          <Icon onPress={this.cartAction.bind(this)} name='ios-cart'/>
+            : <Text></Text>}
+          <Icon  name='ios-cart'/>
         </Button>
       </Header>)
   }

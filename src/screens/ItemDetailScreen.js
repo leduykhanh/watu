@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon, Footer } from 'native-base';
+import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon, Footer,FooterTab } from 'native-base';
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
 import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
@@ -25,14 +25,16 @@ const styles = {
 class ItemDetailScreen extends Component {
   state = {
     item: null,
-    items: []
-  }
+    items: [],
+    loading: true
+  };
+
   componentWillMount(){
-    api.getShopDetail(this.props.item.id).then(
+    api.getItemDetail(this.props.item.id).then(
       response => {
         const {data: {results}} = response;
         if(results.length > 0)
-          this.setState({item:results[0]})
+          this.setState({item:results[0], loading: false})
       }
     ).catch( (error) => console.log(error));
     api.getShopItems(this.props.item.id).then(
@@ -46,10 +48,12 @@ class ItemDetailScreen extends Component {
 
   addToCart() {
     this.props.cartActions.addToCart(this.props.item);
+    Actions.cart();
   }
 
   render() {
     const item = this.state.item;
+
     if(item == null) return <Text>Loading</Text>
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
     return (
@@ -59,11 +63,11 @@ class ItemDetailScreen extends Component {
           <Header back/>
           <Content>
             <View horizontal>
-              <Image source={{uri: item.image}} style={{ width: 100, height: 100, marginBottom: 12, borderRadius: 50}} />
+              <Image source={{uri: item.image}} style={{ width: 100, height: 100, borderRadius: 50}} />
             </View>
             <Text bold fs16>{item.name}</Text>
             <Text bold fs16 theme>${item.price}</Text>
-            <View horizontal>
+            <View horizontal m-b-10>
               <StarRating
                 disabled={false}
                 maxStars={5}
@@ -84,14 +88,14 @@ class ItemDetailScreen extends Component {
 
           </Content>
           <Footer>
-            <View horizontal space-between>
-              <View center-h>
-                <Text>${item.price}</Text>
+            <FooterTab>
+              <View m-l-10 center-h>
+                <Text theme fs18>${item.price}</Text>
               </View>
-              <View center-h>  
+              <View m-r-10 center center-h>
                 <Button small onPress={this.addToCart.bind(this)}><Text>ADD TO CART</Text></Button>
-              </View>  
-            </View>
+              </View>
+            </FooterTab>
           </Footer>
 
         </ImageBackground>

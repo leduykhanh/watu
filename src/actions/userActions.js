@@ -29,7 +29,7 @@ export function login(username:string, password:string) {
         });
 
         dispatch(profileActions.getFullProfile());
-        Actions.reset('profile');
+        Actions.pop();
 
     }).catch((error) => {
 

@@ -8,3 +8,21 @@ export function addToCart(item) {
   	})
   }
 }
+
+export function addItem(id) {
+  return dispatch => {
+    dispatch({
+      type: constants.ADD_ITEM,
+      payload: id
+    })
+  }
+}
+
+export function removeItem(id) {
+  return dispatch => {
+    dispatch({
+      type: constants.REMOVE_ITEM,
+      payload: id
+    })
+  }
+}

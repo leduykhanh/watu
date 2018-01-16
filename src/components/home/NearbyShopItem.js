@@ -1,13 +1,15 @@
 import React from 'react';
 import { Text, Spinner, Icon, View, } from 'native-base';
-import { Image } from 'react-native';
+import { Image , TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import StarRating from 'react-native-star-rating';
+import {Actions} from "react-native-router-flux";
 
 const NearbyShopItem = props => {
   const item = props.item;
   const width = 110;
   return (
+    <TouchableOpacity onPress={() => Actions.s_detail({item: item})}>
     <View horizontal style={{ height: width, margin: 10, backgroundColor: 'white' }}>
       <View>
         <Image resizeMode='stretch' style={{width: width, height: width}} source={{uri: item.image}}/>
@@ -42,6 +44,7 @@ const NearbyShopItem = props => {
         </View>
       </View>
     </View>
+    </TouchableOpacity>
   );
 };
 

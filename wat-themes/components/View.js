@@ -67,6 +67,11 @@ export default (variables = variable) => {
       paddingBottom:10,
       borderColor: '#7e7e7e'
     },
+    ".light-border": {
+      borderRadius: 0,
+      borderWidth: 1,
+      borderColor: 'grey'
+    },
     '.grey': {
       backgroundColor: 'rgb(247,247,247)'
     },

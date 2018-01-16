@@ -65,7 +65,8 @@ export default initalState = {
     }
   },
   cart: {
-    items: []
+    items: [],
+    count: 0
   }
 
 };
