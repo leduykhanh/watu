@@ -8,8 +8,7 @@ import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platfo
 import * as api from '../api/ShopDetailApi';
 import StarRating from 'react-native-star-rating';
 import { Actions } from 'react-native-router-flux';
-import NearbyShopItem from '../components/home/NearbyShopItem';
-import ShopDetailItem from "../components/Detail/ShopDetailItem";
+import ShopSummary from '../components/Detail/ShopSummary';
 import openGps from '../utils/gpsHelper';
 import * as cartActions from '../actions/cartActions';
 
@@ -54,8 +53,9 @@ class ItemDetailScreen extends Component {
 
   render() {
     const item = this.state.item;
+    const shop = this.props.shop;
 
-    if(item == null) return <Text>Loading</Text>
+    if(item == null || shop == null) return <Text>Loading</Text>
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
     return (
       <Container>
@@ -78,6 +78,11 @@ class ItemDetailScreen extends Component {
                 selectedStar={(rating) => console.log(rating)}
               />
               <Text theme fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
+            </View>
+            <ShopSummary item={shop} />
+            <View p-25>
+              <Text fs14 bold>Voucher details</Text>
+              <Text fs12>{item.description}</Text>
             </View>
             {/*<ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>*/}
               {/*{*/}

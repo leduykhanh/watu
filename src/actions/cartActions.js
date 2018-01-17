@@ -26,3 +26,12 @@ export function removeItem(id) {
     })
   }
 }
+
+export function deleteItem(id) {
+  return dispatch => {
+    dispatch({
+      type: constants.DELETE_ITEM,
+      payload: id
+    })
+  }
+}

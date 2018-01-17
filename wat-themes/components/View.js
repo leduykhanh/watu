@@ -90,8 +90,32 @@ export default (variables = variable) => {
     '.m-r-10': {
       marginRight: 10
     },
+    '.m-b-10': {
+      marginBottom: 10
+    },
+    '.p-25': {
+      padding: 25
+    },
+    '.p-16': {
+      padding: 16
+    },
+    '.p-l-5': {
+      paddingLeft: 5
+    },
+    '.p-r-5': {
+      paddingRight: 5
+    },
     '.p-l-10': {
       paddingLeft: 10
+    },
+    '.p-r-10': {
+      paddingRight: 10
+    },
+    '.p-b-10': {
+      paddingBottom: 10
+    },
+    '.p-t-10': {
+      paddingTop: 10
     },
   };
 

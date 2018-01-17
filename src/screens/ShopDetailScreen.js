@@ -7,7 +7,7 @@ import { ImageBackground } from '../components/common';
 import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
 import * as api from '../api/ShopDetailApi';
 import StarRating from 'react-native-star-rating';
-import NearbyShopItem from '../components/home/NearbyShopItem';
+import ShopSummary from '../components/Detail/ShopSummary';
 import ShopDetailItem from "../components/Detail/ShopDetailItem";
 import { Actions } from 'react-native-router-flux';
 import openGps from '../utils/gpsHelper';
@@ -49,32 +49,9 @@ class ShopDetailScreen extends Component {
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
     return (
       <Container>
-
-        <ImageBackground>
           <Header back/>
           <Content>
-            <View horizontal>
-              <Image source={{uri: item.image}} style={{ width: 100, height: 100, marginBottom: 12, borderRadius: 50}} />
-              <View>
-                <Text bold>{item.name}</Text>
-                <Text small>{item.address}</Text>
-              </View>
-            </View>
-            <View horizontal space-between>
-              <StarRating
-                disabled={false}
-                maxStars={5}
-                rating={item.totalrate}
-                starSize={15}
-                starColor={'rgb(249,174,24)'}
-                selectedStar={(rating) => console.log(rating)}
-              />
-              <Text theme fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
-              <View horizontal>
-                <Icon new-shop name="ios-send" />
-                <Text theme fs12 theme onPress={() => openGps(item.latitude, item.longitude)}>Get direction</Text>
-              </View>
-            </View>
+            <ShopSummary item={item} />
             <View key={item.id}>
               <Image  style={styles.image} source={{uri: item.image}}/>
 
@@ -82,9 +59,9 @@ class ShopDetailScreen extends Component {
             <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
               {
                 this.state.items.map(
-                  (item) => <TouchableOpacity onPress={() => Actions.i_detail({item: item})}>
-                              <ShopDetailItem key={item.id} item={item}/>
-                            </TouchableOpacity>  
+                  (sitem) => <TouchableOpacity onPress={() => Actions.i_detail({item: sitem, shop: item})}>
+                              <ShopDetailItem key={sitem.id} item={sitem}/>
+                            </TouchableOpacity>
                 )
               }
             </ScrollView>
@@ -92,8 +69,6 @@ class ShopDetailScreen extends Component {
           </Content>
 
           <Footer />
-
-        </ImageBackground>
 
       </Container>
     );

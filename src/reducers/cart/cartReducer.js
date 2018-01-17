@@ -63,7 +63,21 @@ export function cartReducer(state = constant.initalState.cart, action) {
       };
     }
 
+    case constant.DELETE_ITEM: {
+      const id = action.payload;
 
+      let items = [].concat(state.items);
+
+      items = items.filter(i => i.id !== id);
+
+      const count = items.length;
+
+      return {
+        ...state,
+        items,
+        count
+      };
+    }
 
 
     default:
