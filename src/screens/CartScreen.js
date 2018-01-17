@@ -35,6 +35,10 @@ class CartScreen extends Component {
     this.props.actions.deleteItem(id);
   }
 
+  clearCart() {
+    this.props.actions.clearCart();
+  }
+
   placeOrder(){
     const payload = [];
     if(!this.props.profile.id) return Actions.login();
@@ -51,7 +55,7 @@ class CartScreen extends Component {
           'Order created',
           'Confirm?',
           [
-            {text: 'OK', onPress: () => Actions.replace('dashboard')},
+            {text: 'OK', onPress: () => {this.clearCart();Actions.replace('dashboard')}},
           ],
           { cancelable: false }
         )

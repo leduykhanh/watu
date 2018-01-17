@@ -35,3 +35,11 @@ export function deleteItem(id) {
     })
   }
 }
+
+export function clearCart() {
+  return dispatch => {
+    dispatch({
+      type: constants.CLEAR_CART,
+    })
+  }
+}

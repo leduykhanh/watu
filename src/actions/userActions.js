@@ -45,14 +45,14 @@ export function login(username:string, password:string) {
   }
 }
 
-export function register(username:string, password:string) {
+export function register(username:string, password:string, name:string) {
   return dispatch => {
 
     dispatch({
       type: constants.STATE_REGISTER_PENDING
     });
 
-    userApi.register(username, password)
+    userApi.register(username, password, name)
       .then((response) => {
 
         // setOidc(response.data);

@@ -25,7 +25,8 @@ class Login extends Component {
 
   state = {
     username: 'leejangkoo+1@gmail.com',
-    password: '123456'
+    password: '123456',
+    name: 'Jangkoo'
   };
 
 
@@ -93,6 +94,14 @@ class Login extends Component {
         {/*<Form keyboardShouldPersistTaps={true} >*/}
 
         <Text red small style={styles.heavyMargin}>{this.props.user.error} &nbsp;</Text>
+        <Text>Username</Text>
+        <Item login error={this.props.user.error!==null && !this.state.typing} >
+          <Input value={this.state.name}
+                 style={{ shadowOpacity: 0 }}
+                 onChangeText={(name) => this.setState({name,typing:true})}
+                 autoCapitalize='none'
+          />
+        </Item>
         <Text>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}

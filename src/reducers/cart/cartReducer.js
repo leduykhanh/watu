@@ -79,6 +79,13 @@ export function cartReducer(state = constant.initalState.cart, action) {
       };
     }
 
+    case constant.CLEAR_CART: {
+      return {
+        ...state,
+        items: [],
+        count: 0
+      }
+    }
 
     default:
       return state;

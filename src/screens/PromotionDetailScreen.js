@@ -45,14 +45,14 @@ class DetailScreen extends Component {
         <ImageBackground>
           <Header back/>
           <Content>
-            <View horizontal>
+            <View horizontal m-b-10 p-b-10>
               <Image source={{uri: item.shop_info.image}} style={{ width: 100, height: 100, marginBottom: 12, borderRadius: 50}} />
-              <View>
+              <View m-l-10 p-t-10>
                 <Text bold>{item.shop_info.name}</Text>
                 <Text small>{item.shop_info.address}</Text>
               </View>
             </View>
-            <View horizontal space-between>
+            <View horizontal space-between p-l-5 p-r-5>
               <StarRating
                 disabled={false}
                 maxStars={5}

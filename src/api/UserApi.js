@@ -21,11 +21,12 @@ export function login(username:string, password:string) {
 
 }
 
-export function register(username:string, password:string) {
+export function register(username:string, password:string, name:string) {
 
   const data = {
     email: username,
     password: password,
+    username: name
   };
 
   return axios.post(constants.REGISTER_API, querystring.stringify(data), config);
