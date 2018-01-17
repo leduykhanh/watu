@@ -131,7 +131,7 @@ export default {
 
   // Footer
   footerHeight: 50,
-  footerDefaultBg: platform === "ios" ? "rgb(249,174,24)" : "#F8F8F8",
+  footerDefaultBg: 'rgb(249,174,24)',
 
   // FooterTab
   tabBarTextColor: platform === "ios" ? "#6b6b6b" : "#6b6b6b",

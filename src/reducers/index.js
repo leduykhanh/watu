@@ -4,6 +4,7 @@ import { profileReducer } from './profile/profileReducer';
 import { deviceReducer } from './device/deviceReducer';
 import { homeReducer } from './home/homeReducer';
 import { cartReducer } from './cart/cartReducer';
+import { locationReducer } from './location/locationReducer';
 
 
 const reducers = combineReducers({
@@ -12,6 +13,7 @@ const reducers = combineReducers({
   device : deviceReducer,
   home: homeReducer,
   cart: cartReducer,
+  location: locationReducer
 });
 
 export default reducers;

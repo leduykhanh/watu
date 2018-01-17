@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Footer, FooterTab, Button,  Text,View, Icon } from 'native-base';
+import { Container, Header, Footer, FooterTab, Button,  Text,View, Icon, Badge } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { Image } from 'react-native';
 import {connect} from "react-redux";
@@ -19,20 +19,24 @@ class FooterTabs extends Component {
         <Footer>
           <FooterTab>
 
-            <Button vertical onPress={() => {Actions.replace('dashboard')}} active={currentScene === '_dashboard'}>
-              <Icon active name="home" size={22} color={currentScene === '_dashboard'? "#4740c7" : "grey"}/>
+            <Button active vertical onPress={() => {Actions.replace('dashboard')}} active={currentScene === '_dashboard'}>
+              <Icon  name="home" size={22} style={{color: currentScene === 'dashboard'? "rgb(249,174,24)" : "grey"}}/>
             </Button>
 
             <Button vertical onPress={() => Actions.replace('wallet')} active={currentScene === '_wallet'} >
-              <Icon name="ios-planet" size={22} color={currentScene === '_wallet'? "#4740c7" : "grey"}/>
+              <Icon name="ios-planet" size={22} />
             </Button>
 
-            <Button vertical active={currentScene === '_transaction_history'} onPress={() => Actions.replace('transaction_history')}>
-              <Icon active name="ios-podium" size={22} color={currentScene === '_transaction_history'? "#4740c7" : "grey"}/>
+            <Button vertical onPress={() => Actions.replace('transaction_history')}>
+              <Icon active name="ios-podium" size={22} />
+            </Button>
+            <Button vertical badge onPress={() => Actions.replace('notifications')}>
+              <Badge><Text>2</Text></Badge>
+              <Icon name="ios-notifications" size={22} />
             </Button>
 
             <Button onPress={this.profileAction.bind(this)} vertical active={false} >
-              <Icon name="md-person" size={22}/>
+              <Icon name="md-person" style={{color: currentScene === 'profile'? "rgb(249,174,24)" : "grey"}} size={22}/>
             </Button>
 
           </FooterTab>

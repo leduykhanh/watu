@@ -3,9 +3,12 @@ import { Text, Spinner, Icon, View, } from 'native-base';
 import { Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
+import { getDistanceFromLatLonInKm } from '../../utils/gpsHelper';
 
 const NewShopItem = props => {
   const item = props.item;
+  const { latitude , longtitude } = item;
+  const distance = getDistanceFromLatLonInKm(latitude , longtitude, props.location.latitude, props.location.longitude);
   const width = 160;
   return (
     <TouchableOpacity onPress={() => Actions.s_detail({item: item})}>
@@ -20,7 +23,7 @@ const NewShopItem = props => {
         </View>
         <View center-h horizontal>
           <Icon new-shop name="ios-pin" />
-          <Text fs12>2.5km</Text>
+          <Text fs12>{distance}km</Text>
         </View>
       </View>
     </TouchableOpacity>

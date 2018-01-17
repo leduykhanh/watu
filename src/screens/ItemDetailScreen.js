@@ -37,9 +37,10 @@ class ItemDetailScreen extends Component {
           this.setState({item:results[0], loading: false})
       }
     ).catch( (error) => console.log(error));
-    api.getShopItems(this.props.item.id).then(
+    api.getReviews(this.props.item.shop_id,this.props.item.id).then(
       response => {
         const {data: {results}} = response;
+        console.log(results);
         if(results.length > 0)
           this.setState({items:results})
       }
@@ -78,13 +79,13 @@ class ItemDetailScreen extends Component {
               />
               <Text theme fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
             </View>
-            <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
-              {
-                this.state.items.map(
-                  (item) => <ShopDetailItem key={item.id} item={item}/>
-                )
-              }
-            </ScrollView>
+            {/*<ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>*/}
+              {/*{*/}
+                {/*this.state.items.map(*/}
+                  {/*(item) => <ShopDetailItem key={item.id} item={item}/>*/}
+                {/*)*/}
+              {/*}*/}
+            {/*</ScrollView>*/}
 
           </Content>
           <Footer>

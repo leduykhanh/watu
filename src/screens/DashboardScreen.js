@@ -13,9 +13,10 @@ import Categories from '../components/home/Categories';
 import NewShopItem from '../components/home/NewShopItem';
 import NearbyShopItem from '../components/home/NearbyShopItem';
 import * as actions from '../actions/homeActions';
+import * as locationActions from '../actions/locationActions';
 
 import Swiper from 'react-native-swiper';
-import { Rating, AirbnbRating } from 'react-native-ratings';
+import openGps from '../utils/gpsHelper';
 import StarRating from 'react-native-star-rating';
 
 import deviceTokenHelper from '../utils/deviceTokenHelper';
@@ -86,6 +87,14 @@ class Dashboard extends Component {
     this.props.actions.getNewshops();
     this.props.actions.getHighRatingsShop();
     this.props.actions.getNearbyShop();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+          const { latitude, longitude } = position.coords;
+          this.props.locationActions.updateLocation({latitude, longitude});
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
 
   }
 
@@ -97,27 +106,6 @@ class Dashboard extends Component {
 
   // }
 
-  openGps = () => {
-    var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:'
-    var url = scheme + '37.484847,-122.148386'
-    this.openExternalApp(url)
-  }
-
-  openExternalApp = (url) => {
-    Linking.canOpenURL(url).then(supported => {
-      if (supported) {
-        Linking.openURL(url);
-      } else {
-        Alert.alert(
-          'ERROR',
-          'Unable to open: ' + url,
-          [
-            {text: 'OK'},
-          ]
-        );
-      }
-    });
-  }
 
   renderCategories() {
     return <Categories items={this.props.home.categories.list}/>
@@ -127,7 +115,7 @@ class Dashboard extends Component {
       <ScrollView horizontal containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
         {
           this.props.home.newShops.list.map(
-            (item) => <NewShopItem key={item.id} item={item}/>
+            (item) => <NewShopItem location={this.props.location} key={item.id} item={item}/>
           )
         }
       </ScrollView>
@@ -202,7 +190,7 @@ class Dashboard extends Component {
                       </View>
                       <View horizontal>
                         <Icon new-shop name="ios-send" />
-                        <Text white fs12 theme onPress={this.openGps}>Get direction</Text>
+                        <Text white fs12 theme onPress={() => openGps(item.latitude, item.longitude)}>Get direction</Text>
                       </View>
                     </View>
                   </View>
@@ -255,13 +243,15 @@ function mapStateToProps(state) {
     user: state.user,
     profile: state.profile,
     device: state.device,
-    home: state.home
+    home: state.home,
+    location: state.location,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions : bindActionCreators(actions, dispatch)
+    actions : bindActionCreators(actions, dispatch),
+    locationActions : bindActionCreators(locationActions, dispatch),
   };
 }
 

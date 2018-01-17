@@ -14,7 +14,7 @@ export default (variables = variable) => {
           lineHeight: 16
         },
         "NativeBase.Icon": {
-          color: variables.tabBarActiveTextColor
+          color: 'red'
         },
         "NativeBase.IconNB": {
           color: variables.tabBarActiveTextColor
@@ -53,7 +53,7 @@ export default (variables = variable) => {
         }
       },
       "NativeBase.Icon": {
-        color: variables.toolbarDefaultBg
+        color: 'grey'
       },
       "NativeBase.IconNB": {
         color: variables.tabBarTextColor

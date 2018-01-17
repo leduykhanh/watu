@@ -24,6 +24,7 @@ export const GET_SHOP_ITEMS_API = BASE_API_URL + '?type=items';
 export const GET_HISTORY_API = BASE_API_URL + '?type=history';
 export const GET_ITEM_DETAIL_API = BASE_API_URL + '?type=itemdetail';
 export const PLACE_ORDER_API = BASE_API_URL + '?type=placeorder';
+export const GET_REVIEW_API = BASE_API_URL + '?type=reviews';
 export const CHANGE_PASSWORD_API = BASE_API_URL + '/profile/changePassword';
 export const GET_PROMOTIONS_API = BASE_API_URL + '?type=promotions';
 export const GET_NEWSHOPS_API = BASE_API_URL + '?type=newshops';
@@ -97,6 +98,7 @@ export const STATE_HISTORY_SUCCESS = 'STATE_HISTORY_SUCCESS';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const UPDATE_LOCATION = 'UPDATE_LOCATION';
 
 
 
