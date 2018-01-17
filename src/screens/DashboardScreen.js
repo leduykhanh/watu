@@ -208,7 +208,7 @@ class Dashboard extends Component {
       <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
         {
           this.props.home.nearbyshops.list.map(
-            (item) => <NearbyShopItem key={item.id} item={item}/>
+            (item) => <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
           )
         }
       </ScrollView>

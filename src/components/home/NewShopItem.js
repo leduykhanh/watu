@@ -9,6 +9,7 @@ const NewShopItem = props => {
   const item = props.item;
   const { latitude , longtitude } = item;
   const distance = getDistanceFromLatLonInKm(latitude , longtitude, props.location.latitude, props.location.longitude);
+
   const width = 160;
   return (
     <TouchableOpacity onPress={() => Actions.s_detail({item: item})}>

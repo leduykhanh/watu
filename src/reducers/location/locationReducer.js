@@ -8,8 +8,8 @@ export function locationReducer(state = constant.initalState.location, action) {
     case constant.UPDATE_LOCATION: {
       return {
         ...state,
-        lat: action.payload.latitude,
-        long: action.payload.longitude
+        latitude: action.payload.latitude,
+        longitude: action.payload.longitude
       };
     }
 

@@ -4,10 +4,13 @@ import { Image , TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import StarRating from 'react-native-star-rating';
 import {Actions} from "react-native-router-flux";
+import {getDistanceFromLatLonInKm} from "../../utils/gpsHelper";
 
 const NearbyShopItem = props => {
   const item = props.item;
   const width = 110;
+  const { latitude , longtitude } = item;
+  const distance = getDistanceFromLatLonInKm(latitude , longtitude, props.location.latitude, props.location.longitude);
   return (
     <TouchableOpacity onPress={() => Actions.s_detail({item: item})}>
     <View horizontal style={{ height: width, margin: 10, backgroundColor: 'white' }}>
@@ -23,7 +26,7 @@ const NearbyShopItem = props => {
         </View>
         <Text fs14 bold theme>80% OFF</Text>
         <View horizontal space-between>
-          <Text fs12>200m</Text>
+          <Text fs12>{distance}km</Text>
           <View horizontal>
             <Icon new-shop name="ios-send" />
             <Text white fs12 theme>Get direction</Text>
