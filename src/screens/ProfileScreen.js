@@ -141,7 +141,7 @@ class ProfileScreen extends Component {
           <Header back/>
           <Content>
             <View horizontal center>
-              <Image source={require('../../assets/images/logo.png')}
+              <Image source={require('../../assets/images/default-person.jpg')}
                    style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 12}} />
               <Text>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
             </View>
