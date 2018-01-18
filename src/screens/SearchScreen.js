@@ -29,7 +29,7 @@ class SearchScreen extends Component {
   render(){
     return (
       <Container>
-        <Header />
+        <Header back/>
         <Content containerStyle={{paddingBottom:100}}>
           <Text bold fs20>Nearby shops</Text>
             {
