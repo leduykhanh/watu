@@ -53,7 +53,7 @@ class Login extends Component {
         {/*<Form keyboardShouldPersistTaps={true} >*/}
 
           <Text red style={styles.heavyMargin}>{this.props.user.error} &nbsp;</Text>
-        <Text>Email</Text>
+        <Text bold fs12>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
                  style={{ shadowOpacity: 0 }}
@@ -61,7 +61,7 @@ class Login extends Component {
                  autoCapitalize='none'
                  />
         </Item>
-        <Text>Password</Text>
+        <Text bold fs12>Password</Text>
         <Item login error={this.props.user.error!==null&&!this.state.typing} >
           <Input
                  value={this.state.password}
@@ -94,7 +94,7 @@ class Login extends Component {
         {/*<Form keyboardShouldPersistTaps={true} >*/}
 
         <Text red small style={styles.heavyMargin}>{this.props.user.error} &nbsp;</Text>
-        <Text>Username</Text>
+        <Text bold fs12>Username</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.name}
                  style={{ shadowOpacity: 0 }}
@@ -102,7 +102,7 @@ class Login extends Component {
                  autoCapitalize='none'
           />
         </Item>
-        <Text>Email</Text>
+        <Text bold fs12>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
                  style={{ shadowOpacity: 0 }}
@@ -110,7 +110,7 @@ class Login extends Component {
                  autoCapitalize='none'
           />
         </Item>
-        <Text>Password</Text>
+        <Text bold fs12>Password</Text>
         <Item login error={this.props.user.error!==null&&!this.state.typing} >
           <Input
             value={this.state.password}

@@ -16,6 +16,6 @@ export function getHighRatingsShop() {
   return serverCall.get(constants.GET_HIGHRATINGSHOPS_API);
 }
 
-export function getNearbyShop() {
-  return serverCall.get(`${constants.GET_NEARBYSHOPS_API}&q=a`);
+export function getNearbyShop(q='a') {
+  return serverCall.get(`${constants.GET_NEARBYSHOPS_API}&q=${q}`);
 }

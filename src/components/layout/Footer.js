@@ -27,8 +27,8 @@ class FooterTabs extends Component {
               <Icon name="ios-planet" size={22} />
             </Button>
 
-            <Button vertical onPress={() => Actions.replace('transaction_history')}>
-              <Icon active name="ios-podium" size={22} />
+            <Button vertical onPress={() => Actions.replace('new_shop')}>
+              <Icon active name="ios-podium" size={22} style={{color: currentScene === 'new_shop'? "rgb(249,174,24)" : "grey"}} />
             </Button>
             <Button vertical badge onPress={() => Actions.replace('notifications')}>
               <Badge><Text>2</Text></Badge>

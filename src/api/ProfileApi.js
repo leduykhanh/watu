@@ -10,5 +10,6 @@ export function getHistory() {
 }
 
 export function updateProfile(data) {
+  console.log(data)
   return serverCall.post(constants.GET_PROFILE_API, data);
 }

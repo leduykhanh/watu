@@ -58,7 +58,7 @@ class CartScreen extends Component {
             {text: 'OK', onPress: () => {this.clearCart();Actions.replace('dashboard')}},
           ],
           { cancelable: false }
-        )
+        );
       }
     ).catch( error => console.log(error))
 

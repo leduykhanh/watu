@@ -6,6 +6,8 @@ import PromotionDetailScreen from './PromotionDetailScreen';
 import ShopDetailScreen from './ShopDetailScreen';
 import CartScreen from './CartScreen';
 import ItemDetailScreen from './ItemDetailScreen';
+import SearchScreen from './SearchScreen';
+import NewShopsScreen from './NewShopsScreen';
 
 export {
   LoginScreen,
@@ -15,5 +17,7 @@ export {
   PromotionDetailScreen,
   ShopDetailScreen,
   CartScreen,
-  ItemDetailScreen
+  ItemDetailScreen,
+  SearchScreen,
+  NewShopsScreen
 };

@@ -61,7 +61,7 @@ class ProfileScreen extends Component {
     const userObject = this.state.userObject;
     if (this.state.editPersonal)
       return (
-        <View m-l-10 grey>
+        <View m-10 p-25 grey>
           <Text>Profile</Text>
           <Text>Name</Text>
           <Item login error={false} >
@@ -85,16 +85,25 @@ class ProfileScreen extends Component {
         </View>
       )
     return (
-      <View m-l-10 grey>
-        <Text fs12 bold>Profile</Text>
-        <Icon
-          name="md-create"
-          onPress={()=> this.setState({editPersonal: true})}
-          style={{position: 'absolute', right: 10, top: 10}}
-        />
-        <View>
-          <Text fs12>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
-          <Text fs12>{this.props.profile.email}</Text>
+      <View>
+        <View p-25 m-10 grey>
+          <Text fs12 bold>Profile</Text>
+          <Button transparent onPress={()=> this.setState({editPersonal: true})}
+                  style={{position: 'absolute', right: 10, top: 10, padding: 20}}>
+            <Icon
+              name="md-create"
+            />
+          </Button>
+          <View m-t-10>
+            <Text fs12>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
+            <Text fs12>{this.props.profile.email}</Text>
+          </View>
+        </View>
+        <View p-25 m-10 grey>
+            <Text bold theme>Change password</Text>
+        </View>
+        <View p-25 m-10 grey>
+          <Text bold theme>Forgot password</Text>
         </View>
       </View>
     );
@@ -118,10 +127,10 @@ class ProfileScreen extends Component {
                 {this.renderHistory()}
               </Tab>
               <Tab heading={<TabHeading><Text small>My Loyality</Text></TabHeading>} >
-                <Text>dada</Text>
+                <Text>TO DO</Text>
               </Tab>
                 <Tab heading={<TabHeading><Text small>Payment Info</Text></TabHeading>} >
-                <Text>dada</Text>
+                <Text>TO DO</Text>
               </Tab>
                   <Tab heading={<TabHeading><Text small>Personal Info</Text></TabHeading>} >
                 {this.renderPersonalInfo() }

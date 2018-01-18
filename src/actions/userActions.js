@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import {Alert, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import * as constants from '../constants';
@@ -55,18 +55,15 @@ export function register(username:string, password:string, name:string) {
     userApi.register(username, password, name)
       .then((response) => {
 
-        // setOidc(response.data);
-        // const  token = (response.data.result.token);
-        const token = 'UDgwU0hJSW9CZlQ2VmVGaXJ5R296cXVRS1B2Z1c2bXg0SDB4dU5mbDRPOD0=';
 
-        serverCall.defaults.headers['token'] =  token;
-        dispatch({
-          type: constants.STATE_REGISTER_SUCCESS,
-          payload: token
-        });
-
-        dispatch(profileActions.getFullProfile());
-        Actions.reset('lightbox');
+        Alert.alert(
+          'Account registered',
+          'Please check your email to activate your account',
+          [
+            {text: 'OK', onPress: () => {Actions.pop();}},
+          ],
+          { cancelable: false }
+        );
 
       }).catch((error) => {
 

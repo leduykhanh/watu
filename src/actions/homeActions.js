@@ -97,14 +97,14 @@ export function getHighRatingsShop() {
   }
 }
 
-export function getNearbyShop() {
+export function getNearbyShop(q) {
   return dispatch => {
 
     dispatch({
       type: constants.GET_NEARBYSHOPS_PENDING
     });
 
-    HomeApi.getNearbyShop().then((response) => {
+    HomeApi.getNearbyShop(q).then((response) => {
       dispatch({
         type: constants.GET_NEARBYSHOPS_SUCCESS,
         payload: response.data.results

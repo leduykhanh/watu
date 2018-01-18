@@ -75,6 +75,9 @@ export default (variables = variable) => {
     '.grey': {
       backgroundColor: 'rgb(247,247,247)'
     },
+    '.m-10': {
+      margin: 10
+    },
     '.m-t-5': {
       marginTop: 5
     },
@@ -92,6 +95,9 @@ export default (variables = variable) => {
     },
     '.m-b-10': {
       marginBottom: 10
+    },
+    '.m-t-10': {
+      marginTop: 10
     },
     '.p-25': {
       padding: 25

@@ -13,7 +13,8 @@ import DrawerContent from '../components/drawer/DrawerContent';
 import MessageBar from '../components/MessageBar';
 
 import {
-  LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen, PromotionDetailScreen, ShopDetailScreen, CartScreen, ItemDetailScreen
+  LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen, PromotionDetailScreen, ShopDetailScreen, CartScreen,
+  ItemDetailScreen, SearchScreen, NewShopsScreen
  } from '../screens';
 
 
@@ -58,6 +59,8 @@ const Routes = () => {
           <Scene key="s_detail" hideNavBar component={ShopDetailScreen} />
           <Scene key="i_detail" hideNavBar component={ItemDetailScreen} />
           <Scene key="cart" hideNavBar component={CartScreen} />
+          <Scene key="search" hideNavBar component={SearchScreen} />
+          <Scene key="new_shop" hideNavBar component={NewShopsScreen} />
           <Drawer
             hideNavBar
             hideDrawerButton
