@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7923833-677d-415a-b2da-7065ef25df62" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screens/NewShopsScreen.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screens/SearchScreen.js" />
-      <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" afterPath="$PROJECT_DIR$/.expo/packager-info.json" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/actions/homeActions.js" afterPath="$PROJECT_DIR$/src/actions/homeActions.js" />
-      <change beforePath="$PROJECT_DIR$/src/actions/userActions.js" afterPath="$PROJECT_DIR$/src/actions/userActions.js" />
-      <change beforePath="$PROJECT_DIR$/src/api/HomeApi.js" afterPath="$PROJECT_DIR$/src/api/HomeApi.js" />
-      <change beforePath="$PROJECT_DIR$/src/api/ProfileApi.js" afterPath="$PROJECT_DIR$/src/api/ProfileApi.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Footer.js" afterPath="$PROJECT_DIR$/src/components/layout/Footer.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Header.js" afterPath="$PROJECT_DIR$/src/components/layout/Header.js" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.js" afterPath="$PROJECT_DIR$/src/routes/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/screens/CartScreen.js" afterPath="$PROJECT_DIR$/src/screens/CartScreen.js" />
-      <change beforePath="$PROJECT_DIR$/src/screens/LoginScreen.js" afterPath="$PROJECT_DIR$/src/screens/LoginScreen.js" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreen.js" afterPath="$PROJECT_DIR$/src/screens/ProfileScreen.js" />
-      <change beforePath="$PROJECT_DIR$/src/screens/index.js" afterPath="$PROJECT_DIR$/src/screens/index.js" />
-      <change beforePath="$PROJECT_DIR$/wat-themes/components/View.js" afterPath="$PROJECT_DIR$/wat-themes/components/View.js" />
-    </list>
+    <list default="true" id="e7923833-677d-415a-b2da-7065ef25df62" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -516,12 +499,12 @@
       <workItem from="1516035064729" duration="3507000" />
       <workItem from="1516101479309" duration="14465000" />
       <workItem from="1516180998781" duration="2618000" />
-      <workItem from="1516187520670" duration="12142000" />
+      <workItem from="1516187520670" duration="12185000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94603000" />
+    <option name="totallyTimeSpent" value="94646000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
