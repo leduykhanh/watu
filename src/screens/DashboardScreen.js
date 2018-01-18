@@ -108,7 +108,7 @@ class Dashboard extends Component {
 
 
   renderCategories() {
-    return <Categories items={this.props.home.categories.list}/>
+    return <Categories actions={this.props.actions} items={this.props.home.categories.list}/>
   }
   renderNewShops(){
     return (
