@@ -62,24 +62,26 @@ class ProfileScreen extends Component {
     if (this.state.editPersonal)
       return (
         <View m-10 p-25 grey>
-          <Text>Profile</Text>
-          <Text>Name</Text>
-          <Item login error={false} >
-            <Input
-              value={userObject.usr_fname}
-              onChangeText={(usr_fname) => this.changeAttribute('usr_fname', usr_fname)}
-               />
-          </Item>
-          <Text>Phone</Text>
-          <Item login error={false} >
-            <Input
-              value={userObject.usr_mobile}
-              onChangeText={(usr_mobile) => this.changeAttribute('usr_mobile', usr_mobile)}
-               />
-          </Item>
-
+          <Text fs12 bold>Profile</Text>
+          <View m-t-10>
+            <Text fs12>Name</Text>
+            <Item login error={false} >
+              <Input
+                value={userObject.usr_fname}
+                onChangeText={(usr_fname) => this.changeAttribute('usr_fname', usr_fname)}
+                 />
+            </Item>
+            <Text fs12>Phone</Text>
+            <Item login error={false} >
+              <Input
+                value={userObject.usr_mobile}
+                onChangeText={(usr_mobile) => this.changeAttribute('usr_mobile', usr_mobile)}
+                 />
+            </Item>
+          </View>
           <View horizontal style={{ marginTop: 20 }}>
             <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
+            <Text> </Text>
             <Button onPress={() => this.setState({editPersonal: false})} full small><Text bold>Cancel</Text></Button>
           </View>
         </View>
