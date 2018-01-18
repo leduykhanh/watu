@@ -19,7 +19,7 @@ class HeaderComponent extends Component  {
 
   searchAction(q){
     let currentScene =  Actions.currentScene.toString();
-    if (currentScene !== 'search') Actions.replace('search');
+    if (currentScene !== 'search') Actions.search();
     this.props.actions.getNearbyShop(q);
   }
 

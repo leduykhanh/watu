@@ -56,6 +56,27 @@ class ProfileScreen extends Component {
       (res) => console.log(res.data)
     )
   }
+  renderPaymentInfo() {
+
+    return (
+      <View>
+        <View p-25 m-10 grey horizontal space-between>
+          <Icon name="card" />
+          <Text bold fs14>******1234</Text>
+          <Icon name="ios-trash"/>
+        </View>
+        <View p-25 m-10 grey>
+          <Text bold fs14>Add new card</Text>
+        </View>
+        <View p-25 m-10 grey>
+          <Text bold fs14>Shipping bill</Text>
+          <Text fs12>12 Geylang Road</Text>
+        </View>
+        <View p-25 m-10 grey horizontal>
+        </View>
+      </View>
+    ) ;
+  }
 
   renderPersonalInfo() {
     const userObject = this.state.userObject;
@@ -132,7 +153,7 @@ class ProfileScreen extends Component {
                 <Text>TO DO</Text>
               </Tab>
                 <Tab heading={<TabHeading><Text small>Payment Info</Text></TabHeading>} >
-                <Text>TO DO</Text>
+                  {this.renderPaymentInfo()}
               </Tab>
                   <Tab heading={<TabHeading><Text small>Personal Info</Text></TabHeading>} >
                 {this.renderPersonalInfo() }

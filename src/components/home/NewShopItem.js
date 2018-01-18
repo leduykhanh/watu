@@ -13,7 +13,7 @@ const NewShopItem = props => {
   const width = 160;
   return (
     <TouchableOpacity onPress={() => Actions.s_detail({item: item})}>
-      <View style={{width: width, height: 160, margin: 10, backgroundColor: 'white' }}>
+      <View style={{width: width, height: 160, margin: 10, backgroundColor: 'white',  flex:1 }}>
         <Image resizeMode='stretch' style={{width: 160, height: 115}} source={{uri: item.image}}/>
         <View style={{backgroundColor: "rgba(0, 0, 0, 0.5)", top: 80, padding: 10,
           alignSelf: 'stretch', width:width, position: 'absolute'}}>

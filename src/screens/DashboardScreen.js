@@ -169,11 +169,13 @@ class Dashboard extends Component {
           {this.props.home.highratingshops.list.map(
             (item) => {
               return(
-                <View key={item.id} style={styles.slide}>
+                <View key={item.id} style={{...styles.slide, flex: 1}}>
                   <Image  style={styles.image} source={{uri: item.image}}/>
                   <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 150, padding: 10,
                     position:'absolute', alignSelf: 'stretch', width}}>
-                    <Text white fs20>{item.name}</Text>
+                    <View style={{flex:1,}}>
+                      <Text white fs20>{item.name}</Text>
+                    </View>
                     <View horizontal space-between>
                       <View horizontal>
                         <View m-r-10>

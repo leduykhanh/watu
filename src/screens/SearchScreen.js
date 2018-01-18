@@ -31,7 +31,7 @@ class SearchScreen extends Component {
       <Container>
         <Header back/>
         <Content containerStyle={{paddingBottom:100}}>
-          <Text bold fs20>Nearby shops</Text>
+          {/*<Text bold fs20>Nearby shops</Text>*/}
             {
               this.props.home.nearbyshops.list.length > 0 ?
               <ScrollView
