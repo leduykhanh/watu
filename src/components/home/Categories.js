@@ -23,7 +23,7 @@ const Categories = props => {
 					<TouchableOpacity
 						onPress={() => {
               let currentScene =  Actions.currentScene.toString();
-              if (currentScene !== 'search') Actions.replace('search');
+              if (currentScene !== 'search') Actions.search();
 							props.actions.getNearbyShop('a', item.id);
 
             }}

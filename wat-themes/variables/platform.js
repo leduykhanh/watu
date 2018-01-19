@@ -156,7 +156,7 @@ export default {
   toolbarIconSize: platform === "ios" ? 20 : 22,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
   toolbarInputColor: platform === "ios" ? "#FFF" : "#fff",
-  searchBarHeight: platform === "ios" ? 30 : 40,
+  searchBarHeight: platform === "ios" ? 30 : 30,
   toolbarInverseBg: "#222",
   toolbarTextColor: platform === "ios" ? "#000" : "#fff",
   toolbarDefaultBorder: platform === "ios" ? "#a7a6ab" : "#3F51B5",

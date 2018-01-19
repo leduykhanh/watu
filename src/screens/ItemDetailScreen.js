@@ -54,7 +54,7 @@ class ItemDetailScreen extends Component {
   render() {
     const item = this.state.item;
     const shop = this.props.shop;
-
+    console.log(this.props.item)
     if(item == null || shop == null) return <Text>Loading</Text>
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
     return (

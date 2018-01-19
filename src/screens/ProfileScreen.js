@@ -69,10 +69,14 @@ class ProfileScreen extends Component {
           <Text bold fs14>Add new card</Text>
         </View>
         <View p-25 m-10 grey>
+          <Button transparent onPress={()=> this.setState({editPersonal: true})}
+                  style={{position: 'absolute', right: 10, top: 10, padding: 20}}>
+            <Icon
+              name="md-create"
+            />
+          </Button>
           <Text bold fs14>Shipping bill</Text>
           <Text fs12>12 Geylang Road</Text>
-        </View>
-        <View p-25 m-10 grey horizontal>
         </View>
       </View>
     ) ;
@@ -143,7 +147,7 @@ class ProfileScreen extends Component {
             <View horizontal center>
               <Image source={require('../../assets/images/default-person.jpg')}
                    style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 12}} />
-              <Text>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
+              <Text>{this.props.profile.fname? this.props.profile.fname: 'User 1'}</Text>
             </View>
             <Tabs {...tabProps}>
               <Tab heading={<TabHeading><Text small>My History</Text></TabHeading>} >

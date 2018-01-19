@@ -29,12 +29,12 @@ class HeaderComponent extends Component  {
     return (
       <Header searchBar rounded>
         {this.props.back ?
-          <Button iconRight transparent>
-            <Icon onPress={() => Actions.pop()} name='ios-arrow-back'/>
+          <Button iconRight transparent onPress={() => Actions.pop()} >
+            <Icon name='ios-arrow-back'/>
           </Button> : <Text></Text>}
 
-        <Button transparent>
-          <Icon onPress={this.scanAction.bind(this)} name='ios-qr-scanner'/>
+        <Button transparent onPress={this.scanAction.bind(this)}>
+          <Icon  name='ios-qr-scanner'/>
         </Button>
         <Item>
           <Icon transparent name="ios-search"/>

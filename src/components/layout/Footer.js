@@ -19,15 +19,15 @@ class FooterTabs extends Component {
         <Footer>
           <FooterTab>
 
-            <Button active vertical onPress={() => {Actions.replace('dashboard')}} active={currentScene === '_dashboard'}>
+            <Button active vertical onPress={() => {Actions.replace('dashboard')}} >
               <Icon  name="home" size={22} style={{color: currentScene === 'dashboard'? "rgb(249,174,24)" : "grey"}}/>
             </Button>
 
-            <Button vertical onPress={() => Actions.replace('wallet')} active={currentScene === '_wallet'} >
-              <Icon name="ios-planet" size={22} />
+            <Button vertical onPress={() => Actions.promotions()} >
+              <Icon name="ios-flower" size={22} style={{color: currentScene === 'promotions'? "rgb(249,174,24)" : "grey"}}/>
             </Button>
 
-            <Button vertical onPress={() => Actions.replace('new_shop')}>
+            <Button vertical onPress={() => Actions.new_shop()}>
               <Icon active name="ios-podium" size={22} style={{color: currentScene === 'new_shop'? "rgb(249,174,24)" : "grey"}} />
             </Button>
             <Button vertical badge onPress={() => Actions.replace('notifications')}>

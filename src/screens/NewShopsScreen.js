@@ -29,9 +29,8 @@ class NewShopsScreen extends Component {
   render(){
     return (
       <Container>
-        <Header />
+        <Header back/>
         <Content containerStyle={{paddingBottom:100}}>
-          <Text bold fs20>New shops</Text>
           <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
             {
               this.props.home.newShops.list.map(

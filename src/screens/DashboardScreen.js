@@ -125,34 +125,35 @@ class Dashboard extends Component {
     return (
       <View style={{height: 240}}>
         <Swiper autoplay height={240} showsPagination={false}
-                // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
+          // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
                 loop>
           {this.props.home.promotions.list.map(
             (item) => {
+
               const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
               const topTexts = toptext.split(" ");
               return(
-                  <View key={item.id} style={styles.slide}>
-                    <Image  style={styles.image} source={{uri: item.image}}/>
+                <View key={item.id} style={styles.slide}>
+                  <Image  style={styles.image} source={{uri: item.image?item.image:''}}/>
 
-                      <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
-                        position:'absolute', alignSelf: 'stretch', width:'auto'}}>
-                        <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
-                          <Text white fs20>{item.bigtitle}</Text>
-                          <Text white fs12>{item.smalltitle}</Text>
-                        </TouchableOpacity>
-                      </View>
-
-                    <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
-                      borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
-                      {topTexts.map(t =>
-                        <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
-                          backgroundColor: toptext_bgcolor}}>{t}</Text>
-                      )}
-
-                    </View>
+                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
+                    position:'absolute', alignSelf: 'stretch', width:'auto'}}>
+                    <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
+                      <Text white fs20>{item.bigtitle}</Text>
+                      <Text white fs12>{item.smalltitle}</Text>
+                    </TouchableOpacity>
                   </View>
-                 )
+
+                  <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
+                    borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
+                    {topTexts.map(t =>
+                      <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
+                        backgroundColor: toptext_bgcolor}}>{t}</Text>
+                    )}
+
+                  </View>
+                </View>
+              )
             }
           )}
 
@@ -171,7 +172,7 @@ class Dashboard extends Component {
               return(
                 <View key={item.id} style={{...styles.slide, flex: 1}}>
                   <Image  style={styles.image} source={{uri: item.image}}/>
-                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 150, padding: 10,
+                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 170, padding: 10,
                     position:'absolute', alignSelf: 'stretch', width}}>
                     <View style={{flex:1,}}>
                       <Text white fs20>{item.name}</Text>

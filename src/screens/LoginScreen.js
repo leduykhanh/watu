@@ -23,10 +23,15 @@ class Login extends Component {
   //   typing: false
   // };
 
+  // state = {
+  //   username: 'leejangkoo+1@gmail.com',
+  //   password: '123456',
+  //   name: 'Jangkoo'
+  // };
   state = {
-    username: 'leejangkoo+1@gmail.com',
-    password: '123456',
-    name: 'Jangkoo'
+    username: null,
+    password: null,
+    name: null
   };
 
 
@@ -52,7 +57,7 @@ class Login extends Component {
 
         {/*<Form keyboardShouldPersistTaps={true} >*/}
 
-          <Text red style={styles.heavyMargin}>{this.props.user.error} &nbsp;</Text>
+        <Text red fs12>{this.props.user.error} &nbsp;</Text>
         <Text bold fs12>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
@@ -77,7 +82,7 @@ class Login extends Component {
         <View style={{ marginTop: 20, justifyContent: 'flex-end'}}>
 
           <View horizontal style={{ justifyContent: 'flex-end' }}>
-            <Text underline subtitle-inactive onPress={Actions.pop}>Forgot password</Text>
+            <Text underline subtitle-inactive onPress={Actions.pop} fs12>Forgot password</Text>
           </View>
 
         </View>
@@ -94,14 +99,14 @@ class Login extends Component {
         {/*<Form keyboardShouldPersistTaps={true} >*/}
 
         <Text red small style={styles.heavyMargin}>{this.props.user.error} &nbsp;</Text>
-        <Text bold fs12>Username</Text>
+        {/*<Text bold fs12>Username</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.name}
                  style={{ shadowOpacity: 0 }}
                  onChangeText={(name) => this.setState({name,typing:true})}
                  autoCapitalize='none'
           />
-        </Item>
+        </Item>*/}
         <Text bold fs12>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
@@ -121,7 +126,7 @@ class Login extends Component {
         <View horizontal>
           <CheckBox checked/>
           <Text>   </Text>
-          <Text>I agree with terms and conditions</Text>
+          <Text fs12>I agree with terms and conditions</Text>
         </View>
         <View style={{ marginTop: 20 }}>
           <Button onPress={this.onRegister.bind(this)} full small><Text bold>REGISTER</Text></Button>
@@ -142,13 +147,13 @@ class Login extends Component {
     const {container, topView} = loginStyles;
 
     return (
-      <BaseLightbox verticalPercent={0.9} horizontalPercent={0.9}>
+      <BaseLightbox verticalPercent={0.65} horizontalPercent={1}>
         <View style={{justifyContent:'flex-end', alignItems:'flex-end'}}>
           <Icon name='md-close' onPress={Actions.pop} style={{fontSize:30,  marginRight: 5,marginTop:0}}/>
         </View>
-        <View style={topView}>
+        {/*<View style={topView}>
           <Image source={require('../../assets/images/logo.png')} style={{ width: 100, height: 100, marginBottom: 12}} />
-        </View>
+        </View> */}
         <View login>
           <Tabs {...tabProps}>
             <Tab heading="Login">

@@ -10,6 +10,7 @@ import StarRating from 'react-native-star-rating';
 import NearbyShopItem from '../components/home/NearbyShopItem';
 import PromotionDetailItem from "../components/Detail/PromotionDetailItem";
 import openGps from '../utils/gpsHelper';
+import { Actions } from 'react-native-router-flux';
 
 const { width } = Dimensions.get('window');
 const styles = {
@@ -20,7 +21,7 @@ const styles = {
   }
 };
 
-class DetailScreen extends Component {
+class PromotionDetailScreen extends Component {
   state = {
     item: null
   }
@@ -72,10 +73,8 @@ class DetailScreen extends Component {
 
               <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
                 position:'absolute', alignSelf: 'stretch', width:'auto'}}>
-                <TouchableOpacity onPress={() => Actions.detail({item: item})}>
                   <Text white fs20>{item.bigtitle}</Text>
                   <Text white fs12>{item.smalltitle}</Text>
-                </TouchableOpacity>
               </View>
 
               <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
@@ -90,8 +89,12 @@ class DetailScreen extends Component {
             <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
               {
                 item.items.map(
-                  (item) => <PromotionDetailItem key={item.id} item={item}/>
+                  (sitem) => 
+                      <TouchableOpacity onPress={() => Actions.s_detail({item: sitem, shop : item})}>
+                        <PromotionDetailItem key={sitem.id} item={sitem}/>
+                      </TouchableOpacity>  
                 )
+
               }
             </ScrollView>
 
@@ -122,4 +125,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DetailScreen);
+)(PromotionDetailScreen);
