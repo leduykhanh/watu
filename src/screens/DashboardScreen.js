@@ -12,6 +12,7 @@ import Header from '../components/layout/Header';
 import Categories from '../components/home/Categories';
 import NewShopItem from '../components/home/NewShopItem';
 import NearbyShopItem from '../components/home/NearbyShopItem';
+import PromotionsComponent from '../components/home/PromotionsComponent';
 import * as actions from '../actions/homeActions';
 import * as locationActions from '../actions/locationActions';
 
@@ -35,27 +36,6 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'transparent'
-  },
-
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB'
-  },
-
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5'
-  },
-
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
   },
 
   text: {
@@ -121,46 +101,13 @@ class Dashboard extends Component {
       </ScrollView>
     );
   }
+
   renderPromotions(){
     return (
-      <View style={{height: 240}}>
-        <Swiper autoplay height={240} showsPagination={false}
-          // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
-                loop>
-          {this.props.home.promotions.list.map(
-            (item) => {
-
-              const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
-              const topTexts = toptext.split(" ");
-              return(
-                <View key={item.id} style={styles.slide}>
-                  <Image  style={styles.image} source={{uri: item.image?item.image:''}}/>
-
-                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
-                    position:'absolute', alignSelf: 'stretch', width:'auto'}}>
-                    <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
-                      <Text white fs20>{item.bigtitle}</Text>
-                      <Text white fs12>{item.smalltitle}</Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
-                    borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
-                    {topTexts.map(t =>
-                      <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
-                        backgroundColor: toptext_bgcolor}}>{t}</Text>
-                    )}
-
-                  </View>
-                </View>
-              )
-            }
-          )}
-
-        </Swiper>
-      </View>
-    );
+      <PromotionsComponent items={this.props.home.promotions.list} />
+          );
   }
+
   renderHighRatings(){
     return (
       <View style={{height: 240}}>

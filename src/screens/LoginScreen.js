@@ -17,22 +17,18 @@ const tabProps = {
 
 class Login extends Component {
 
-  // state = {
-  //   username: 'corp1user1@koku.io',
-  //   password: 'Secret123!',
-  //   typing: false
-  // };
 
-  // state = {
-  //   username: 'leejangkoo+1@gmail.com',
-  //   password: '123456',
-  //   name: 'Jangkoo'
-  // };
+
   state = {
-    username: null,
-    password: null,
-    name: null
+    username: 'leejangkoo+1@gmail.com',
+    password: '123456',
+    name: 'Jangkoo'
   };
+  // state = {
+  //   username: null,
+  //   password: null,
+  //   name: null
+  // };
 
 
   componentDidMount() {
