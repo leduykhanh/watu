@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Tabs, Tab,
   TabHeading, Icon } from 'native-base';
+import DatePicker from 'react-native-datepicker'
 import {StyleSheet, Image, ScrollView} from 'react-native';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
@@ -21,7 +22,7 @@ class ProfileScreen extends Component {
     editPersonal: false,
     userObject: {
       usr_mobile: null,
-      usr_fname: null,
+      usr_fname: this.props.profile.fname ? this.props.profile.fname : '',
       usr_lname: null,
       usr_birthday: null,
       usr_status: null,
@@ -33,6 +34,7 @@ class ProfileScreen extends Component {
 
   componentWillMount(){
     this.props.actions.getHistory();
+
   }
 
   renderHistory(){
@@ -103,6 +105,31 @@ class ProfileScreen extends Component {
                 onChangeText={(usr_mobile) => this.changeAttribute('usr_mobile', usr_mobile)}
                  />
             </Item>
+            <Text fs12>Date of birth</Text>
+            <DatePicker
+              style={{width: 200}}
+              date={userObject.usr_birthday}
+              mode="date"
+              placeholder="select date"
+              format="YYYY-MM-DD"
+              minDate="2016-05-01"
+              maxDate="2016-06-01"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: 'absolute',
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36
+                }
+                // ... You can check the source to find the other keys.
+              }}
+              onDateChange={(date) => {this.changeAttribute('usr_birthday', date)}}
+            />
           </View>
           <View horizontal style={{ marginTop: 20 }}>
             <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
