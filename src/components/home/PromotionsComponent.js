@@ -1,12 +1,13 @@
 import React from 'react';
 import { Text, Spinner, Icon, View, } from 'native-base';
-import {Dimensions, Image, TouchableOpacity} from 'react-native';
+import {Dimensions, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import StarRating from 'react-native-star-rating';
 import {Actions} from "react-native-router-flux";
 import {getDistanceFromLatLonInKm} from "../../utils/gpsHelper";
 import openGps from "../../utils/gpsHelper";
 import Swiper from 'react-native-swiper';
+import Image from '../common/Image';
 
 const { width } = Dimensions.get('window');
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text, Spinner, Icon, View, } from 'native-base';
-import { Image, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import { getDistanceFromLatLonInKm } from '../../utils/gpsHelper';
+import Image from '../common/Image';
 
 const NewShopItem = props => {
   const item = props.item;
