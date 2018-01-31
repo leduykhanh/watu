@@ -9,6 +9,7 @@ import ItemDetailScreen from './ItemDetailScreen';
 import SearchScreen from './SearchScreen';
 import NewShopsScreen from './NewShopsScreen';
 import PromotionsScreen from './PromotionsScreen';
+import NotificationScreen from './NotificationScreen';
 
 export {
   LoginScreen,
@@ -21,5 +22,6 @@ export {
   ItemDetailScreen,
   SearchScreen,
   NewShopsScreen,
-  PromotionsScreen
+  PromotionsScreen,
+  NotificationScreen,
 };

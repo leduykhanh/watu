@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text, Icon, View } from 'native-base';
-import { Image, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import * as actions from '../../actions/homeActions';
+import Image from '../common/Image';
 
 import CategoriesStyle from '../../../wat-themes/styles/Categories'
 

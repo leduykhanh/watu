@@ -68,6 +68,12 @@ export default initalState = {
   cart: {
     items: [],
     count: 0
+  },
+  notification: {
+    items: [],
+    count: 0,
+    loading: false,
+    loaded: false,
   }
 
 };

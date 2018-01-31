@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, Spinner, Icon, View, } from 'native-base';
-import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import StarRating from 'react-native-star-rating';
+import Image from '../common/Image';
+
 const PromotionDetailItem = props => {
   const item = props.item;
   const width = 110;

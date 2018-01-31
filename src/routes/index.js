@@ -14,7 +14,7 @@ import MessageBar from '../components/MessageBar';
 
 import {
   LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen, PromotionDetailScreen, ShopDetailScreen, CartScreen,
-  ItemDetailScreen, SearchScreen, NewShopsScreen, PromotionsScreen
+  ItemDetailScreen, SearchScreen, NewShopsScreen, PromotionsScreen, NotificationScreen
  } from '../screens';
 
 
@@ -62,6 +62,7 @@ const Routes = () => {
           <Scene key="search" hideNavBar component={SearchScreen} />
           <Scene key="new_shop" hideNavBar component={NewShopsScreen} />
           <Scene key="promotions" hideNavBar component={PromotionsScreen} />
+          <Scene key="notifications" hideNavBar component={NotificationScreen} />
           <Drawer
             hideNavBar
             hideDrawerButton

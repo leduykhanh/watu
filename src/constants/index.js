@@ -3,7 +3,7 @@ import initalState from './initalState';
 const apiVersion = 'v0.2';
 
 // Staging
-const BASE_API_URL = 'http://watu1.haizzz.com/api/';
+const BASE_API_URL = 'https://survis.purecode.vn/api/';
 export const LOGIN_API = BASE_API_URL + '?type=login';
 export const REGISTER_API = BASE_API_URL + '?type=register';
 
@@ -32,13 +32,11 @@ export const GET_HIGHRATINGSHOPS_API = BASE_API_URL + '?type=highratingshops';
 export const GET_NEARBYSHOPS_API = BASE_API_URL + '?type=nearbyshops';
 export const GET_LOOKUP_API = BASE_API_URL + '/lookup';
 export const GET_CAT_API = BASE_API_URL + '?type=category';
-export const GET_KOKU_RATE_API = BASE_API_URL + '/rate';
+export const GET_NOTIFICATION_API = BASE_API_URL + '?type=notification';
 export const DEVICE_API = BASE_API_URL + '/device';
 export const SIGNUP_LINK = BASE_API_URL + '/account/signup';
 
-// export const KOKU_LOGO_URL = 'https://d1qb2nb5cznatu.cloudfront.net/startups/i/3362811-ac1ddb13d4bb672de6550c6ab1078968-medium_jpg.jpg?buster=1498795012';
 
-export const KOKU_LOGO_URL = '../../assets/images/logo.jpg';
 export const NUMBER_ACTIVITIES_ON_DASHBOARD = 10;
 
 export const REFRESH_TOKEN_LIFESPAN = 3000; // In seconds
