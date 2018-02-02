@@ -10,6 +10,11 @@ export function getHistory() {
 }
 
 export function updateProfile(data) {
-  console.log(data)
   return serverCall.post(constants.GET_PROFILE_API, data);
+}
+export function getPaymentInfo() {
+  return serverCall.get(constants.GET_PAYMENT_API);
+}
+export function updatePaymentInfo(data) {
+  return serverCall.post(constants.GET_PAYMENT_API, data);
 }

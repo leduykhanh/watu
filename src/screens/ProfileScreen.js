@@ -9,6 +9,7 @@ import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
 import * as actions from "../actions/profileActions";
+import * as userActions from "../actions/userActions";
 import * as ProfileApi from "../api/ProfileApi";
 
 const tabProps = {
@@ -26,15 +27,29 @@ class ProfileScreen extends Component {
       usr_lname: null,
       usr_birthday: null,
       usr_status: null,
-      usr_email: null,
+      usr_email: this.props.profile.email ? this.props.profile.email : '',
       usr_password: null,
       usr_avatar: null
+    },
+    paymentObject: {
+      ucc_name: null,
+      ucc_num: null,
+      ucc_cvc: null,
+      ucc_expire: null,
+      ucc_type: null,
+      ucc_usr_id: null
     }
   };
 
   componentWillMount(){
     this.props.actions.getHistory();
+  }
 
+  componentWillReceiveProps(nextProps) {
+    const userObject = Object.assign({}, this.state.userObject);
+    userObject.usr_fname = nextProps.profile.fname;
+    userObject.usr_email = nextProps.profile.email;
+    this.setState({userObject});
   }
 
   renderHistory(){
@@ -47,10 +62,17 @@ class ProfileScreen extends Component {
     //   )
     // );
   }
+
   changeAttribute(attribute, value){
     const userObject = this.state.userObject;
     userObject[attribute] = value;
     this.setState({userObject,typing:true});
+  }
+
+  changePaymentAttribute(attribute, value){
+    const paymentObject = this.state.paymentObject;
+    paymentObject[attribute] = value;
+    this.setState({paymentObject,typing:true});
   }
 
   onSave(){
@@ -58,8 +80,13 @@ class ProfileScreen extends Component {
       (res) => console.log(res.data)
     )
   }
-  renderPaymentInfo() {
 
+  onAddPayment(){
+      alert('TODO');
+  }
+
+  renderPaymentInfo() {
+    const { paymentObject } = this.state;
     return (
       <View>
         <View p-25 m-10 grey horizontal space-between>
@@ -68,12 +95,46 @@ class ProfileScreen extends Component {
           <Icon name="ios-trash"/>
         </View>
         <View p-25 m-10 grey>
-          <Text bold fs14>Add new card</Text>
+          <Text bold fs12>Card holder Name</Text>
+          <Item login>
+            <Input
+              value={paymentObject.ucc_name}
+              onChangeText={(ucc_name) => this.changePaymentAttribute('ucc_name', ucc_name)}
+               />
+          </Item>
+          <Text bold fs12>Card Number</Text>
+          <Item login>
+            <Input
+              value={paymentObject.ucc_num}
+              onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
+               />
+          </Item>
+          <View horizontal>
+            <View>
+              <Text bold fs12>Expire</Text>
+              <Item login>
+                <Input
+                  value={paymentObject.ucc_num}
+                  onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
+                   />
+              </Item>
+            </View>
+            <View>
+              <Text bold fs12>ccv</Text>
+              <Item login>
+                <Input
+                  value={paymentObject.ucc_num}
+                  onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
+                   />
+              </Item>
+            </View>
+          </View>
+          <Button onPress={this.onAddPayment.bind(this)} full small><Text bold>Add</Text></Button>
         </View>
         <View p-25 m-10 grey>
           <Button transparent onPress={()=> this.setState({editPersonal: true})}
                   style={{position: 'absolute', right: 10, top: 10, padding: 20}}>
-            <Icon
+            <Icon new-shop
               name="md-create"
             />
           </Button>
@@ -175,6 +236,12 @@ class ProfileScreen extends Component {
               <Image source={require('../../assets/images/default-person.jpg')}
                    style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 12}} />
               <Text>{this.props.profile.fname? this.props.profile.fname: 'User 1'}</Text>
+              <Button transparent onPress={()=> this.props.userActions.logout()}
+                      style={{position: 'absolute', right: 10, top: 10, padding: 20}}>
+                <Icon
+                  name="ios-log-out"
+                />
+              </Button>
             </View>
             <Tabs {...tabProps}>
               <Tab heading={<TabHeading><Text small>My History</Text></TabHeading>} >
@@ -212,7 +279,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions : bindActionCreators(actions, dispatch)
+    actions : bindActionCreators(actions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch),
   };
 }
 

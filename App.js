@@ -11,15 +11,15 @@ import { StyleProvider, Spinner, View, Text, Container, Content } from 'native-b
 import {refreshToken} from './src/api/UserApi';
 import * as constants from './src/constants';
 import serverCall from './src/utils/serverCall';
-import {getOidc, setOidc} from './src/utils/persistStore';
-import {requestToken} from './src/utils/deviceTokenHelper';
+import { getProfile, setProfile } from './src/utils/persistStore';
+import { requestToken } from './src/utils/deviceTokenHelper';
 // import VersionCheck from 'react-native-version-check';
 import {GradientButton} from  './src/components/common';
 
 const platform = Platform.OS;
 
 export default class App extends React.Component {
-  
+
   constructor() {
     super();
     this.state = {
@@ -31,7 +31,7 @@ export default class App extends React.Component {
       store: null
     };
   }
-  
+
   async componentWillMount() {
 
     if (typeof Expo !== 'undefined') {
@@ -55,23 +55,31 @@ export default class App extends React.Component {
     //   if (isNeeded)
     //     this.setState({needUpdate: true, version: latestVersion});
     // }
-    
-    
-    
-    this.state.store = await configureStore();
-    this.setState({ isReady: true});
-    
-    getLookupData()(this.state.store.dispatch);
 
 
-    
+    try {
+      this.state.store = await configureStore();
+      this.setState({ isReady: true});
+    }
+    catch (error) {
+      console.log(error)
+    }
+    // getLookupData()(this.state.store.dispatch);
+    const profile = JSON.parse(await getProfile());
+    if (profile && profile.token) {
+      serverCall.defaults.headers['token'] =  profile.token;
+      this.state.store.dispatch({
+        type: constants.STATE_GET_PROFILE_SUCCESS,
+        payload: profile
+      });
+    }
   }
-  
+
   clearState() {
     this.setState({
       isRefreshingToken: false
     });
-  
+
     AsyncStorage.clear();
   }
 
@@ -120,7 +128,7 @@ export default class App extends React.Component {
           <Provider store={this.state.store}>
             <Routes/>
           </Provider>
-      </StyleProvider>  
+      </StyleProvider>
     );
   }
 }

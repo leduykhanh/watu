@@ -6,7 +6,7 @@ import * as userApi from '../api/UserApi';
 import serverCall from '../utils/serverCall';
 import * as profileActions from './profileActions';
 
-import {setOidc} from '../utils/persistStore';
+import { setProfile } from '../utils/persistStore';
 
 export function login(username:string, password:string) {
   return dispatch => {
@@ -18,10 +18,9 @@ export function login(username:string, password:string) {
     userApi.login(username, password)
       .then((response) => {
 
-        // setOidc(response.data);
         const  token = (response.data.results.token);
         // const token = 'UDgwU0hJSW9CZlQ2VmVGaXJ5R296cXVRS1B2Z1c2bXg0SDB4dU5mbDRPOD0=';
-
+        // setProfile({profile:{token}});
         serverCall.defaults.headers['token'] =  token;
         dispatch({
           type: constants.STATE_LOGIN_SUCCESS,
@@ -83,9 +82,9 @@ export function logout() {
   return dispatch => {
 
     AsyncStorage.clear();
-    setOidc(null);
+    setProfile(null);
 
-    serverCall.defaults.headers['Authorization'] = '';
+    serverCall.defaults.headers['token'] = '';
 
     dispatch({
       type: constants.STATE_LOGOUT_SUCCESS
