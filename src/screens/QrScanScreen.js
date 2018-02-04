@@ -9,6 +9,7 @@ import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
 
+
 class QrScanScreen extends Component {
 	constructor(props) {
 		super(props)
@@ -28,7 +29,7 @@ class QrScanScreen extends Component {
         this.state.permissions.set(p, status === 'granted')
     }
 	onBarCodeRead(e) {
-		console.log(e)
+		Actions.replace('luckydraw');
 	}
 
 	renderContent() {

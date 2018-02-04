@@ -8,7 +8,7 @@ import * as actions from '../../actions/homeActions';
 class HeaderComponent extends Component  {
 
   scanAction(){
-    if(this.props.profile.id) Actions.luckydraw();
+    if(this.props.profile.id) Actions.qrscan();
     else Actions.login();
   }
 

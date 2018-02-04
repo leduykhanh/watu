@@ -11,6 +11,7 @@ import * as actions from "../actions/prizeActions";
 import * as PrizeApi from '../api/PrizeApi';
 import {Actions} from "react-native-router-flux";
 import LuckyDrawItem from "../components/luckydraw/LuckyDrawItem";
+import Dash from 'react-native-dash';
 
 
 class LuckyDrawScreen extends Component {
@@ -30,14 +31,18 @@ class LuckyDrawScreen extends Component {
     ).catch(err => console.log(err));
   }
 
+  submitPrize() {
+    Actions.reset('lightbox');
+  }
+
   render() {
     const grid = [];
     const { items } = this.state;
     for (let i=0; i<items.length; i=i+2) {
       grid.push(
         <View horizontal>
-          <LuckyDrawItem item={items[i]} />
-          <LuckyDrawItem item={items[i+1]} />
+          <LuckyDrawItem selected={this.state.selectedId==items[i].id} onPress={() => this.setState({selectedId: items[i].id})} item={items[i]} />
+          <LuckyDrawItem selected={this.state.selectedId==items[i+1].id} onPress={() => this.setState({selectedId: items[i+1].id})} item={items[i+1]} />
         </View>
       )
     };
@@ -48,14 +53,23 @@ class LuckyDrawScreen extends Component {
             <View horizontal grey p-16>
               <Text bold fs12>Someline about Lucky Draw</Text>
             </View>
-            <Text fs12>
-            Gourmet cooking is a style of food preparation that deals with the finest and freshest lorem ipsum dolos possible ingredients.
-            </Text>
+            <View p-16>
+              <Text fs12>
+              Gourmet cooking is a style of food preparation that deals with the finest and freshest lorem ipsum dolos possible ingredients.
+              </Text>
+            </View>
+            <Dash />
             {
               grid.map(item => item)
             }
           </Content>
-          <Footer />
+          <Footer>
+
+              <View m-r-10 center-h>
+                <Button small onPress={this.submitPrize.bind(this)}><Text>Submit</Text></Button>
+              </View>
+
+          </Footer>
       </Container>
     )
   }
