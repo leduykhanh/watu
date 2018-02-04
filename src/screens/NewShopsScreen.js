@@ -29,7 +29,7 @@ class NewShopsScreen extends Component {
   render(){
     return (
       <Container>
-        <Header back/>
+        <Header/>
         <Content containerStyle={{paddingBottom:100}}>
           <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
             {

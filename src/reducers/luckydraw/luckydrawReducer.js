@@ -1,18 +1,18 @@
 import * as constant from '../../constants';
 
-export function notificationReducer(state = constant.initalState.notification, action) {
+export function luckydrawReducer(state = constant.initalState.notification, action) {
 
   switch (action.type) {
 
 
-    case constant.GET_NOTIFICATION_PENDING: {
+    case constant.STATE_LUCKYDRAW_PENDING: {
       return {
         ...state,
         loading: true,
       };
     }
 
-    case constant.GET_NOTIFICATION_SUCCESS: {
+    case constant.GET_LUCKYDRAW_SUCCESS: {
       return {
         ...state,
         items: action.payload,

@@ -10,6 +10,7 @@ import SearchScreen from './SearchScreen';
 import NewShopsScreen from './NewShopsScreen';
 import PromotionsScreen from './PromotionsScreen';
 import NotificationScreen from './NotificationScreen';
+import LuckyDrawScreen from './LuckyDrawScreen';
 
 export {
   LoginScreen,
@@ -24,4 +25,5 @@ export {
   NewShopsScreen,
   PromotionsScreen,
   NotificationScreen,
+  LuckyDrawScreen,
 };

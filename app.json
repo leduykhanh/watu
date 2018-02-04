@@ -10,9 +10,9 @@
     "name": "wat",
     "slug": "wat",
     "version": "0.2.0",
-    "icon": "./assets/images/splash.png",
+    "icon": "./assets/images/loading-1.jpg",
     "loading": {
-      "backgroundImage": "./assets/images/logo.png",
+      "backgroundImage": "./assets/images/loading-1.jpg",
       "backgroundColor": "#222127"
     }
   },

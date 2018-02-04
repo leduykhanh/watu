@@ -34,7 +34,7 @@ class NotificationScreen extends Component {
 }
 function mapStateToProps(state) {
   return {
-    notification: state.cart,
+    notification: state.notification,
     profile: state.profile
   };
 }

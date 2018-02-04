@@ -75,6 +75,12 @@ export default initalState = {
     count: 0,
     loading: false,
     loaded: false,
-  }
+  },
+  luckydraw: {
+    items: [],
+    count: 0,
+    loading: false,
+    loaded: false,
+  },
 
 };

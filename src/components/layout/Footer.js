@@ -23,11 +23,11 @@ class FooterTabs extends Component {
               <Icon  name="home" size={22} style={{color: currentScene === 'dashboard'? "rgb(249,174,24)" : "grey"}}/>
             </Button>
 
-            <Button vertical onPress={() => Actions.promotions()} >
+            <Button vertical onPress={() => Actions.replace('promotions')} >
               <Icon name="ios-flower" size={22} style={{color: currentScene === 'promotions'? "rgb(249,174,24)" : "grey"}}/>
             </Button>
 
-            <Button vertical onPress={() => Actions.new_shop()}>
+            <Button vertical onPress={() => Actions.replace('new_shop')}>
               <Icon active name="ios-podium" size={22} style={{color: currentScene === 'new_shop'? "rgb(249,174,24)" : "grey"}} />
             </Button>
             <Button vertical badge onPress={() => Actions.replace('notifications')}>

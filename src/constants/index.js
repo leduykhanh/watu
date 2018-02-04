@@ -25,7 +25,7 @@ export const GET_HISTORY_API = BASE_API_URL + '?type=history';
 export const GET_ITEM_DETAIL_API = BASE_API_URL + '?type=itemdetail';
 export const PLACE_ORDER_API = BASE_API_URL + '?type=placeorder';
 export const GET_REVIEW_API = BASE_API_URL + '?type=reviews';
-export const CHANGE_PASSWORD_API = BASE_API_URL + '/profile/changePassword';
+export const GET_PRIZE_API = BASE_API_URL + '?type=prize';
 export const GET_PROMOTIONS_API = BASE_API_URL + '?type=promotions';
 export const GET_NEWSHOPS_API = BASE_API_URL + '?type=newshops';
 export const GET_HIGHRATINGSHOPS_API = BASE_API_URL + '?type=highratingshops';
@@ -100,6 +100,10 @@ export const STATE_PAYMENTINFO_SUCCESS = 'STATE_PAYMENTINFO_SUCCESS';
 export const GET_NOTIFICATION_PENDING = 'GET_NOTIFICATION_PENDING';
 export const GET_NOTIFICATION_SUCCESS = 'GET_NOTIFICATION_SUCCESS';
 export const GET_NOTIFICATION_FAILED = 'GET_NOTIFICATION_FAILED';
+
+export const STATE_LUCKYDRAW_PENDING = 'STATE_LUCKYDRAW_PENDING';
+export const STATE_LUCKYDRAW_ERROR = 'STATE_LUCKYDRAW_ERROR';
+export const STATE_LUCKYDRAW_SUCCESS = 'STATE_LUCKYDRAW_SUCCESS';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const CLEAR_CART = 'CLEAR_CART';
