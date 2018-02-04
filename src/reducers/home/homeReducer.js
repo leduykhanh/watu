@@ -70,9 +70,13 @@ export function homeReducer(state = constant.initalState.home, action) {
     }
 
     case constant.GET_HIGHRATINGSHOPS_SUCCESS: {
+      let list = state.highratingshops.list;
+
+      list = list.concat(action.payload);
+
       return {
         ...state,
-        highratingshops: {list: action.payload, loaded: true},
+        highratingshops: {list, loaded: true},
       };
     }
 
@@ -88,9 +92,11 @@ export function homeReducer(state = constant.initalState.home, action) {
     }
 
     case constant.GET_NEARBYSHOPS_SUCCESS: {
+      let list = state.nearbyshops.list;
+      list = list.concat(action.payload);
       return {
         ...state,
-        nearbyshops: {list: action.payload, loaded: true},
+        nearbyshops: {list, loaded: true},
       };
     }
 

@@ -54,6 +54,26 @@ const styles = {
 }
 
 class Dashboard extends Component {
+  state = {
+      highratingshopsPage: 0,
+      nearbyshopsPage: 0,
+  }
+
+  loadMoreHighratingshops() {
+    const { highratingshopsPage } = this.state;
+    this.setState({
+      highratingshopsPage: highratingshopsPage + 1
+    });
+    this.props.actions.getHighRatingsShop(highratingshopsPage + 1)
+  }
+
+  loadMoreNearByshops() {
+    const { nearbyshopsPage } = this.state;
+    this.setState({
+      nearbyshopsPage: nearbyshopsPage + 1
+    });
+    this.props.actions.getNearbyShop(null, null, nearbyshopsPage + 1)
+  }
 
   async componentDidMount() {
     // const {sendToken, updateToken} = this.props.deviceActions;
@@ -64,10 +84,11 @@ class Dashboard extends Component {
     // deviceTokenHelper(token => {
     //   deviceId ? updateToken(token, deviceId) : sendToken(token);
     // });
+    const { highratingshopsPage } = this.state;
     this.props.actions.getCategories();
     this.props.actions.getPromotions();
     this.props.actions.getNewshops();
-    this.props.actions.getHighRatingsShop();
+    this.props.actions.getHighRatingsShop(highratingshopsPage);
     this.props.actions.getNearbyShop();
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -156,6 +177,7 @@ class Dashboard extends Component {
   }
 
   renderNearbyShops(){
+    // console.log(this.props.home.nearbyshops.list.length)
     return (
       <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
         {
@@ -163,6 +185,9 @@ class Dashboard extends Component {
             (item) => <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
           )
         }
+        <View horizontal m-r-10 center-h center>
+          <Button small onPress={this.loadMoreNearByshops.bind(this)}><Text>Load more</Text></Button>
+        </View>
       </ScrollView>
     );
   }

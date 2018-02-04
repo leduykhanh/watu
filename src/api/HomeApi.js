@@ -16,7 +16,8 @@ export function getHighRatingsShop() {
   return serverCall.get(constants.GET_HIGHRATINGSHOPS_API);
 }
 
-export function getNearbyShop(q='a', catid=null) {
+export function getNearbyShop(q='a', catid=null, page=0) {
   const catQuery = catid ? `&catid=${catid}` : '';
-  return serverCall.get(`${constants.GET_NEARBYSHOPS_API}&q=${q}${catQuery}`);
+  const url = `${constants.GET_NEARBYSHOPS_API}&q=${q}${catQuery}&page=${page}`;
+  return serverCall.get(url);
 }

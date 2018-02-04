@@ -10,7 +10,7 @@ import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import Categories from '../components/home/Categories';
-import PromotionDetailItem from '../components/Detail/PromotionDetailItem';
+import PromotionSearchItem from '../components/Detail/PromotionSearchItem';
 import NearbyShopItem from '../components/home/NearbyShopItem';
 import * as actions from '../actions/homeActions';
 import * as locationActions from '../actions/locationActions';
@@ -34,7 +34,7 @@ class PromotionsScreen extends Component {
           <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
             {
               this.props.home.promotions.list.map(
-                (item) => <PromotionDetailItem location={this.props.location} key={item.id} item={item}/>
+                (item) => <PromotionSearchItem location={this.props.location} key={item.id} item={item}/>
               )
             }
           </ScrollView>
