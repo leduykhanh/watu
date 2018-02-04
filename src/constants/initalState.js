@@ -27,6 +27,11 @@ export default initalState = {
       loading: false,
       loaded: false
     },
+    loyalty: {
+      list: [],
+      loading: false,
+      loaded: false
+    },
   },
   rule:{
     currencies:null

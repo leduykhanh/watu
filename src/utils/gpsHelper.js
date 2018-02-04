@@ -17,9 +17,11 @@ openExternalApp = (url) => {
   });
 }
 
-export default openGps = (lat, long) => {
-  var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:'
-  var url = `${scheme}${lat},${long}`;
+export default openGps = (lat, lng) => {
+  const scheme = Platform.OS === 'ios' ? 'maps:0,0?q=' : 'geo:0,0?q=:';
+  const latLng = `${lat},${lng}`;
+  const label = 'Wat';
+  const url = Platform.OS === 'ios' ? `${scheme}${label}@${latLng}` : `${scheme}${latLng}(${label})`;
   openExternalApp(url)
 }
 

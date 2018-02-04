@@ -14,12 +14,12 @@ const PromotionDetailItem = props => {
         </View>
         <View p-l-10>
           <View horizontal m-t-5>
-            <Text fs14 bold>{item.bigtitle}</Text>
+            <Text fs14 bold>{item.name}</Text>
           </View>
           <View horizontal>
             <Text fs12>{item.description}</Text>
           </View>
-          <Text fs14 bold theme>${item.toptext}</Text>
+          <Text fs14 bold theme>${item.price}</Text>
         </View>
       </View>
   );

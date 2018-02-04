@@ -91,3 +91,33 @@ export function addPaymentInfo(data) {
 
   }
 }
+
+export function getLoyalty() {
+  return dispatch => {
+
+    dispatch({
+      type: constants.STATE_LOYALTY_PENDING
+    });
+
+    profileApi.getLoyalty().then((response) => {
+
+      const { data : { results } } = response;
+      // console.log(results)
+
+      dispatch({
+        type: constants.STATE_LOYALTY_SUCCESS,
+        payload: results
+      });
+
+
+    }).catch((error) => {
+      console.log(error)
+      dispatch({
+        type: constants.STATE_LOYALTY_ERROR,
+        error
+      });
+
+    });
+
+  }
+}

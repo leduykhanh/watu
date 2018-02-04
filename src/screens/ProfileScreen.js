@@ -8,6 +8,8 @@ import {StyleSheet, Image, ScrollView} from 'react-native';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
+import HistoryItem from '../components/profile/HistoryItem';
+import LoyaltyItem from '../components/profile/LoyaltyItem';
 import * as actions from "../actions/profileActions";
 import * as userActions from "../actions/userActions";
 import * as ProfileApi from "../api/ProfileApi";
@@ -49,6 +51,7 @@ class ProfileScreen extends Component {
 
   componentWillMount(){
     this.props.actions.getHistory();
+    this.props.actions.getLoyalty();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,14 +62,35 @@ class ProfileScreen extends Component {
   }
 
   renderHistory(){
-    // console.log(this.props.profile)
-    // this.props.profile.history.map(
-    //   item => (
-    //     <View>
-    //       <Text>{item.name}</Text>
-    //     </View>
-    //   )
-    // );
+
+    return(
+      <View>
+        {
+          this.props.profile.history.list.map(
+            item => (
+              <HistoryItem item={item} />
+            )
+          )
+        }
+      </View>
+    )
+
+  }
+
+  renderLoyalty(){
+
+    return(
+      <View>
+        {
+          this.props.profile.loyalty.list.map(
+            item => (
+              <LoyaltyItem item={item} />
+            )
+          )
+        }
+      </View>
+    )
+
   }
 
   changeAttribute(attribute, value){
@@ -275,7 +299,7 @@ class ProfileScreen extends Component {
                 {this.renderHistory()}
               </Tab>
               <Tab heading={<TabHeading><Text small>My Loyality</Text></TabHeading>} >
-                <Text>TO DO</Text>
+                {this.renderLoyalty()}
               </Tab>
                 <Tab heading={<TabHeading><Text small>Payment Info</Text></TabHeading>} >
                   {this.renderPaymentInfo()}

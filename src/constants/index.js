@@ -22,6 +22,7 @@ export const GET_PROMOTION_DETAIL_API = BASE_API_URL + '?type=promotiondetail';
 export const GET_SHOP_DETAIL_API = BASE_API_URL + '?type=shopdetail';
 export const GET_SHOP_ITEMS_API = BASE_API_URL + '?type=items';
 export const GET_HISTORY_API = BASE_API_URL + '?type=history';
+export const GET_LOYALTY_API = BASE_API_URL + '?type=loyalty';
 export const GET_ITEM_DETAIL_API = BASE_API_URL + '?type=itemdetail';
 export const PLACE_ORDER_API = BASE_API_URL + '?type=placeorder';
 export const GET_REVIEW_API = BASE_API_URL + '?type=reviews';
@@ -92,6 +93,10 @@ export const GET_NEARBYSHOPS_FAILED = 'GET_NEARBYSHOPS_FAILED';
 export const STATE_HISTORY_PENDING = 'STATE_HISTORY_PENDING';
 export const STATE_HISTORY_ERROR = 'STATE_HISTORY_ERROR';
 export const STATE_HISTORY_SUCCESS = 'STATE_HISTORY_SUCCESS';
+
+export const STATE_LOYALTY_PENDING = 'STATE_LOYALTY_PENDING';
+export const STATE_LOYALTY_ERROR = 'STATE_LOYALTY_ERROR';
+export const STATE_LOYALTY_SUCCESS = 'STATE_LOYALTY_SUCCESS';
 
 export const STATE_PAYMENTINFO_PENDING = 'STATE_PAYMENTINFO_PENDING';
 export const STATE_PAYMENTINFO_ERROR = 'STATE_PAYMENTINFO_ERROR';

@@ -8,6 +8,9 @@ export function getFullProfile() {
 export function getHistory() {
   return serverCall.get(constants.GET_HISTORY_API);
 }
+export function getLoyalty() {
+  return serverCall.get(constants.GET_LOYALTY_API);
+}
 
 export function updateProfile(data) {
   return serverCall.post(constants.GET_PROFILE_API, data);

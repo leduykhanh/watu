@@ -7,6 +7,7 @@ const Img = (props) =>
     <ImageLoad
     {...props}
     loadingStyle={{ size: 'large', color: '"rgb(249,174,24)' }}
+    placeholderSource="./blank.jpg"
     />
 )
 

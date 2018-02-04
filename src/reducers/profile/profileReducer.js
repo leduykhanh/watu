@@ -57,6 +57,17 @@ export function profileReducer(state = constant.initalState.profile, action) {
       };
     }
 
+    case constant.STATE_LOYALTY_SUCCESS: {
+
+      return {
+        ...state,
+        loyalty: {
+          list: action.payload,
+          loaded: true
+        }
+      };
+    }
+
     case constant.STATE_LOGOUT_SUCCESS: {
       return {
         ...constant.initalState.profile
