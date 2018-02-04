@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Tabs, Tab,
-  TabHeading, Icon } from 'native-base';
+  TabHeading, Icon, Radio } from 'native-base';
 import DatePicker from 'react-native-datepicker'
 import {StyleSheet, Image, ScrollView} from 'react-native';
 import Footer from '../components/layout/Footer';
@@ -11,12 +11,18 @@ import { ImageBackground } from '../components/common';
 import * as actions from "../actions/profileActions";
 import * as userActions from "../actions/userActions";
 import * as ProfileApi from "../api/ProfileApi";
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 const tabProps = {
   tabBarUnderlineStyle: { backgroundColor: "rgb(249,174,24)",
 
   },activeTextColor: 'rgb(67,72,77)'
 };
+
+var radio_props = [
+  {label: 'Visa ', value: 'visa'},
+  {label: 'Master ', value: 'master'},
+];
 
 class ProfileScreen extends Component {
   state = {
@@ -77,23 +83,29 @@ class ProfileScreen extends Component {
 
   onSave(){
     ProfileApi.updateProfile(this.state.userObject).then(
-      (res) => console.log(res.data)
+      (res) => this.setState({editPersonal: false})
     )
   }
 
   onAddPayment(){
-      alert('TODO');
+      this.props.actions.addPaymentInfo(this.state.paymentObject);
+  }
+
+  renderSingleCard() {
+    return (
+      <View p-25 m-10 grey horizontal space-between>
+        <Icon name="card" />
+        <Text bold fs14>******1234</Text>
+        <Icon name="ios-trash"/>
+      </View>
+    );
   }
 
   renderPaymentInfo() {
     const { paymentObject } = this.state;
     return (
       <View>
-        <View p-25 m-10 grey horizontal space-between>
-          <Icon name="card" />
-          <Text bold fs14>******1234</Text>
-          <Icon name="ios-trash"/>
-        </View>
+        {this.renderSingleCard()}
         <View p-25 m-10 grey>
           <Text bold fs12>Card holder Name</Text>
           <Item login>
@@ -109,24 +121,39 @@ class ProfileScreen extends Component {
               onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
                />
           </Item>
+          <Text bold fs12>Type of card</Text>
+          <RadioForm
+                radio_props={radio_props}
+                initial={0}
+                onPress={(ucc_type) => {this.changePaymentAttribute('ucc_type',ucc_type)}}
+                formHorizontal={true}
+                labelHorizontal={true}
+                buttonColor={'#000'}
+                style={{marginRight:10, paddingRight:10}}
+              />
+          <Radio />
           <View horizontal>
-            <View>
+            <View style={{flex:3}}>
               <Text bold fs12>Expire</Text>
               <Item login>
                 <Input
-                  value={paymentObject.ucc_num}
-                  onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
+                  value={paymentObject.ucc_expire}
+                  onChangeText={(ucc_expire) => this.changePaymentAttribute('ucc_expire', ucc_expire)}
                    />
               </Item>
             </View>
-            <View>
-              <Text bold fs12>ccv</Text>
+            <View style={{flex:1}}>
+            </View>
+            <View style={{flex:2}}>
+              <Text bold fs12>Cvc</Text>
               <Item login>
                 <Input
-                  value={paymentObject.ucc_num}
-                  onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
+                  value={paymentObject.ucc_cvc}
+                  onChangeText={(ucc_cvc) => this.changePaymentAttribute('ucc_cvc', ucc_cvc)}
                    />
               </Item>
+            </View>
+            <View style={{flex:1}}>
             </View>
           </View>
           <Button onPress={this.onAddPayment.bind(this)} full small><Text bold>Add</Text></Button>

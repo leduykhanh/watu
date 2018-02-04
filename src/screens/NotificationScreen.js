@@ -27,6 +27,7 @@ class NotificationScreen extends Component {
               <Text bold fs16>Notification</Text>
             </View>
           </Content>
+          <Footer />
       </Container>
     )
   }

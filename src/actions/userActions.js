@@ -90,7 +90,7 @@ export function logout() {
       type: constants.STATE_LOGOUT_SUCCESS
     });
 
-    Actions.replace('login');
+    Actions.reset('lightbox');
   }
 }
 

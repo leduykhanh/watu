@@ -15,6 +15,6 @@ export function updateProfile(data) {
 export function getPaymentInfo() {
   return serverCall.get(constants.GET_PAYMENT_API);
 }
-export function updatePaymentInfo(data) {
+export function addPaymentInfo(data) {
   return serverCall.post(constants.GET_PAYMENT_API, data);
 }

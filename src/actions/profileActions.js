@@ -32,6 +32,7 @@ export function getFullProfile() {
   }
 }
 
+
 export function getHistory() {
   return dispatch => {
 
@@ -54,6 +55,35 @@ export function getHistory() {
       console.log(error)
       dispatch({
         type: constants.STATE_HISTORY_ERROR,
+        error
+      });
+
+    });
+
+  }
+}
+
+export function addPaymentInfo(data) {
+  return dispatch => {
+
+    dispatch({
+      type: constants.STATE_PAYMENTINFO_PENDING
+    });
+
+    profileApi.addPaymentInfo(data).then((response) => {
+
+      const { data : { results } } = response;
+
+      dispatch({
+        type: constants.STATE_PAYMENTINFO_SUCCESS,
+        payload: results
+      });
+
+
+    }).catch((error) => {
+      console.log(error)
+      dispatch({
+        type: constants.STATE_PAYMENTINFO_ERROR,
         error
       });
 

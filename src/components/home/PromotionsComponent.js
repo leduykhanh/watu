@@ -53,8 +53,10 @@ const PromotionsComponent = props => {
             const topTexts = toptext.split(" ");
             return(
               <View key={item.id} style={styles.slide}>
-                <Image  style={styles.image} source={{uri: item.image?item.image:''}}/>
-
+                <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
+                  <Image  style={styles.image} source={{uri: item.image?item.image:''}}/>
+                </TouchableOpacity>
+                    
                 <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
                   position:'absolute', alignSelf: 'stretch', width:'auto'}}>
                   <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
