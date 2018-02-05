@@ -200,7 +200,7 @@ class Dashboard extends Component {
           <Content containerStyle={{paddingBottom:100}}>
             {this.renderCategories()}
             {this.renderPromotions()}
-            <Text>New shops</Text>
+            <Text style={{fontSize: 16, marginTop: 4, marginLeft: 10}}>New shops</Text>
             {this.renderNewShops()}
             {this.renderHighRatings()}
             {this.renderNearbyShops()}
