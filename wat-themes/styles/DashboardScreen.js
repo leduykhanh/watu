@@ -27,7 +27,8 @@ export default {
 		slide: {
 			flex: 1,
 			justifyContent: 'center',
-			backgroundColor: 'transparent'
+			backgroundColor: 'red',
+			height: highratingH
 	    },
 		image: {
 			width,

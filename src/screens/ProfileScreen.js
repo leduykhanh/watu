@@ -15,6 +15,8 @@ import * as userActions from "../actions/userActions";
 import * as ProfileApi from "../api/ProfileApi";
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
+import ProfileScreenStyle from '../../wat-themes/styles/ProfileScreen';
+
 const tabProps = {
   tabBarUnderlineStyle: { backgroundColor: "rgb(249,174,24)",
 
@@ -133,14 +135,14 @@ class ProfileScreen extends Component {
         <View p-25 m-10 grey>
           <Text bold fs12>Card holder Name</Text>
           <Item login>
-            <Input
+            <Input style={ProfileScreenStyle.input}
               value={paymentObject.ucc_name}
               onChangeText={(ucc_name) => this.changePaymentAttribute('ucc_name', ucc_name)}
                />
           </Item>
           <Text bold fs12>Card Number</Text>
           <Item login>
-            <Input
+            <Input style={ProfileScreenStyle.input}
               value={paymentObject.ucc_num}
               onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
                />
@@ -153,14 +155,15 @@ class ProfileScreen extends Component {
                 formHorizontal={true}
                 labelHorizontal={true}
                 buttonColor={'#000'}
-                style={{marginRight:10, paddingRight:10}}
+				buttonSize={10}
+                style={ProfileScreenStyle.checkbox}
               />
           <Radio />
           <View horizontal>
             <View style={{flex:3}}>
               <Text bold fs12>Expire</Text>
               <Item login>
-                <Input
+                <Input style={ProfileScreenStyle.input}
                   value={paymentObject.ucc_expire}
                   onChangeText={(ucc_expire) => this.changePaymentAttribute('ucc_expire', ucc_expire)}
                    />
@@ -171,7 +174,7 @@ class ProfileScreen extends Component {
             <View style={{flex:2}}>
               <Text bold fs12>Cvc</Text>
               <Item login>
-                <Input
+                <Input style={ProfileScreenStyle.input}
                   value={paymentObject.ucc_cvc}
                   onChangeText={(ucc_cvc) => this.changePaymentAttribute('ucc_cvc', ucc_cvc)}
                    />
@@ -205,14 +208,14 @@ class ProfileScreen extends Component {
           <View m-t-10>
             <Text fs12>Name</Text>
             <Item login error={false} >
-              <Input
+              <Input style={ProfileScreenStyle.input}
                 value={userObject.usr_fname}
                 onChangeText={(usr_fname) => this.changeAttribute('usr_fname', usr_fname)}
                  />
             </Item>
             <Text fs12>Phone</Text>
             <Item login error={false} >
-              <Input
+              <Input style={ProfileScreenStyle.input}
                 value={userObject.usr_mobile}
                 onChangeText={(usr_mobile) => this.changeAttribute('usr_mobile', usr_mobile)}
                  />
@@ -279,32 +282,29 @@ class ProfileScreen extends Component {
 
     return (
       <Container>
-
         <ImageBackground>
           <Header back/>
           <Content>
             <View horizontal center>
               <Image source={require('../../assets/images/default-person.jpg')}
-                   style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 12}} />
+                   style={ProfileScreenStyle.profileImage} />
               <Text>{this.props.profile.fname? this.props.profile.fname: 'User 1'}</Text>
               <Button transparent onPress={()=> this.props.userActions.logout()}
-                      style={{position: 'absolute', right: 10, top: 10, padding: 20}}>
-                <Icon
-                  name="ios-log-out"
-                />
+                      style={ProfileScreenStyle.logoutIcon}>
+                <Icon name="ios-log-out"/>
               </Button>
             </View>
             <Tabs {...tabProps}>
-              <Tab heading={<TabHeading><Text small>My History</Text></TabHeading>} >
+              <Tab heading={<TabHeading><Text small>History</Text></TabHeading>} >
                 {this.renderHistory()}
               </Tab>
-              <Tab heading={<TabHeading><Text small>My Loyality</Text></TabHeading>} >
+              <Tab heading={<TabHeading><Text small>Loyality</Text></TabHeading>} >
                 {this.renderLoyalty()}
               </Tab>
-                <Tab heading={<TabHeading><Text small>Payment Info</Text></TabHeading>} >
+                <Tab heading={<TabHeading><Text small>Payment</Text></TabHeading>} >
                   {this.renderPaymentInfo()}
               </Tab>
-                  <Tab heading={<TabHeading><Text small>Personal Info</Text></TabHeading>} >
+                  <Tab heading={<TabHeading><Text small>Me</Text></TabHeading>} >
                 {this.renderPersonalInfo() }
               </Tab>
 
