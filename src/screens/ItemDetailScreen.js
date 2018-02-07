@@ -10,16 +10,11 @@ import StarRating from 'react-native-star-rating';
 import { Actions } from 'react-native-router-flux';
 import ShopSummary from '../components/Detail/ShopSummary';
 import openGps from '../utils/gpsHelper';
+
 import * as cartActions from '../actions/cartActions';
 
-const { width } = Dimensions.get('window');
-const styles = {
-  image: {
-    width,
-    flex: 1,
-    height: 240
-  }
-};
+import itemHelper from '../utils/itemHelper';
+import ItemDetailScreenStyle from '../../wat-themes/styles/ItemDetailScreen';
 
 class ItemDetailScreen extends Component {
   state = {
@@ -39,7 +34,6 @@ class ItemDetailScreen extends Component {
     api.getReviews(this.props.item.shop_id,this.props.item.id).then(
       response => {
         const {data: {results}} = response;
-        console.log(results);
         if(results.length > 0)
           this.setState({items:results})
       }
@@ -54,25 +48,28 @@ class ItemDetailScreen extends Component {
   render() {
     const item = this.state.item;
     const shop = this.props.shop;
-    console.log(this.props.item)
     if(item == null || shop == null) return <Text>Loading</Text>
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
+	const {name, price, description, image, totalrate} = itemHelper(item)
+
     return (
       <Container>
 
         <ImageBackground>
           <Header back/>
           <Content>
-            <View horizontal>
-              <Image source={{uri: item.image}} style={{ width: 100, height: 100, borderRadius: 50}} />
-            </View>
-            <Text bold fs16>{item.name}</Text>
-            <Text bold fs16 theme>${item.price}</Text>
+			<View horizontal>
+			  <Image resizeMode='stretch' style={ItemDetailScreenStyle.itemImage} source={{uri: image}}/>
+		      <View m-l-10 p-t-10>
+		        <Text bold>{name}</Text>
+		        <Text bold fs16 theme>${price}</Text>
+		      </View>
+		    </View>
             <View horizontal m-b-10>
               <StarRating
                 disabled={false}
                 maxStars={5}
-                rating={item.totalrate}
+                rating={totalrate}
                 starSize={15}
                 starColor={'rgb(249,174,24)'}
                 selectedStar={(rating) => console.log(rating)}
@@ -82,7 +79,7 @@ class ItemDetailScreen extends Component {
             <ShopSummary item={shop} />
             <View p-25>
               <Text fs14 bold>Voucher details</Text>
-              <Text fs12>{item.description}</Text>
+              <Text fs12>{description}</Text>
             </View>
             {/*<ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>*/}
               {/*{*/}
