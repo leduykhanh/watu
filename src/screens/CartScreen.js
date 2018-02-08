@@ -3,13 +3,14 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Tabs, Tab,
   TabHeading, Icon, Footer, FooterTab } from 'native-base';
-import {Alert, Image, ScrollView} from 'react-native';
+import {Alert, ScrollView} from 'react-native';
 
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
 import * as actions from "../actions/cartActions";
 import * as PlaceOrderApi from "../api/PlaceOrderApi";
 import {Actions} from "react-native-router-flux";
+import Image from '../components/common/Image';
 
 const tabProps = {
   tabBarUnderlineStyle: { backgroundColor: "rgb(249,174,24)",

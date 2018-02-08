@@ -15,13 +15,13 @@ const NearbyShopItem = props => {
   const distance = getDistanceFromLatLonInKm(latitude , longtitude, props.location.latitude, props.location.longitude);
   return (
     <TouchableOpacity onPress={() => Actions.s_detail({item: item})}>
-    <View horizontal style={{ height: width, margin: 10, backgroundColor: 'white', flex: 1 }}>
+    <View horizontal style={{ margin: 10, backgroundColor: 'white', flex: 1 }}>
       <View>
-        <Image resizeMode='stretch' style={{width: width, height: width}} source={{uri: item.image}}/>
+        <Image resizeMode='stretch' style={{width: width}} source={{uri: item.image}}/>
       </View>
       <View p-l-10>
         <View m-t-5 horizontal>
-          <Text fs14 bold style={{flexWrap: "wrap"}}>{item.name}</Text>
+          <Text fs14 bold>{item.name}</Text>
         </View>
         <View horizontal>
           <Text fs12>{item.address}</Text>

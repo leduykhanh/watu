@@ -99,8 +99,14 @@ export default (variables = variable) => {
     '.m-t-10': {
       marginTop: 10
     },
+    '.m-b-5': {
+      marginBottom: 5
+    },
     '.p-25': {
       padding: 25
+    },
+    '.p-5': {
+      padding: 5
     },
     '.p-16': {
       padding: 16

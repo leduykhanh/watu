@@ -4,7 +4,7 @@ import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Ti
 import { Actions } from 'react-native-router-flux';
 import {bindActionCreators} from 'redux';
 
-import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
+import { ScrollView, TouchableOpacity, Dimensions, Linking, Alert, Platform } from 'react-native';
 
 import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
@@ -22,6 +22,8 @@ import StarRating from 'react-native-star-rating';
 import deviceTokenHelper from '../utils/deviceTokenHelper';
 
 import {getDeviceId} from '../utils/persistStore';
+import Image from '../components/common/Image';
+
 const { width } = Dimensions.get('window');
 
 class NewShopsScreen extends Component {

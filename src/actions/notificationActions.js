@@ -5,18 +5,18 @@ export function getNotification() {
   return dispatch => {
 
     dispatch({
-      type: constants.STATE_GET_NOTIFICATION_PENDING
+      type: constants.GET_NOTIFICATION_PENDING
     });
 
     NotificationApi.getNotification().then((response) => {
       dispatch({
-        type: constants.STATE_GET_NOTIFICATION_SUCCESS,
-        payload: response.data
+        type: constants.GET_NOTIFICATION_SUCCESS,
+        payload: response.data.results
       });
     }).catch((error) => {
 
       dispatch({
-        type: constants.STATE_GET_NOTIFICATION_ERROR,
+        type: constants.GET_NOTIFICATION_ERROR,
         error
       });
 

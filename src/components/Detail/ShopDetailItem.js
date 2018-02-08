@@ -8,7 +8,7 @@ const ShopDetailItem = props => {
   const item = props.item;
   const width = 110;
   return (
-    <View horizontal style={{ height: width, margin: 10, backgroundColor: 'white' }}>
+    <View horizontal style={{ margin: 10, backgroundColor: 'white' }}>
       <View>
         <Image resizeMode='stretch' style={{width: width, height: width}} source={{uri: item.image}}/>
       </View>

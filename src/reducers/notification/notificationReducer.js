@@ -13,10 +13,11 @@ export function notificationReducer(state = constant.initalState.notification, a
     }
 
     case constant.GET_NOTIFICATION_SUCCESS: {
+
       return {
         ...state,
         items: action.payload,
-        count: action.payload.length,
+        count: action.payload.filter(i => i.is_read == 1).length,
         loading: false,
       };
     }

@@ -4,13 +4,15 @@ import {TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 
 const Rewview= props => {
-
+  const { item } = props;
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View horizontal style={{alignItems:'center', backgroundColor:'transparent'}}>
-        <Icon style={{fontSize: 35, color: '#4740c7', marginRight:10}} name="md-add-circle"  />
-        <Text subtitle-active> {props.text} </Text>
-      </View>  
+        <Text fs12> {item.comment} </Text>
+      </View>
+      <View m-t-5>
+        <Text fs12>{item.created_date}</Text>
+      </View>
     </TouchableOpacity>
   )
 };

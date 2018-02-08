@@ -4,11 +4,14 @@ import {bindActionCreators} from 'redux';
 import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon, Footer,FooterTab } from 'native-base';
 import Header from '../components/layout/Header';
 import { ImageBackground } from '../components/common';
-import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
+import { ScrollView, TouchableOpacity, Dimensions, Linking, Alert, Platform } from 'react-native';
 import * as api from '../api/ShopDetailApi';
 import StarRating from 'react-native-star-rating';
 import { Actions } from 'react-native-router-flux';
 import ShopSummary from '../components/Detail/ShopSummary';
+import Rewview from '../components/Detail/Rewview';
+import Image from '../components/common/Image';
+
 import openGps from '../utils/gpsHelper';
 import * as cartActions from '../actions/cartActions';
 
@@ -25,7 +28,8 @@ class ItemDetailScreen extends Component {
   state = {
     item: null,
     items: [],
-    loading: true
+    loading: true,
+    reviews: [],
   };
 
   componentWillMount(){
@@ -39,9 +43,8 @@ class ItemDetailScreen extends Component {
     api.getReviews(this.props.item.shop_id,this.props.item.id).then(
       response => {
         const {data: {results}} = response;
-        console.log(results);
         if(results.length > 0)
-          this.setState({items:results})
+          this.setState({reviews:results})
       }
     ).catch( (error) => console.log(error));
   }
@@ -50,11 +53,26 @@ class ItemDetailScreen extends Component {
     this.props.cartActions.addToCart(this.props.item);
     Actions.cart();
   }
+  renderReviews() {
+    return (
+      <View p-25 grey>
+        <View horizontal space-between>
+          <Text bold>Reviews</Text>
+          <Text theme>SEE ALL</Text>
+          {
+            this.state.reviews.map(
+              review => <Review item={review} />
+            )
+          }
+        </View>
+      </View>
+    );
+  }
 
   render() {
     const item = this.state.item;
+
     const shop = this.props.shop;
-    console.log(this.props.item)
     if(item == null || shop == null) return <Text>Loading</Text>
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
     return (
@@ -64,7 +82,7 @@ class ItemDetailScreen extends Component {
           <Header back/>
           <Content>
             <View horizontal>
-              <Image source={{uri: item.image}} style={{ width: 100, height: 100, borderRadius: 50}} />
+              <Image source={{uri: item.image}} style={{ width, height: 200}} />
             </View>
             <Text bold fs16>{item.name}</Text>
             <Text bold fs16 theme>${item.price}</Text>
@@ -91,6 +109,7 @@ class ItemDetailScreen extends Component {
                 {/*)*/}
               {/*}*/}
             {/*</ScrollView>*/}
+            {this.renderReviews()}
 
           </Content>
           <Footer>
