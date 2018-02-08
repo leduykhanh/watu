@@ -12,7 +12,7 @@ import Header from '../components/layout/Header';
 import Categories from '../components/home/Categories';
 import NewShopItem from '../components/home/NewShopItem';
 import NearbyShopItem from '../components/home/NearbyShopItem';
-import PromotionsComponent from '../components/home/PromotionsComponent';
+import Promotions from '../components/home/Promotions';
 import * as actions from '../actions/homeActions';
 import * as locationActions from '../actions/locationActions';
 
@@ -102,8 +102,8 @@ class DashboardScreen extends Component {
 
   renderPromotions(){
     return (
-      <PromotionsComponent items={this.props.home.promotions.list} />
-          );
+      <Promotions items={this.props.home.promotions.list}/>
+	);
   }
 
   renderHighRatings() {

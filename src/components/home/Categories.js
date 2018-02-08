@@ -8,7 +8,6 @@ import Image from '../common/Image';
 
 import CategoriesStyle from '../../../wat-themes/styles/Categories'
 
-
 const Categories = props => {
 	let cats = [].concat(props.items),
 		blocks = [],
