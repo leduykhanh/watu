@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import StarRating from 'react-native-star-rating';
 import {Actions} from "react-native-router-flux";
 import Swiper from 'react-native-swiper';
-import {getDistanceFromLatLonInKm} from "../../utils/gpsHelper";
+import {getDistance} from "../../utils/gpsHelper";
 import openGps from "../../utils/gpsHelper";
 import Image from '../common/Image';
 
-import itemHelper from '../../utils/itemHelper';
+import itemHelper, {substr} from '../../utils/itemHelper';
 import PromotionsStyle from '../../../wat-themes/styles/components/Promotions';
 
 const Promotions = props => {
@@ -25,15 +25,12 @@ const Promotions = props => {
 			} = itemHelper(item);
             const topTexts = toptext.split(" ");
             return(
+				<TouchableOpacity onPress={() => Actions.p_detail({item})}>
 				<View key={id} style={PromotionsStyle.slide}>
-					<TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
-						<Image  style={PromotionsStyle.image} source={{uri: image}}/>
-					</TouchableOpacity>
+					<Image  style={PromotionsStyle.image} source={{uri: image}}/>
 					<View style={PromotionsStyle.slideInfo}>
-						<TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
-							<Text white fs20>{bigtitle}</Text>
-							<Text white fs12>{smalltitle}</Text>
-						</TouchableOpacity>
+						<Text white fs20>{substr(bigtitle, 40)}</Text>
+						<Text white fs12>{substr(smalltitle, 60)}</Text>
 					</View>
 					<View style={{...PromotionsStyle.slideTopText, backgroundColor: toptext_bgcolor}}>
 						{topTexts.map(t =>
@@ -44,6 +41,7 @@ const Promotions = props => {
 						}}>{t}</Text>)}
 					</View>
 				</View>
+				</TouchableOpacity>
             )
           }
         )}

@@ -14,20 +14,14 @@ export default {
     },
 	slideInfo: {
 		backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
-		position:'absolute', alignSelf: 'stretch', width:'auto'
+		position: 'absolute', alignSelf: 'stretch', width:'auto'
 	},
 	slideTopText: {
-		position:'absolute', top: 2, right: 16, padding: 6,
+		position: 'absolute', top: 2, right: 16, padding: 6,
 		borderBottomLeftRadius: 10, borderBottomRightRadius: 10,
 	},
-    text: {
-		color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold'
-    },
     image: {
-		width,
-        height,
-		backgroundColor: 'red'
+		position: 'absolute', top: 0, left: 0,
+		width, height,
     },
 }

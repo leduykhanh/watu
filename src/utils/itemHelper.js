@@ -1,7 +1,6 @@
 export default capitalize = (item) => {
-	let description = substr(item.description || '', 120)
-    if (description.length > 120) description = `${description.substr(0, 117)}...`
-    let name = substr(item.name || '', 30)
+	let description = item.description || ''
+    let name = item.name || ''
 	let price = item.price ? `$${item.price}` : ''
 	let image = item.image || ''
 	let totalrate = item.totalrate || 0

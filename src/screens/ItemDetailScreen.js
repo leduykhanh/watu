@@ -13,7 +13,7 @@ import openGps from '../utils/gpsHelper';
 
 import * as cartActions from '../actions/cartActions';
 
-import itemHelper from '../utils/itemHelper';
+import itemHelper, {substr} from '../utils/itemHelper';
 import ItemDetailScreenStyle from '../../wat-themes/styles/ItemDetailScreen';
 
 class ItemDetailScreen extends Component {

@@ -3,7 +3,7 @@ import { Text, Spinner, Icon, View, } from 'native-base';
 import { TouchableOpacity, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
-import { getDistanceFromLatLonInKm } from '../../utils/gpsHelper';
+import { getDistance } from '../../utils/gpsHelper';
 import Image from '../common/Image';
 
 const {height, width} = Dimensions.get('window');
@@ -18,7 +18,7 @@ const LuckyDrawItem = props => {
       <View style={{width: width/2, padding: 10, backgroundColor: 'white',  flex:1, borderWidth, borderColor }}>
       {
         selected ?
-        <View style={{position:'absolute', top: -2, backgroundColor: 'transparent', left: -2, padding: 6, zIndex: 1000}}>
+        <View style={{position: 'absolute', top: -2, backgroundColor: 'transparent', left: -2, padding: 6, zIndex: 1000}}>
           <Icon style={{color: 'green'}} name="ios-arrow-dropdown-circle" />
         </View>
         : null

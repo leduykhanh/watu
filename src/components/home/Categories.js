@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper';
 import * as actions from '../../actions/homeActions';
 import Image from '../common/Image';
 
+import itemHelper, {substr} from '../../utils/itemHelper';
 import CategoriesStyle from '../../../wat-themes/styles/Categories'
 
 const Categories = props => {
@@ -14,11 +15,6 @@ const Categories = props => {
 		blockNumItem = CategoriesStyle.blockNumItem
 	while(cats.length) {
 		blocks.push(cats.splice(0, blockNumItem))
-	}
-	const getName = n => {
-		n = n || ''
-	    if (n.length > 6) n = `${n.substr(0, 4)}..`
-		return n
 	}
 	return (
 		<View style={CategoriesStyle.containerStyle}>
@@ -32,7 +28,7 @@ const Categories = props => {
 						}}>
 						<View center style={CategoriesStyle.itemStyle}>
 							<Image key={item.id} source={{uri: item.image}} style={CategoriesStyle.iconStyle}/>
-							<Text bold fs12>{getName(item.name)}</Text>
+							<Text bold fs12>{substr(item.name, 7)}</Text>
 						</View>
 					</TouchableOpacity>)}
 				</View>)}

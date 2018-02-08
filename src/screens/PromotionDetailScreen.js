@@ -72,12 +72,12 @@ class PromotionDetailScreen extends Component {
               <Image  style={styles.image} source={{uri: item.image}}/>
 
               <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
-                position:'absolute', alignSelf: 'stretch', width:'auto'}}>
+                position: 'absolute', alignSelf: 'stretch', width:'auto'}}>
                   <Text white fs20>{item.bigtitle}</Text>
                   <Text white fs12>{item.smalltitle}</Text>
               </View>
 
-              <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
+              <View style={{position: 'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
                 borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
                 {topTexts.map(t =>
                   <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
