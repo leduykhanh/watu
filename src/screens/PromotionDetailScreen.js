@@ -12,14 +12,8 @@ import PromotionDetailItem from "../components/Detail/PromotionDetailItem";
 import openGps from '../utils/gpsHelper';
 import { Actions } from 'react-native-router-flux';
 
-const { width } = Dimensions.get('window');
-const styles = {
-  image: {
-    width,
-    flex: 1,
-    height: 240
-  }
-};
+import itemHelper, {substr} from '../utils/itemHelper';
+import PromotionDetailScreenStyle from '../../wat-themes/styles/screens/PromotionDetailScreen';
 
 class PromotionDetailScreen extends Component {
   state = {
@@ -37,40 +31,18 @@ class PromotionDetailScreen extends Component {
 
   render() {
     const item = this.state.item;
+	console.log(item)
     if(item == null) return <Text>Loading</Text>
+	const {image} = item
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
     const topTexts = toptext.split(" ");
     return (
       <Container>
-
         <ImageBackground>
           <Header back/>
           <Content>
-            <View horizontal>
-              <Image source={{uri: item.shop_info.image}} style={{ width: 100, height: 100, marginTop: 10, marginBottom: 10, marginLeft: 10, borderRadius: 50}} />
-              <View m-l-10 p-t-10>
-                <Text bold>{item.shop_info.name}</Text>
-                <Text small>{item.shop_info.address}</Text>
-              </View>
-            </View>
-            <View horizontal space-between p-l-5 p-r-5>
-              <StarRating
-                disabled={false}
-                maxStars={5}
-                rating={item.shop_info.totalrate}
-                starSize={15}
-                starColor={'rgb(249,174,24)'}
-                selectedStar={(rating) => console.log(rating)}
-              />
-              <Text white fs12>({item.shop_info.totalreviews?item.shop_info.totalreviews:0}) Reviews</Text>
-              <View horizontal>
-                <Icon new-shop name="ios-send" />
-                <Text theme fs12 theme onPress={() => openGps(item.shop_info.latitude, item.shop_info.longitude)}>Get direction</Text>
-              </View>
-            </View>
             <View key={item.id}>
-              <Image  style={styles.image} source={{uri: item.image}}/>
-
+              <Image  style={PromotionDetailScreenStyle.image} source={{uri: item.image}}/>
               <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
                 position: 'absolute', alignSelf: 'stretch', width:'auto'}}>
                   <Text white fs20>{item.bigtitle}</Text>
@@ -83,7 +55,28 @@ class PromotionDetailScreen extends Component {
                   <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
                     backgroundColor: toptext_bgcolor}}>{t}</Text>
                 )}
-
+              </View>
+            </View>
+			<View horizontal>
+              <Image source={{uri: item.shop_info.image}} style={PromotionDetailScreenStyle.shop_image} />
+              <View m-l-10 p-t-10>
+                <Text bold>{item.shop_info.name}</Text>
+                <Text small>{item.shop_info.address}</Text>
+              </View>
+            </View>
+			<View horizontal space-between p-l-5 p-r-5>
+              <StarRating
+                disabled={false}
+                maxStars={5}
+                rating={item.shop_info.totalrate}
+                starSize={15}
+                starColor={'rgb(249,174,24)'}
+                selectedStar={(rating) => console.log(rating)}
+              />
+              <Text white fs12>({item.shop_info.totalreviews?item.shop_info.totalreviews:0}) Reviews</Text>
+              <View horizontal>
+                <Icon new-shop name="ios-send" />
+                <Text theme fs12 theme onPress={() => openGps(item.shop_info.latitude, item.shop_info.longitude)}>Get direction</Text>
               </View>
             </View>
             <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>

@@ -19,7 +19,6 @@ const NearbyShopItem = props => {
   	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
   	  address
     } = itemHelper(item);
-	console.log(item)
     const distance = getDistance(latitude, longitude, props.location.latitude, props.location.longitude);
     return <TouchableOpacity onPress={() => Actions.s_detail({item})}>
 		<View horizontal style={NearbyShopItemStyle.container}>
