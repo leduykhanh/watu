@@ -9,9 +9,6 @@ export default {
       paddingBottom: 100
     },
 
-    new_shops_text: {
-		fontSize: 16, marginTop: 4, marginLeft: 10
-    },
 
     text: {
       color: '#fff',
@@ -19,8 +16,11 @@ export default {
       fontWeight: 'bold'
     },
 
+	new_shops_text: {
+		fontSize: 16, fontWeight: 'bold', margin: 10
+    },
 	new_shops: {
-		width: 142, height: 542, flex:1, backgroundColor: 'grey'
+		backgroundColor: 'rgb(233,233,233)',
 	},
 	highrating_shops: {
 		container: {height: highratingH},

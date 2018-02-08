@@ -1,8 +1,7 @@
 export default capitalize = (item) => {
-	let description = item.description || ''
+	let description = substr(item.description || '', 120)
     if (description.length > 120) description = `${description.substr(0, 117)}...`
-    let name = item.name || ''
-    if (name.length > 30) name = `${name.substr(0, 47)}...`
+    let name = substr(item.name || '', 30)
 	let price = item.price ? `$${item.price}` : ''
 	let image = item.image || ''
 	let totalrate = item.totalrate || 0
@@ -10,14 +9,18 @@ export default capitalize = (item) => {
 	let totalreviews = item.totalreviews || 0
 	let latitude = item.latitude
 	let longitude = item.longitude
-	let toptext_color = item.toptext_color
-	let toptext_fontsize = item.toptext_fontsize
-	let toptext = item.toptext
+	let toptext_color = item.toptext_color || 'white'
+	let toptext_fontsize = item.toptext_fontsize || 12
+	let toptext = item.toptext || ''
 	let toptext_bgcolor = item.toptext_bgcolor || 'red'
-	let bigtitle = item.bigtitle
-	let smalltitle = item.smalltitle
+	let bigtitle = item.bigtitle || ''
+	let smalltitle = item.smalltitle || ''
+	let address = item.address || ''
 	return {
 		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle
+		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
+		address
 	}
 }
+
+export const substr = (s, max) => s.length > max ? `${s.substr(0, max - 3)}...` : s

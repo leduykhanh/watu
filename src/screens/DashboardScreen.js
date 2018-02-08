@@ -26,7 +26,7 @@ import {getDeviceId} from '../utils/persistStore';
 import Image from '../components/common/Image';
 
 import itemHelper from '../utils/itemHelper';
-import DashboardScreenStyle from '../../wat-themes/styles/DashboardScreen';
+import DashboardScreenStyle from '../../wat-themes/styles/screens/DashboardScreen';
 
 class DashboardScreen extends Component {
   state = {
@@ -76,28 +76,16 @@ class DashboardScreen extends Component {
 
   }
 
-  // static componentWillUpdate(nextProps) {
-
-    // if (nextProps.user.rehydated && (!nextProps.user.oidc || !nextProps.user.oidc.access_token)) {
-    //   Actions.popTo('login');
-    // }
-
-  // }
-
-
   renderCategories() {
     return <Categories actions={this.props.actions} items={this.props.home.categories.list}/>
   }
   renderNewShops(){
-    return (
-      <ScrollView horizontal containerStyle={DashboardScreenStyle.new_shops}>
-        {
-          this.props.home.newShops.list.map(
-            (item) => <NewShopItem location={this.props.location} key={item.id} item={item}/>
-          )
-        }
-      </ScrollView>
-    );
+	  return <View style={DashboardScreenStyle.new_shops}>
+		  <Text style={DashboardScreenStyle.new_shops_text}>New shops</Text>
+		  <ScrollView horizontal>
+			  {this.props.home.newShops.list.map(item => <NewShopItem location={this.props.location} key={item.id} item={item}/>)}
+		  </ScrollView>
+	  </View>
   }
 
   renderPromotions(){
@@ -175,7 +163,6 @@ class DashboardScreen extends Component {
           <Content containerStyle={DashboardScreenStyle.container}>
             {this.renderCategories()}
             {this.renderPromotions()}
-            <Text style={DashboardScreenStyle.new_shops_text}>New shops</Text>
             {this.renderNewShops()}
             {this.renderHighRatings()}
             {this.renderNearbyShops()}
