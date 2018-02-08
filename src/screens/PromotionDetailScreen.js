@@ -46,8 +46,8 @@ class PromotionDetailScreen extends Component {
         <ImageBackground>
           <Header back/>
           <Content>
-            <View horizontal m-b-10 p-b-10>
-              <Image source={{uri: item.shop_info.image}} style={{ width: 100, height: 100, marginBottom: 12, borderRadius: 50}} />
+            <View horizontal>
+              <Image source={{uri: item.shop_info.image}} style={{ width: 100, height: 100, marginTop: 10, marginBottom: 10, marginLeft: 10, borderRadius: 50}} />
               <View m-l-10 p-t-10>
                 <Text bold>{item.shop_info.name}</Text>
                 <Text small>{item.shop_info.address}</Text>
@@ -89,10 +89,10 @@ class PromotionDetailScreen extends Component {
             <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
               {
                 item.items.map(
-                  (sitem) => 
+                  (sitem) =>
                       <TouchableOpacity onPress={() => Actions.s_detail({item: sitem, shop : item})}>
                         <PromotionDetailItem key={sitem.id} item={sitem}/>
-                      </TouchableOpacity>  
+                      </TouchableOpacity>
                 )
 
               }

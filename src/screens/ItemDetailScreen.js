@@ -13,16 +13,11 @@ import Rewview from '../components/Detail/Rewview';
 import Image from '../components/common/Image';
 
 import openGps from '../utils/gpsHelper';
+
 import * as cartActions from '../actions/cartActions';
 
-const { width } = Dimensions.get('window');
-const styles = {
-  image: {
-    width,
-    flex: 1,
-    height: 240
-  }
-};
+import itemHelper from '../utils/itemHelper';
+import ItemDetailScreenStyle from '../../wat-themes/styles/ItemDetailScreen';
 
 class ItemDetailScreen extends Component {
   state = {
@@ -75,22 +70,26 @@ class ItemDetailScreen extends Component {
     const shop = this.props.shop;
     if(item == null || shop == null) return <Text>Loading</Text>
     const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
+	const {name, price, description, image, totalrate} = itemHelper(item)
+
     return (
       <Container>
 
         <ImageBackground>
           <Header back/>
           <Content>
-            <View horizontal>
-              <Image source={{uri: item.image}} style={{ width, height: 200}} />
-            </View>
-            <Text bold fs16>{item.name}</Text>
-            <Text bold fs16 theme>${item.price}</Text>
+			<View horizontal>
+			  <Image resizeMode='stretch' style={ItemDetailScreenStyle.itemImage} source={{uri: image}}/>
+		      <View m-l-10 p-t-10>
+		        <Text bold>{name}</Text>
+		        <Text bold fs16 theme>${price}</Text>
+		      </View>
+		    </View>
             <View horizontal m-b-10>
               <StarRating
                 disabled={false}
                 maxStars={5}
-                rating={item.totalrate}
+                rating={totalrate}
                 starSize={15}
                 starColor={'rgb(249,174,24)'}
                 selectedStar={(rating) => console.log(rating)}
@@ -100,7 +99,7 @@ class ItemDetailScreen extends Component {
             <ShopSummary item={shop} />
             <View p-25>
               <Text fs14 bold>Voucher details</Text>
-              <Text fs12>{item.description}</Text>
+              <Text fs12>{description}</Text>
             </View>
             {/*<ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>*/}
               {/*{*/}

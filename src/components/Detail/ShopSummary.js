@@ -2,18 +2,24 @@ import React from 'react';
 import { Text, Spinner, Icon, View, } from 'native-base';
 import PropTypes from 'prop-types';
 import StarRating from 'react-native-star-rating';
+import {Platform, Dimensions, PixelRatio} from "react-native";
 import openGps from "../../utils/gpsHelper";
 import Image from '../common/Image';
 
 const ShopSummary = props => {
   const item = props.item;
-  const width = 110;
+  const size = 80;
+  const width = Dimensions.get("window").width;
+  let description = item.description || ''
+  if (description.length > 120) description = `${description.substr(0, 117)}...`
+  let name = item.name || ''
+  if (name.length > 30) name = `${name.substr(0, 47)}...`
   return (
-    <View m-b-10 grey p-b-10>
+    <View grey m-b-10>
       <View horizontal>
-        <Image source={{uri: item.image}} style={{ width: 80, height: 80, marginBottom: 12, borderRadius: 40}} />
+		<Image resizeMode='stretch' style={{width: size, height: size, marginTop: 10, marginBottom: 10, marginLeft: 10}} source={{uri: item.image?item.image:''}}/>
         <View m-l-10 p-t-10>
-          <Text bold>{item.name}</Text>
+          <Text bold>{name}</Text>
           <Text small>{item.address}</Text>
         </View>
       </View>

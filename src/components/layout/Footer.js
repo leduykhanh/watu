@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Header, Footer, FooterTab, Button,  Text,View, Icon, Badge } from 'native-base';
+import { Container, Header, Footer, FooterTab, Button,  Text,View, Icon, Badge, StyleProvider, getTheme } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { Image } from 'react-native';
 import {connect} from "react-redux";
+
+import FooterStyle from '../../../wat-themes/styles/Footer';
+
+const {iconSize, iconColorActive, iconColor} = FooterStyle
 
 class FooterTabs extends Component {
 
@@ -20,23 +24,25 @@ class FooterTabs extends Component {
           <FooterTab>
 
             <Button active vertical onPress={() => {Actions.replace('dashboard')}} >
-              <Icon  name="home" size={22} style={{color: currentScene === 'dashboard'? "rgb(249,174,24)" : "grey"}}/>
+              <Icon  name="home" size={iconSize} style={{color: currentScene === 'dashboard'? iconColorActive : iconColor}}/>
             </Button>
 
             <Button vertical onPress={() => Actions.replace('promotions')} >
-              <Icon name="ios-flower" size={22} style={{color: currentScene === 'promotions'? "rgb(249,174,24)" : "grey"}}/>
+              <Icon name="flower" size={iconSize} style={{color: currentScene === 'promotions'? iconColorActive : iconColor}}/>
             </Button>
 
             <Button vertical onPress={() => Actions.replace('new_shop')}>
-              <Icon active name="ios-podium" size={22} style={{color: currentScene === 'new_shop'? "rgb(249,174,24)" : "grey"}} />
+			  <StyleProvider style={getTheme({ iconFamily: 'Ionicons' })}>
+				  <Icon active name="ios-podium" size={iconSize} style={{color: currentScene === 'new_shop'? iconColorActive : iconColor}} />
+			  </StyleProvider>
             </Button>
             <Button vertical badge onPress={() => Actions.replace('notifications')}>
-              <Badge><Text>2</Text></Badge>
-              <Icon name="ios-notifications" size={22} />
+              <Badge><Text>1</Text></Badge>
+              <Icon name="ios-notifications" size={iconSize} />
             </Button>
 
             <Button onPress={this.profileAction.bind(this)} vertical active={false} >
-              <Icon name="md-person" style={{color: currentScene === 'profile'? "rgb(249,174,24)" : "grey"}} size={22}/>
+              <Icon name="md-person" style={{color: currentScene === 'profile'? iconColorActive : iconColor}} size={iconSize}/>
             </Button>
 
           </FooterTab>

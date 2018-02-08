@@ -25,35 +25,10 @@ import deviceTokenHelper from '../utils/deviceTokenHelper';
 import {getDeviceId} from '../utils/persistStore';
 import Image from '../components/common/Image';
 
-const { width } = Dimensions.get('window');
-const styles = {
-  container: {
-    flex: 1
-  },
+import itemHelper from '../utils/itemHelper';
+import DashboardScreenStyle from '../../wat-themes/styles/DashboardScreen';
 
-  wrapper: {
-  },
-
-  slide: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'transparent'
-  },
-
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold'
-  },
-
-  image: {
-    width,
-    flex: 1,
-    height: 240
-  }
-}
-
-class Dashboard extends Component {
+class DashboardScreen extends Component {
   state = {
       highratingshopsPage: 0,
       nearbyshopsPage: 0,
@@ -115,7 +90,7 @@ class Dashboard extends Component {
   }
   renderNewShops(){
     return (
-      <ScrollView horizontal containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
+      <ScrollView horizontal containerStyle={DashboardScreenStyle.new_shops}>
         {
           this.props.home.newShops.list.map(
             (item) => <NewShopItem location={this.props.location} key={item.id} item={item}/>
@@ -131,21 +106,21 @@ class Dashboard extends Component {
           );
   }
 
-  renderHighRatings(){
+  renderHighRatings() {
     return (
-      <View style={{height: 240}}>
-        <Swiper autoplay height={240} showsPagination={false}
+      <View style={DashboardScreenStyle.highrating_shops.container}>
+        <Swiper autoplay height={DashboardScreenStyle.highrating_shops.container.height} showsPagination={false}
                 // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
                 loop>
           {this.props.home.highratingshops.list.map(
             (item) => {
+			  const {id, name, price, description, image, totalrate, totalreviews} = itemHelper(item)
               return(
-                <View key={item.id} style={{...styles.slide, flex: 1}}>
-                  <Image  style={styles.image} source={{uri: item.image}}/>
-                  <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 170, padding: 10,
-                    position:'absolute', alignSelf: 'stretch', width}}>
-                    <View style={{flex:1,}}>
-                      <Text white fs20>{item.name}</Text>
+                <View key={id} style={DashboardScreenStyle.highrating_shops.slice}>
+                  <Image  style={DashboardScreenStyle.highrating_shops.image} source={{uri: image}}/>
+                  <View style={DashboardScreenStyle.highrating_shops.info}>
+                    <View style={{flex:1}}>
+                      <Text white fs20>{name}</Text>
                     </View>
                     <View horizontal space-between>
                       <View horizontal>
@@ -153,17 +128,17 @@ class Dashboard extends Component {
                           <StarRating
                             disabled={false}
                             maxStars={5}
-                            rating={item.totalrate}
+                            rating={totalrate}
                             starSize={15}
                             starColor={'rgb(249,174,24)'}
                             selectedStar={(rating) => console.log(rating)}
                           />
                         </View>
-                        <Text white fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
+                        <Text white fs12>({totalreviews}) Reviews</Text>
                       </View>
                       <View horizontal>
                         <Icon new-shop name="ios-send" />
-                        <Text white fs12 theme onPress={() => openGps(item.latitude, item.longitude)}>Get direction</Text>
+                        <Text white fs12 theme onPress={() => openGps(latitude, longitude)}>Get direction</Text>
                       </View>
                     </View>
                   </View>
@@ -179,13 +154,13 @@ class Dashboard extends Component {
   renderNearbyShops(){
     // console.log(this.props.home.nearbyshops.list.length)
     return (
-      <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
+      <ScrollView containerStyle={DashboardScreenStyle.nearby_shops.container}>
         {
           this.props.home.nearbyshops.list.map(
             (item) => <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
           )
         }
-        <View horizontal m-r-10 center-h center>
+        <View horizontal m-t-10 m-r-10 center-h center>
           <Button small onPress={this.loadMoreNearByshops.bind(this)}><Text>Load more</Text></Button>
         </View>
       </ScrollView>
@@ -197,17 +172,15 @@ class Dashboard extends Component {
     return (
       <Container>
           <Header />
-          <Content containerStyle={{paddingBottom:100}}>
+          <Content containerStyle={DashboardScreenStyle.container}>
             {this.renderCategories()}
             {this.renderPromotions()}
-            <Text>New shops</Text>
+            <Text style={DashboardScreenStyle.new_shops_text}>New shops</Text>
             {this.renderNewShops()}
             {this.renderHighRatings()}
             {this.renderNearbyShops()}
           </Content>
-
           <Footer profile={this.props.profile}/>
-
       </Container>
     );
   }
@@ -235,4 +208,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(DashboardScreen);
