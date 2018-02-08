@@ -13,9 +13,11 @@ export default capitalize = (item) => {
 	let toptext_color = item.toptext_color
 	let toptext_fontsize = item.toptext_fontsize
 	let toptext = item.toptext
-	let toptext_bgcolor = item.toptext_bgcolor
+	let toptext_bgcolor = item.toptext_bgcolor || 'red'
+	let bigtitle = item.bigtitle
+	let smalltitle = item.smalltitle
 	return {
 		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-		toptext_color, toptext_fontsize, toptext, toptext_bgcolor
+		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle
 	}
 }

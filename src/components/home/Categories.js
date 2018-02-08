@@ -15,26 +15,28 @@ const Categories = props => {
 	while(cats.length) {
 		blocks.push(cats.splice(0, blockNumItem))
 	}
+	const getName = n => {
+		n = n || ''
+	    if (n.length > 6) n = `${n.substr(0, 4)}..`
+		return n
+	}
 	return (
 		<View style={CategoriesStyle.containerStyle}>
-		  <Swiper showsPagination={false} loop>
-			{blocks.map((b,i) => <View horizontal style={CategoriesStyle.blockStyle}>
-			  {b.map((item,j) =>
-					<TouchableOpacity
-						onPress={() => {
-              let currentScene =  Actions.currentScene.toString();
-              if (currentScene !== 'search') Actions.search();
+			<Swiper showsPagination={false} loop>
+				{blocks.map((b,i) => <View horizontal style={CategoriesStyle.blockStyle}>
+					{b.map((item,j) =>
+						<TouchableOpacity onPress={() => {
+							let currentScene =  Actions.currentScene.toString();
+							if (currentScene !== 'search') Actions.search();
 							props.actions.getNearbyShop('a', item.id);
-
-            }}
-					>
+						}}>
 						<View center style={CategoriesStyle.itemStyle}>
-						<Image key={item.id} source={{uri: item.image}} style={CategoriesStyle.iconStyle}/>
-						<Text bold fs12>{item.name}</Text>
+							<Image key={item.id} source={{uri: item.image}} style={CategoriesStyle.iconStyle}/>
+							<Text bold fs12>{getName(item.name)}</Text>
 						</View>
 					</TouchableOpacity>)}
-			</View>)}
-		  </Swiper>
+				</View>)}
+			</Swiper>
 		</View>
 	);
 };
