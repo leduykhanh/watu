@@ -16,10 +16,11 @@ export default capitalize = (item) => {
 	let smalltitle = item.smalltitle || ''
 	let address = item.address || ''
 	let items = [].concat(item.items).filter(o => o)
+	let images = [].concat(item.images).filter(o => o)
 	return {
 		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
 		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-		address, items
+		address, items, images
 	}
 }
 

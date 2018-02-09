@@ -1,55 +1,56 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon, Footer,FooterTab } from 'native-base';
-import Header from '../components/layout/Header';
-import { ImageBackground } from '../components/common';
-import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
-import * as api from '../api/ShopDetailApi';
-import StarRating from 'react-native-star-rating';
-import { Actions } from 'react-native-router-flux';
-import ShopSummary from '../components/Detail/ShopSummary';
-import openGps from '../utils/gpsHelper';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon, Footer,FooterTab } from 'native-base'
+import Header from '../components/layout/Header'
+import { ImageBackground } from '../components/common'
+import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native'
+import * as api from '../api/ShopDetailApi'
+import StarRating from 'react-native-star-rating'
+import { Actions } from 'react-native-router-flux'
+import ItemSummary from '../components/Detail/ItemSummary'
+import ShopSummary from '../components/Detail/ShopSummary'
+import openGps from '../utils/gpsHelper'
 
-import * as cartActions from '../actions/cartActions';
+import * as cartActions from '../actions/cartActions'
 
-import itemHelper, {substr} from '../utils/itemHelper';
-import ItemDetailScreenStyle from '../../wat-themes/styles/ItemDetailScreen';
+import itemHelper, {substr} from '../utils/itemHelper'
+import ItemDetailScreenStyle from '../../wat-themes/styles/screens/ItemDetailScreen'
 
 class ItemDetailScreen extends Component {
   state = {
     item: null,
     items: [],
     loading: true
-  };
+  }
 
   componentWillMount(){
     api.getItemDetail(this.props.item.id).then(
       response => {
-        const {data: {results}} = response;
+        const {data: {results}} = response
         if(results.length > 0)
           this.setState({item:results[0], loading: false})
       }
-    ).catch( (error) => console.log(error));
+    ).catch( (error) => console.log(error))
     api.getReviews(this.props.item.shop_id,this.props.item.id).then(
       response => {
-        const {data: {results}} = response;
+        const {data: {results}} = response
         if(results.length > 0)
           this.setState({items:results})
       }
-    ).catch( (error) => console.log(error));
+    ).catch( (error) => console.log(error))
   }
 
   addToCart() {
-    this.props.cartActions.addToCart(this.props.item);
-    Actions.cart();
+    this.props.cartActions.addToCart(this.props.item)
+    Actions.cart()
   }
 
   render() {
-    const item = this.state.item;
-    const shop = this.props.shop;
+    const item = this.state.item
+    const shop = this.props.shop
     if(item == null || shop == null) return <Text>Loading</Text>
-    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
+    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item
 	const {name, price, description, image, totalrate} = itemHelper(item)
 
     return (
@@ -58,37 +59,17 @@ class ItemDetailScreen extends Component {
         <ImageBackground>
           <Header back/>
           <Content>
-			<View horizontal>
-			  <Image resizeMode='stretch' style={ItemDetailScreenStyle.itemImage} source={{uri: image}}/>
-		      <View m-l-10 p-t-10>
-		        <Text bold>{name}</Text>
-		        <Text bold fs16 theme>${price}</Text>
-		      </View>
-		    </View>
-            <View horizontal m-b-10>
-              <StarRating
-                disabled={false}
-                maxStars={5}
-                rating={totalrate}
-                starSize={15}
-                starColor={'rgb(249,174,24)'}
-                selectedStar={(rating) => console.log(rating)}
-              />
-              <Text theme fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
-            </View>
-            <ShopSummary item={shop} />
-            <View p-25>
-              <Text fs14 bold>Voucher details</Text>
-              <Text fs12>{description}</Text>
-            </View>
-            {/*<ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>*/}
-              {/*{*/}
-                {/*this.state.items.map(*/}
-                  {/*(item) => <ShopDetailListItem key={item.id} item={item}/>*/}
-                {/*)*/}
-              {/*}*/}
-            {/*</ScrollView>*/}
-
+            <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
+				<ItemSummary item={item}/>
+				<ShopSummary item={shop}/>
+				<View p-25>
+	              <Text fs14 bold m-b-10>Voucher details</Text>
+	              <Text fs12>{description}</Text>
+	            </View>
+				{/*TODO show item reviews*/}
+				{/*TODO show other products*/}
+				{/*TODO show maybe you like products*/}
+            </ScrollView>
           </Content>
           <Footer>
             <FooterTab>
@@ -100,27 +81,25 @@ class ItemDetailScreen extends Component {
               </View>
             </FooterTab>
           </Footer>
-
         </ImageBackground>
-
       </Container>
-    );
+    )
   }
 }
 
 function mapStateToProps(state) {
   return {
 
-  };
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     cartActions : bindActionCreators(cartActions, dispatch)
-  };
+  }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ItemDetailScreen);
+)(ItemDetailScreen)
