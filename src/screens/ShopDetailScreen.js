@@ -8,7 +8,7 @@ import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platfo
 import * as api from '../api/ShopDetailApi';
 import StarRating from 'react-native-star-rating';
 import ShopSummary from '../components/Detail/ShopSummary';
-import ShopDetailItem from "../components/Detail/ShopDetailItem";
+import ShopDetailListItem from "../components/Detail/ShopDetailListItem";
 import { Actions } from 'react-native-router-flux';
 import openGps from '../utils/gpsHelper';
 
@@ -60,7 +60,7 @@ class ShopDetailScreen extends Component {
               {
                 this.state.items.map(
                   (sitem) => <TouchableOpacity onPress={() => Actions.i_detail({item: sitem, shop: item})}>
-                              <ShopDetailItem key={sitem.id} item={sitem}/>
+                              <ShopDetailListItem key={sitem.id} item={sitem}/>
                             </TouchableOpacity>
                 )
               }

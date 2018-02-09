@@ -10,7 +10,8 @@ export default {
 	slide: {
 		flex: 1,
         justifyContent: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+		width, height,
     },
 	slideInfo: {
 		backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,

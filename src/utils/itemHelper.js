@@ -15,11 +15,15 @@ export default capitalize = (item) => {
 	let bigtitle = item.bigtitle || ''
 	let smalltitle = item.smalltitle || ''
 	let address = item.address || ''
+	let items = [].concat(item.items).filter(o => o)
 	return {
 		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
 		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-		address
+		address, items
 	}
 }
 
-export const substr = (s, max) => s.length > max ? `${s.substr(0, max - 3)}...` : s
+export const substr = (s, max) => {
+	s = `${s || ''}`
+	return s.length > max ? `${s.substr(0, max - 2)}..` : s
+}

@@ -84,7 +84,7 @@ class ItemDetailScreen extends Component {
             {/*<ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>*/}
               {/*{*/}
                 {/*this.state.items.map(*/}
-                  {/*(item) => <ShopDetailItem key={item.id} item={item}/>*/}
+                  {/*(item) => <ShopDetailListItem key={item.id} item={item}/>*/}
                 {/*)*/}
               {/*}*/}
             {/*</ScrollView>*/}
