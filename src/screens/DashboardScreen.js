@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, List, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import {bindActionCreators} from 'redux';
-
+import Swiper from 'react-native-swiper';
+import StarRating from 'react-native-star-rating';
 import { ScrollView, TouchableOpacity, Dimensions, Linking, Alert, Platform } from 'react-native';
 
 import { BigButton, ImageBackground } from '../components/common';
@@ -12,21 +13,21 @@ import Header from '../components/layout/Header';
 import Categories from '../components/home/Categories';
 import NewShopItem from '../components/home/NewShopItem';
 import NearbyShopItem from '../components/home/NearbyShopItem';
-import PromotionsComponent from '../components/home/PromotionsComponent';
+import Promotions from '../components/home/Promotions';
+import HighRatingShops from '../components/home/HighRatingShops';
+
 import * as actions from '../actions/homeActions';
 import * as locationActions from '../actions/locationActions';
 
-import Swiper from 'react-native-swiper';
 import openGps from '../utils/gpsHelper';
-import StarRating from 'react-native-star-rating';
 
 import deviceTokenHelper from '../utils/deviceTokenHelper';
 
 import {getDeviceId} from '../utils/persistStore';
 import Image from '../components/common/Image';
 
-import itemHelper from '../utils/itemHelper';
-import DashboardScreenStyle from '../../wat-themes/styles/DashboardScreen';
+import itemHelper, {substr} from '../utils/itemHelper';
+import DashboardScreenStyle from '../../wat-themes/styles/screens/DashboardScreen';
 
 class DashboardScreen extends Component {
   state = {
@@ -76,90 +77,32 @@ class DashboardScreen extends Component {
 
   }
 
-  // static componentWillUpdate(nextProps) {
-
-    // if (nextProps.user.rehydated && (!nextProps.user.oidc || !nextProps.user.oidc.access_token)) {
-    //   Actions.popTo('login');
-    // }
-
-  // }
-
-
   renderCategories() {
     return <Categories actions={this.props.actions} items={this.props.home.categories.list}/>
   }
   renderNewShops(){
-    return (
-      <ScrollView horizontal containerStyle={DashboardScreenStyle.new_shops}>
-        {
-          this.props.home.newShops.list.map(
-            (item) => <NewShopItem location={this.props.location} key={item.id} item={item}/>
-          )
-        }
-      </ScrollView>
-    );
+	  return <View style={DashboardScreenStyle.new_shops}>
+		  <Text style={DashboardScreenStyle.new_shops_text}>New shops</Text>
+		  <ScrollView horizontal>
+			  {this.props.home.newShops.list.map(item => <NewShopItem location={this.props.location} key={item.id} item={item}/>)}
+		  </ScrollView>
+	  </View>
   }
 
   renderPromotions(){
-    return (
-      <PromotionsComponent items={this.props.home.promotions.list} />
-          );
+    return <Promotions items={this.props.home.promotions.list}/>
   }
 
   renderHighRatings() {
-    return (
-      <View style={DashboardScreenStyle.highrating_shops.container}>
-        <Swiper autoplay height={DashboardScreenStyle.highrating_shops.container.height} showsPagination={false}
-                // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
-                loop>
-          {this.props.home.highratingshops.list.map(
-            (item) => {
-			  const {id, name, price, description, image, totalrate, totalreviews} = itemHelper(item)
-              return(
-                <View key={id} style={DashboardScreenStyle.highrating_shops.slice}>
-                  <Image  style={DashboardScreenStyle.highrating_shops.image} source={{uri: image}}/>
-                  <View style={DashboardScreenStyle.highrating_shops.info}>
-                    <View style={{flex:1}}>
-                      <Text white fs20>{name}</Text>
-                    </View>
-                    <View horizontal space-between>
-                      <View horizontal>
-                        <View m-r-10>
-                          <StarRating
-                            disabled={false}
-                            maxStars={5}
-                            rating={totalrate}
-                            starSize={15}
-                            starColor={'rgb(249,174,24)'}
-                            selectedStar={(rating) => console.log(rating)}
-                          />
-                        </View>
-                        <Text white fs12>({totalreviews}) Reviews</Text>
-                      </View>
-                      <View horizontal>
-                        <Icon new-shop name="ios-send" />
-                        <Text white fs12 theme onPress={() => openGps(latitude, longitude)}>Get direction</Text>
-                      </View>
-                    </View>
-                  </View>
-                </View>)
-            }
-          )}
-
-        </Swiper>
-      </View>
-    );
+	  return <HighRatingShops items={this.props.home.highratingshops.list}/>
   }
 
   renderNearbyShops(){
-    // console.log(this.props.home.nearbyshops.list.length)
     return (
       <ScrollView containerStyle={DashboardScreenStyle.nearby_shops.container}>
-        {
-          this.props.home.nearbyshops.list.map(
+        {this.props.home.nearbyshops.list.map(
             (item) => <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
-          )
-        }
+          )}
         <View horizontal m-t-10 m-r-10 center-h center>
           <Button small onPress={this.loadMoreNearByshops.bind(this)}><Text>Load more</Text></Button>
         </View>
@@ -175,7 +118,6 @@ class DashboardScreen extends Component {
           <Content containerStyle={DashboardScreenStyle.container}>
             {this.renderCategories()}
             {this.renderPromotions()}
-            <Text style={DashboardScreenStyle.new_shops_text}>New shops</Text>
             {this.renderNewShops()}
             {this.renderHighRatings()}
             {this.renderNearbyShops()}

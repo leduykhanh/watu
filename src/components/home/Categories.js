@@ -6,8 +6,8 @@ import Swiper from 'react-native-swiper';
 import * as actions from '../../actions/homeActions';
 import Image from '../common/Image';
 
+import itemHelper, {substr} from '../../utils/itemHelper';
 import CategoriesStyle from '../../../wat-themes/styles/Categories'
-
 
 const Categories = props => {
 	let cats = [].concat(props.items),
@@ -18,24 +18,21 @@ const Categories = props => {
 	}
 	return (
 		<View style={CategoriesStyle.containerStyle}>
-		  <Swiper showsPagination={false} loop>
-			{blocks.map((b,i) => <View horizontal style={CategoriesStyle.blockStyle}>
-			  {b.map((item,j) =>
-					<TouchableOpacity
-						onPress={() => {
-              let currentScene =  Actions.currentScene.toString();
-              if (currentScene !== 'search') Actions.search();
+			<Swiper showsPagination={false} loop>
+				{blocks.map((b,i) => <View horizontal style={CategoriesStyle.blockStyle}>
+					{b.map((item,j) =>
+						<TouchableOpacity onPress={() => {
+							let currentScene =  Actions.currentScene.toString();
+							if (currentScene !== 'search') Actions.search();
 							props.actions.getNearbyShop('a', item.id);
-
-            }}
-					>
+						}}>
 						<View center style={CategoriesStyle.itemStyle}>
-						<Image key={item.id} source={{uri: item.image}} style={CategoriesStyle.iconStyle}/>
-						<Text bold fs12>{item.name}</Text>
+							<Image key={item.id} source={{uri: item.image}} style={CategoriesStyle.iconStyle}/>
+							<Text bold fs12>{substr(item.name, 7)}</Text>
 						</View>
 					</TouchableOpacity>)}
-			</View>)}
-		  </Swiper>
+				</View>)}
+			</Swiper>
 		</View>
 	);
 };

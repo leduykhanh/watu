@@ -276,7 +276,7 @@
         <option value="$PROJECT_DIR$/src/utils/gpsHelper.js" />
         <option value="$PROJECT_DIR$/src/reducers/location/locationReducer.js" />
         <option value="$PROJECT_DIR$/src/api/PlaceOrderApi.js" />
-        <option value="$PROJECT_DIR$/src/components/Detail/ShopDetailItem.js" />
+        <option value="$PROJECT_DIR$/src/components/Detail/ShopDetailListItem.js" />
         <option value="$PROJECT_DIR$/src/screens/ShopDetailScreen.js" />
         <option value="$PROJECT_DIR$/wat-themes/components/Content.js" />
         <option value="$PROJECT_DIR$/src/components/Detail/ShopSummary.js" />
@@ -930,7 +930,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Detail/ShopDetailItem.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Detail/ShopDetailListItem.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="24" />

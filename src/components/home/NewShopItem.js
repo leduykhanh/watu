@@ -3,37 +3,41 @@ import { Text, Spinner, Icon, View, } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
-import { getDistanceFromLatLonInKm } from '../../utils/gpsHelper';
+import { getDistance } from '../../utils/gpsHelper';
 import Image from '../common/Image';
 
-const NewShopItem = props => {
-  const item = props.item;
-  const { latitude , longtitude } = item;
-  const distance = getDistanceFromLatLonInKm(latitude , longtitude, props.location.latitude, props.location.longitude);
+import itemHelper, {substr} from '../../utils/itemHelper';
+import NewShopItemStyle from '../../../wat-themes/styles/components/NewShopItem';
 
-  const width = 160;
-  return (
-    <TouchableOpacity onPress={() => Actions.s_detail({item: item})}>
-      <View style={{width: width, height: 160, margin: 10, backgroundColor: 'white',  flex:1 }}>
-        <Image resizeMode='stretch' style={{width: 160, height: 115}} source={{uri: item.image}}/>
-        <View style={{backgroundColor: "rgba(0, 0, 0, 0.5)", top: 80, padding: 10,
-          alignSelf: 'stretch', width:width, position: 'absolute'}}>
-          <Text fs12 white>{item.address}</Text>
-        </View>
-        <View center-h horizontal m-t-5>
-          <Text fs12 bold>{item.name}</Text>
-        </View>
-        <View center-h horizontal>
-          <Icon new-shop name="ios-pin" />
-          <Text fs12>{distance}km</Text>
-        </View>
-      </View>
+const NewShopItem = props => {
+	const item = props.item;
+    const {
+		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
+		address
+    } = itemHelper(item);
+    const distance = getDistance(latitude, longitude, props.location.latitude, props.location.longitude);
+    return <TouchableOpacity onPress={() => Actions.s_detail({item})}>
+   	 <View style={NewShopItemStyle.container}>
+   		 <Image style={NewShopItemStyle.image} source={{uri: image}}/>
+   		 <View style={NewShopItemStyle.addressContainer}>
+   			 <Text fs12 white>{substr(address, 20)}</Text>
+   		 </View>
+   		 <View style={NewShopItemStyle.infoContainer}>
+   			 <View horizontal m-t-5>
+   				 <Text fs12 bold>{substr(name, 20)}</Text>
+   			 </View>
+   			 <View horizontal>
+   				 <Icon new-shop name="ios-pin" />
+   				 <Text fs12>{distance || 0} km</Text>
+   			 </View>
+   		 </View>
+   	 </View>
     </TouchableOpacity>
-  );
 };
 
 NewShopItem.propTypes = {
-  item: PropTypes.object.isRequired,
+	item: PropTypes.object.isRequired,
 };
 
 export default NewShopItem;

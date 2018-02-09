@@ -1,25 +1,19 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon } from 'native-base';
-import Footer from '../components/layout/Footer';
-import Header from '../components/layout/Header';
-import { ImageBackground } from '../components/common';
-import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native';
-import * as api from '../api/PromotionDetailApi';
-import StarRating from 'react-native-star-rating';
-import NearbyShopItem from '../components/home/NearbyShopItem';
-import PromotionDetailItem from "../components/Detail/PromotionDetailItem";
-import openGps from '../utils/gpsHelper';
-import { Actions } from 'react-native-router-flux';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Icon } from 'native-base'
+import Footer from '../components/layout/Footer'
+import Header from '../components/layout/Header'
+import { ImageBackground } from '../components/common'
+import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native'
+import * as api from '../api/PromotionDetailApi'
+import StarRating from 'react-native-star-rating'
+import PromotionDetailItem from "../components/Detail/PromotionDetailItem"
+import ShopSummary from "../components/Detail/ShopSummary"
+import openGps from '../utils/gpsHelper'
+import { Actions } from 'react-native-router-flux'
 
-const { width } = Dimensions.get('window');
-const styles = {
-  image: {
-    width,
-    flex: 1,
-    height: 240
-  }
-};
+import itemHelper, {substr} from '../utils/itemHelper'
+import PromotionDetailScreenStyle from '../../wat-themes/styles/screens/PromotionDetailScreen'
 
 class PromotionDetailScreen extends Component {
   state = {
@@ -28,7 +22,7 @@ class PromotionDetailScreen extends Component {
   componentWillMount(){
     api.getPromotionDetail(this.props.item.id).then(
       response => {
-        const {data: {results}} = response;
+        const {data: {results}} = response
         if(results.length > 0)
           this.setState({item:results[0]})
       }
@@ -36,76 +30,45 @@ class PromotionDetailScreen extends Component {
   }
 
   render() {
-    const item = this.state.item;
+    const item = this.state.item
     if(item == null) return <Text>Loading</Text>
-    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
-    const topTexts = toptext.split(" ");
+	const {
+		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
+		address, items
+	} = itemHelper(item)
+    const topTexts = toptext.split(" ")
     return (
       <Container>
-
         <ImageBackground>
           <Header back/>
           <Content>
-            <View horizontal>
-              <Image source={{uri: item.shop_info.image}} style={{ width: 100, height: 100, marginTop: 10, marginBottom: 10, marginLeft: 10, borderRadius: 50}} />
-              <View m-l-10 p-t-10>
-                <Text bold>{item.shop_info.name}</Text>
-                <Text small>{item.shop_info.address}</Text>
-              </View>
-            </View>
-            <View horizontal space-between p-l-5 p-r-5>
-              <StarRating
-                disabled={false}
-                maxStars={5}
-                rating={item.shop_info.totalrate}
-                starSize={15}
-                starColor={'rgb(249,174,24)'}
-                selectedStar={(rating) => console.log(rating)}
-              />
-              <Text white fs12>({item.shop_info.totalreviews?item.shop_info.totalreviews:0}) Reviews</Text>
-              <View horizontal>
-                <Icon new-shop name="ios-send" />
-                <Text theme fs12 theme onPress={() => openGps(item.shop_info.latitude, item.shop_info.longitude)}>Get direction</Text>
-              </View>
-            </View>
-            <View key={item.id}>
-              <Image  style={styles.image} source={{uri: item.image}}/>
-
-              <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
-                position:'absolute', alignSelf: 'stretch', width:'auto'}}>
-                  <Text white fs20>{item.bigtitle}</Text>
-                  <Text white fs12>{item.smalltitle}</Text>
-              </View>
-
-              <View style={{position:'absolute', top: 2, backgroundColor: toptext_bgcolor, right: 16, padding: 6,
-                borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
-                {topTexts.map(t =>
-                  <Text key={t} style={{color:toptext_color, fontSize:parseInt(toptext_fontsize),
-                    backgroundColor: toptext_bgcolor}}>{t}</Text>
-                )}
-
-              </View>
-            </View>
-            <ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>
-              {
-                item.items.map(
-                  (sitem) =>
-                      <TouchableOpacity onPress={() => Actions.s_detail({item: sitem, shop : item})}>
-                        <PromotionDetailItem key={sitem.id} item={sitem}/>
-                      </TouchableOpacity>
-                )
-
-              }
-            </ScrollView>
-
+			  <ScrollView containerStyle={PromotionDetailScreenStyle.container}>
+				  <View key={id} style={PromotionDetailScreenStyle.slide}>
+					  <Image  style={PromotionDetailScreenStyle.image} source={{uri: image}}/>
+					  <View style={PromotionDetailScreenStyle.slideInfo}>
+						  <Text white fs20>{substr(bigtitle, 40)}</Text>
+						  <Text white fs12>{substr(smalltitle, 60)}</Text>
+					  </View>
+					  <View style={{...PromotionDetailScreenStyle.slideTopText, backgroundColor: toptext_bgcolor}}>
+						  {topTexts.map(t =>
+						  <Text key={t} style={{
+							  color:toptext_color,
+							  fontSize:parseInt(toptext_fontsize),
+							  backgroundColor: toptext_bgcolor
+						  }}>{t}</Text>)}
+					  </View>
+				  </View>
+				  <ShopSummary item={item.shop_info}/>
+				  {items.map(sitem => <TouchableOpacity onPress={() => Actions.s_detail({item: sitem, shop : item})}>
+					  <PromotionDetailItem key={sitem.id} item={sitem}/>
+				  </TouchableOpacity>)}
+			  </ScrollView>
           </Content>
-
           <Footer />
-
         </ImageBackground>
-
       </Container>
-    );
+    )
   }
 
 }
@@ -113,16 +76,16 @@ class PromotionDetailScreen extends Component {
 function mapStateToProps(state) {
   return {
 
-  };
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch
-  };
+  }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PromotionDetailScreen);
+)(PromotionDetailScreen)

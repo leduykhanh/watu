@@ -12,12 +12,13 @@ import ShopSummary from '../components/Detail/ShopSummary';
 import Rewview from '../components/Detail/Rewview';
 import Image from '../components/common/Image';
 
+
 import openGps from '../utils/gpsHelper';
 
-import * as cartActions from '../actions/cartActions';
+import * as cartActions from '../actions/cartActions'
 
-import itemHelper from '../utils/itemHelper';
-import ItemDetailScreenStyle from '../../wat-themes/styles/ItemDetailScreen';
+import itemHelper, {substr} from '../utils/itemHelper'
+import ItemDetailScreenStyle from '../../wat-themes/styles/screens/ItemDetailScreen'
 
 class ItemDetailScreen extends Component {
   state = {
@@ -30,23 +31,23 @@ class ItemDetailScreen extends Component {
   componentWillMount(){
     api.getItemDetail(this.props.item.id).then(
       response => {
-        const {data: {results}} = response;
+        const {data: {results}} = response
         if(results.length > 0)
           this.setState({item:results[0], loading: false})
       }
-    ).catch( (error) => console.log(error));
+    ).catch( (error) => console.log(error))
     api.getReviews(this.props.item.shop_id,this.props.item.id).then(
       response => {
-        const {data: {results}} = response;
+        const {data: {results}} = response
         if(results.length > 0)
           this.setState({reviews:results})
       }
-    ).catch( (error) => console.log(error));
+    ).catch( (error) => console.log(error))
   }
 
   addToCart() {
-    this.props.cartActions.addToCart(this.props.item);
-    Actions.cart();
+    this.props.cartActions.addToCart(this.props.item)
+    Actions.cart()
   }
   renderReviews() {
     return (
@@ -65,11 +66,10 @@ class ItemDetailScreen extends Component {
   }
 
   render() {
-    const item = this.state.item;
-
-    const shop = this.props.shop;
+    const item = this.state.item
+    const shop = this.props.shop
     if(item == null || shop == null) return <Text>Loading</Text>
-    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
+    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item
 	const {name, price, description, image, totalrate} = itemHelper(item)
 
     return (
@@ -121,27 +121,25 @@ class ItemDetailScreen extends Component {
               </View>
             </FooterTab>
           </Footer>
-
         </ImageBackground>
-
       </Container>
-    );
+    )
   }
 }
 
 function mapStateToProps(state) {
   return {
 
-  };
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     cartActions : bindActionCreators(cartActions, dispatch)
-  };
+  }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ItemDetailScreen);
+)(ItemDetailScreen)
