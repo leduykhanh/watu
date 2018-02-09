@@ -40,7 +40,6 @@ const styles = {
 
 const PromotionsComponent = props => {
   const items = props.items;
-
   return (
     <View style={{height: 240}}>
       <Swiper autoplay height={240} showsPagination={false}
@@ -51,12 +50,13 @@ const PromotionsComponent = props => {
 
             const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
             const topTexts = toptext.split(" ");
+
             return(
               <View key={item.id} style={styles.slide}>
                 <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
                   <Image  style={styles.image} source={{uri: item.image?item.image:''}}/>
                 </TouchableOpacity>
-                    
+
                 <View style={{backgroundColor: "rgba(0, 0, 0, 0.6)", top: 175, padding: 10,
                   position:'absolute', alignSelf: 'stretch', width:'auto'}}>
                   <TouchableOpacity onPress={() => Actions.p_detail({item: item})}>
