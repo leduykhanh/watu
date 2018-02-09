@@ -18,10 +18,10 @@ class HeaderComponent extends Component  {
     else Actions.login();
   }
 
-  searchAction(q){
+  searchAction(){
     let currentScene =  Actions.currentScene.toString();
     if (currentScene !== 'search') Actions.search();
-    this.props.actions.getNearbyShop(q);
+    this.props.actions.getNearbyShop(this.props.search.searchString);
   }
 
   updateSearch(q){
@@ -46,7 +46,7 @@ class HeaderComponent extends Component  {
           <Input transparent placeholder="Search"
                 value={this.props.search.searchString}
                  onChangeText={(q) => this.updateSearch(q)}
-                 onSubmitEditing={(q) => this.searchAction(q)}
+                 onSubmitEditing={this.searchAction.bind(this)}
           />
         </Item>
         <Button  transparent onPress={this.cartAction.bind(this)}>
