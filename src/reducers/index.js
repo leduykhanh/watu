@@ -7,6 +7,7 @@ import { cartReducer } from './cart/cartReducer';
 import { locationReducer } from './location/locationReducer';
 import { notificationReducer } from './notification/notificationReducer';
 import { luckydrawReducer } from './luckydraw/luckydrawReducer';
+import { searchReducer } from './search/searchReducer';
 
 
 const reducers = combineReducers({
@@ -18,6 +19,7 @@ const reducers = combineReducers({
   location: locationReducer,
   notification: notificationReducer,
   prize: luckydrawReducer,
+  search: searchReducer,
 });
 
 export default reducers;

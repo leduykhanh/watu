@@ -87,5 +87,7 @@ export default initalState = {
     loading: false,
     loaded: false,
   },
-
+  search: {
+    searchString: ''
+  }
 };

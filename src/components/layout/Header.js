@@ -4,6 +4,7 @@ import { Container, Header, Item, Input, Icon, Button, Text, Badge } from 'nativ
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/homeActions';
+import * as searchAction from '../../actions/searchAction';
 
 class HeaderComponent extends Component  {
 
@@ -23,6 +24,10 @@ class HeaderComponent extends Component  {
     this.props.actions.getNearbyShop(q);
   }
 
+  updateSearch(q){
+    this.props.searchAction.updateSearch(q)
+  }
+
   render() {
     const cartCount = this.props.cart.count;
     // console.log(this.props.cart)
@@ -39,7 +44,9 @@ class HeaderComponent extends Component  {
         <Item>
           <Icon transparent name="ios-search"/>
           <Input transparent placeholder="Search"
-                 onChangeText={(q) => this.searchAction(q)}
+                value={this.props.search.searchString}
+                 onChangeText={(q) => this.updateSearch(q)}
+                 onSubmitEditing={(q) => this.searchAction(q)}
           />
         </Item>
         <Button  transparent onPress={this.cartAction.bind(this)}>
@@ -72,12 +79,14 @@ function mapStateToProps(state) {
     profile: state.profile,
     device: state.device,
     cart: state.cart,
+    search: state.search
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions : bindActionCreators(actions, dispatch)
+    actions : bindActionCreators(actions, dispatch),
+    searchAction: bindActionCreators(searchAction, dispatch),
   };
 }
 

@@ -117,7 +117,7 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 
 export const UPDATE_LOCATION = 'UPDATE_LOCATION';
-
+export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 
 
 export {initalState};
