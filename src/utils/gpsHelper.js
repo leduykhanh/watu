@@ -1,13 +1,17 @@
 import {Alert, Linking, Platform} from "react-native";
 
-export function getDistance(lat1, lon1, lat2, lon2) {
-	var p = 0.017453292519943295;    // Math.PI / 180
-	var c = Math.cos;
-	var a = 0.5 - c((lat2 - lat1) * p)/2 +
-	      c(lat1 * p) * c(lat2 * p) *
-	      (1 - c((lon2 - lon1) * p))/2;
-
-	return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+export function getDistance(lat1, lon1, lat2, lon2, unit = 'N') {
+	var radlat1 = Math.PI * lat1/180
+	var radlat2 = Math.PI * lat2/180
+	var theta = lon1-lon2
+	var radtheta = Math.PI * theta/180
+	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+	dist = Math.acos(dist)
+	dist = dist * 180/Math.PI
+	dist = dist * 60 * 1.1515
+	if (unit=="K") { dist = dist * 1.609344 }
+	if (unit=="N") { dist = dist * 0.8684 }
+	return dist.toFixed(1)
 }
 
 openExternalApp = (url) => {

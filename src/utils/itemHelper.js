@@ -7,7 +7,7 @@ export default capitalize = (item) => {
 	let id = item.id
 	let totalreviews = item.totalreviews || 0
 	let latitude = item.latitude
-	let longitude = item.longitude
+	let longitude = item.longtitude
 	let toptext_color = item.toptext_color || 'white'
 	let toptext_fontsize = item.toptext_fontsize || 12
 	let toptext = item.toptext || ''

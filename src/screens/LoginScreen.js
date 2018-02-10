@@ -3,21 +3,16 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 import {Tabs, Tab, Header, TabHeading, Item, Input, Label, Button, H1, Text, View, Icon, H3, Form, CheckBox} from 'native-base';
-import {StyleSheet, Image, ScrollView} from 'react-native';
+import {StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
 import * as actions from '../actions/userActions';
 
 import styles from './styles';
 import {BaseLightbox, GradientButton, InputView} from '../components/common';
 
-const tabProps = {
-  tabBarUnderlineStyle: { backgroundColor: "rgb(249,174,24)",
+import itemHelper, {substr} from '../utils/itemHelper'
+import LoginScreenStyle from '../../wat-themes/styles/screens/LoginScreen'
 
-  },activeTextColor: 'rgb(67,72,77)'
-};
-
-class Login extends Component {
-
-
+class LoginScreen extends Component {
 
   state = {
     username: 'leejangkoo+1@gmail.com',
@@ -29,7 +24,6 @@ class Login extends Component {
   //   password: null,
   //   name: null
   // };
-
 
   componentDidMount() {
     if (this.props.error !== true && this.props.user.oidc && this.props.user.oidc.access_token) {
@@ -57,18 +51,19 @@ class Login extends Component {
         <Text bold fs12>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
-                 style={{ shadowOpacity: 0 }}
                  onChangeText={(username) => this.setState({username,typing:true})}
                  autoCapitalize='none'
+				 placeholder='Please enter email'
                  />
         </Item>
         <Text bold fs12>Password</Text>
         <Item login error={this.props.user.error!==null&&!this.state.typing} >
-          <Input
-                 value={this.state.password}
+          <Input value={this.state.password}
                  onChangeText={(password) => this.setState({password,typing:true})}
                  autoCapitalize='none'
-                 secureTextEntry={true} />
+                 secureTextEntry={true}
+				 placeholder='Your password'
+			 />
         </Item>
 
         <View style={{ marginTop: 20 }}>
@@ -106,18 +101,19 @@ class Login extends Component {
         <Text bold fs12>Email</Text>
         <Item login error={this.props.user.error!==null && !this.state.typing} >
           <Input value={this.state.username}
-                 style={{ shadowOpacity: 0 }}
                  onChangeText={(username) => this.setState({username,typing:true})}
                  autoCapitalize='none'
+				 placeholder='Please enter email'
           />
         </Item>
         <Text bold fs12>Password</Text>
         <Item login error={this.props.user.error!==null&&!this.state.typing} >
-          <Input
-            value={this.state.password}
-            onChangeText={(password) => this.setState({password,typing:true})}
-            autoCapitalize='none'
-            secureTextEntry={true} />
+          <Input value={this.state.password}
+            	onChangeText={(password) => this.setState({password,typing:true})}
+            	autoCapitalize='none'
+            	secureTextEntry={true}
+				placeholder='Please enter your password'
+			/>
         </Item>
         <View horizontal>
           <CheckBox checked/>
@@ -127,7 +123,6 @@ class Login extends Component {
         <View style={{ marginTop: 20 }}>
           <Button onPress={this.onRegister.bind(this)} full small><Text bold>REGISTER</Text></Button>
         </View>
-
 
 
         {/*</Form>*/}
@@ -143,22 +138,21 @@ class Login extends Component {
     const {container, topView} = loginStyles;
 
     return (
-      <BaseLightbox verticalPercent={0.65} horizontalPercent={1}>
+      <BaseLightbox>
         <View style={{justifyContent:'flex-end', alignItems:'flex-end'}}>
-          <Icon name='md-close' onPress={Actions.pop} style={{fontSize:30,  marginRight: 5,marginTop:0}}/>
+          <Icon name='md-close' onPress={Actions.pop} style={{fontSize:30,  marginRight: 10, marginTop: 24}}/>
         </View>
         {/*<View style={topView}>
           <Image source={require('../../assets/images/logo.png')} style={{ width: 100, height: 100, marginBottom: 12}} />
         </View> */}
         <View login>
-          <Tabs {...tabProps}>
+          <Tabs tabBarUnderlineStyle={{backgroundColor: "rgb(249,174,24)"}} activeTextColor='rgb(67,72,77)'>
             <Tab heading="Login">
               {this.renderLogin()}
             </Tab>
             <Tab heading="Register">
               {this.renderRegister()}
             </Tab>
-
           </Tabs>
         </View>
       </BaseLightbox>
@@ -198,4 +192,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(LoginScreen);

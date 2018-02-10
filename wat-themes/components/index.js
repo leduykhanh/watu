@@ -234,5 +234,5 @@ export default (variables = variable) => {
 
   cssifyTheme(null, theme, null);
 
-  return theme;
+  return {...theme, iconFamily: 'MaterialIcons'};
 };
