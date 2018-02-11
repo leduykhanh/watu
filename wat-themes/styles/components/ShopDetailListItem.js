@@ -5,7 +5,7 @@ const width = Dimensions.get("window").width
 
 export default {
 	container: {
-		height, marginTop: 10, marginBottom: 10, marginLeft: 10, backgroundColor: 'white'
+		marginTop: 10, marginBottom: 10, marginLeft: 10, backgroundColor: 'white'
 	},
 	image: {
 		width: height, height,

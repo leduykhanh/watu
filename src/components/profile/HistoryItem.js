@@ -1,29 +1,35 @@
 import React from 'react';
 import { Text, Spinner, Icon, View, } from 'native-base';
 import PropTypes from 'prop-types';
-import StarRating from 'react-native-star-rating';
 import Image from '../common/Image';
+
+import itemHelper, {substr} from '../../utils/itemHelper';
+import HistoryItemStyle from '../../../wat-themes/styles/components/HistoryItem'
 
 const HistoryItem = props => {
   const item = props.item;
-  const width = 110;
+  const {
+	id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+	toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
+	address, orderdate
+  } = itemHelper(item);
   return (
-    <View horizontal style={{ height: width, margin: 10, backgroundColor: 'white' }}>
-      <View>
-        <Image resizeMode='stretch' style={{width: width, height: width}} source={{uri: item.image}}/>
-      </View>
-      <View p-l-10>
-        <View horizontal m-t-5>
-          <Text fs14 bold>{item.name}</Text>
-        </View>
-        <View horizontal>
-          <Text fs12 style={{flexWrap: "wrap"}}>{item.description}</Text>
-        </View>
-        <Text fs14 bold theme>${item.price}</Text>
-        <View m-t-5>
-          <Text fs12>{item.orderdate}</Text>
-        </View>  
-      </View>
+    <View horizontal style={HistoryItemStyle.container}>
+		<Image resizeMode='stretch' style={HistoryItemStyle.image} source={{uri: image}}/>
+		<View p-l-10 style={HistoryItemStyle.info}>
+			<View m-t-5 horizontal>
+				<Text fs14 bold>{substr(name, 40)}</Text>
+			</View>
+			<View horizontal>
+				<Text fs12>{substr(description, 150)}</Text>
+			</View>
+			<View horizontal>
+				<Text fs14 bold theme>{price}</Text>
+			</View>
+			<View horizontal>
+				<Text fs12>{orderdate}</Text>
+			</View>
+		</View>
     </View>
   );
 };

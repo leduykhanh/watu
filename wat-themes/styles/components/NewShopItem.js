@@ -4,7 +4,7 @@ const size = 160
 
 export default {
 	container: {
-		width: size, height: size, marginLeft: 10, marginBottom: 10, backgroundColor: 'white',
+		width: size, marginLeft: 10, marginBottom: 10, backgroundColor: 'white',
 	},
     addressContainer: {
 		backgroundColor: 'rgba(0, 0, 0, 0.5)',

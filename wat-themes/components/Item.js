@@ -201,21 +201,18 @@ export default (variables = variable) => {
 		},
 		'.login': {
 			borderColor: 'rgb(206,206,206)',
-
-      // shadowColor: '#000',
-      // shadowOffset: { width: 0, height: 2 },
-      // shadowOpacity: 0.5,
-      // shadowRadius: 2,
-
-      //textShadowOffset: { width: 0, height: 0 },
-
-			//borderWidth: variables.borderWidth,
-      borderWidth: 0.5,
-			paddingLeft:0,
+			// shadowColor: '#000',
+			// shadowOffset: { width: 0, height: 2 },
+			// shadowOpacity: 0.5,
+			// shadowRadius: 2,
+			// textShadowOffset: { width: 0, height: 0 },
+			// borderWidth: variables.borderWidth,
+			// borderWidth: 0.5,
+			// paddingLeft: 0,
 			marginBottom: 10,
 			marginTop: 5,
-      lineHeight: 10,
-			padding: 0
+			// lineHeight: 10,
+			// padding: 0
 		},
 
 		borderWidth: variables.borderWidth * 2,
