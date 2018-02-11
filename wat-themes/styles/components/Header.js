@@ -6,7 +6,7 @@ const iconSize = 22
 export default {
 	iconSize,
 	container: {
-		paddingTop: 28,
+		...Dimensions.get('window').height == 812 ? {paddingTop: 26} : {},
 	},
 	cart: {
 		position: 'absolute',

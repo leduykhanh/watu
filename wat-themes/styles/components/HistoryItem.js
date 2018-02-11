@@ -15,15 +15,4 @@ export default {
 	},
     statistic: {
     },
-	featured_image: {
-		height, width
-	},
-	featured_info: {
-		position: 'absolute',
-		bottom: 0,
-		width,
-		padding: 10,
-		backgroundColor: 'rgba(104,54,5,.6)',
-		display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start'
-	},
 }

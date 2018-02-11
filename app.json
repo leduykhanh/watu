@@ -2,20 +2,20 @@
   "expo": {
     "sdkVersion": "21.0.0",
     "android": {
-      "package": "com.wat.v1"
+      "package": "com.survis.v1"
     },
     "ios": {
-      "bundleIdentifier": "com.wat.v1"
+      "bundleIdentifier": "com.survis.v1"
     },
-    "name": "wat",
-    "slug": "wat",
+    "name": "survis",
+    "slug": "survis",
     "version": "0.2.0",
-    "icon": "./assets/images/loading-1.jpg",
+    "icon": "./assets/images/loading.png",
     "loading": {
-      "backgroundImage": "./assets/images/loading-1.jpg",
+      "backgroundImage": "./assets/images/loading.png",
       "backgroundColor": "#222127"
     }
   },
-  "name": "wat",
-  "displayName": "Wat"
+  "name": "survis",
+  "displayName": "SurVis"
 }
