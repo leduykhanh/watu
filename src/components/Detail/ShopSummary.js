@@ -3,7 +3,8 @@ import { Text, Spinner, Icon, View, } from 'native-base'
 import PropTypes from 'prop-types'
 import StarRating from 'react-native-star-rating'
 import openGps from "../../utils/gpsHelper"
-import Image from '../common/Image'
+import Image from '../common/Image';
+import Rating from '../common/Rating';
 
 import itemHelper, {substr} from '../../utils/itemHelper'
 import ShopSummaryStyle from '../../../wat-themes/styles/components/ShopSummary'
@@ -26,15 +27,9 @@ const ShopSummary = props => {
 	  </View>
 	</View>
 	<View horizontal space-between p-l-5 p-r-5>
-	  <StarRating
-		disabled={false}
-		maxStars={5}
-		rating={item.totalrate}
-		starSize={15}
-		starColor={'rgb(249,174,24)'}
-		selectedStar={(rating) => console.log(rating)}
+	  <Rating totalrate={totalrate} shopid={id}
 	  />
-	  <Text theme fs12>({totalreviews}) Reviews</Text>
+	  <Text theme fs12 onPress={props.openReview}>({totalreviews}) Reviews</Text>
 	  <View horizontal>
 		<Icon new-shop name="ios-send" />
 		<Text theme fs12 theme onPress={() => openGps(latitude, longitude)}>Get direction</Text>

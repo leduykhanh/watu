@@ -4,7 +4,7 @@ import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Ti
 import Footer from '../components/layout/Footer'
 import Header from '../components/layout/Header'
 import { ImageBackground } from '../components/common'
-import { ScrollView, TouchableOpacity, Image, Dimensions, Linking, Alert, Platform } from 'react-native'
+import { ScrollView, TouchableOpacity, Dimensions, Linking, Alert, Platform } from 'react-native'
 import * as api from '../api/ShopDetailApi'
 import StarRating from 'react-native-star-rating'
 import ShopSummary from '../components/Detail/ShopSummary'
@@ -14,11 +14,14 @@ import openGps from '../utils/gpsHelper'
 
 import itemHelper, {substr} from '../utils/itemHelper'
 import ShopDetailScreenStyle from '../../wat-themes/styles/screens/ShopDetailScreen'
+import Image from '../components/common/Image';
 
 class ShopDetailScreen extends Component {
   state = {
     item: null,
-    items: []
+    items: [],
+    reviews: [],
+    showReview: false
   }
   componentWillMount(){
     api.getShopDetail(this.props.item.id).then(
@@ -34,7 +37,30 @@ class ShopDetailScreen extends Component {
         if(results.length > 0)
           this.setState({items:results})
       }
+    ).catch( (error) => console.log(error));
+    api.getReviews(this.props.item.id, null).then(
+      response => {
+        const {data: {results}} = response
+        if(results.length > 0)
+          this.setState({reviews:results})
+      }
     ).catch( (error) => console.log(error))
+  }
+
+  renderReviews() {
+    return (
+      <View p-25 grey>
+        <View horizontal space-between>
+          <Text bold>Reviews</Text>
+          <Text onPress={() => this.setState({showReview: false})}theme>Go back</Text>
+          {
+            this.state.reviews.map(
+              review => <Review item={review} />
+            )
+          }
+        </View>
+      </View>
+    );
   }
 
   render() {
@@ -50,11 +76,17 @@ class ShopDetailScreen extends Component {
           <Header back/>
           <Content>
             <ScrollView containerStyle={ShopDetailScreenStyle.container}>
-				<ShopSummary item={item} />
-	            <Image style={ShopDetailScreenStyle.image} source={{uri: image}}/>
-				{this.state.items.map(sitem => <TouchableOpacity onPress={() => Actions.i_detail({item: sitem, shop: item})}>
-					<ShopDetailListItem key={sitem.id} item={sitem}/>
-				</TouchableOpacity>)}
+  				    <ShopSummary openReview={() => this.setState({showReview: true})} item={item} />
+              {
+                this.state.showReview ? this.renderReviews() :
+
+                <View>
+          	      <Image style={ShopDetailScreenStyle.image} source={{uri: image}}/>
+          				{this.state.items.map(sitem => <TouchableOpacity onPress={() => Actions.i_detail({item: sitem, shop: item})}>
+          					<ShopDetailListItem key={sitem.id} item={sitem}/>
+          				</TouchableOpacity>)}
+                </View>
+              }
             </ScrollView>
           </Content>
           <Footer />

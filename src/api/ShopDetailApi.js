@@ -15,5 +15,8 @@ export function getItemDetail(id) {
 }
 
 export function getReviews(shop_id, item_id) {
-  return serverCall.get(`${constants.GET_REVIEW_API}&shopid=${shop_id}&item_id=${item_id}`);
+  const sQuery = shop_id ? `&shopid=${shop_id}` : '';
+  const iQuery = item_id ? `&itemid=${item_id}` : '';
+  const url = `${constants.GET_REVIEW_API}${sQuery}${iQuery}&cmd=get`;
+  return serverCall.get(url);
 }

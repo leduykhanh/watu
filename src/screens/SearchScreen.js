@@ -20,17 +20,35 @@ import openGps from '../utils/gpsHelper';
 import StarRating from 'react-native-star-rating';
 
 import deviceTokenHelper from '../utils/deviceTokenHelper';
+import InfiniteScroll from 'react-native-infinite-scroll';
 
 import {getDeviceId} from '../utils/persistStore';
 const { width } = Dimensions.get('window');
 
 class SearchScreen extends Component {
 
+  state = {
+      highratingshopsPage: 0,
+      nearbyshopsPage: 0,
+  }
+  
+  loadMoreNearByshops() {
+    const { nearbyshopsPage } = this.state;
+    this.setState({
+      nearbyshopsPage: nearbyshopsPage + 1
+    });
+    this.props.actions.getNearbyShop(null, null, nearbyshopsPage + 1)
+  }
+
   render(){
     return (
       <Container>
         <Header/>
-        <Content containerStyle={{paddingBottom:100}}>
+        <InfiniteScroll
+          horizontal={false}
+          onLoadMoreAsync={this.loadMoreNearByshops.bind(this)}
+          distanceFromEnd={10}
+         containerStyle={{paddingBottom:100}}>
           {/*<Text bold fs20>Nearby shops</Text>*/}
             {
               this.props.home.nearbyshops.list.length > 0 ?
@@ -44,7 +62,7 @@ class SearchScreen extends Component {
             </ScrollView>
               : <Text theme>No items found</Text>
             }
-        </Content>
+        </InfiniteScroll>
 
         <Footer profile={this.props.profile}/>
 

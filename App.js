@@ -40,7 +40,7 @@ export default class App extends React.Component {
         Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
         Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
         FontAwesome: require("@expo/vector-icons/fonts/FontAwesome.ttf"),
-        koku: require("./assets/fonts/koku.ttf"),
+        MaterialCommunityIcons: require("@expo/vector-icons/fonts/MaterialCommunityIcons.ttf"),
       });
     }
     // VersionCheck.setAppID("app_id");                    // Your App ID for App Store URL

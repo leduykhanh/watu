@@ -34,7 +34,7 @@ class FooterTabs extends Component {
 
             <StyleProvider style={getTheme({ iconFamily: 'Ionicons' })}>
       			<Button vertical onPress={() => Actions.replace('new_shop')}>
-      			  <Icon active name="ios-podium" size={iconSize} style={getIconStyle('new_shop')}/>
+      			  <Icon active name="ios-archive" size={iconSize} style={getIconStyle('new_shop')}/>
                   </Button>
       			</StyleProvider>
 

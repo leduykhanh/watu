@@ -36,7 +36,7 @@ class ItemDetailScreen extends Component {
           this.setState({item:results[0], loading: false})
       }
     ).catch( (error) => console.log(error))
-    api.getReviews(this.props.item.shop_id,this.props.item.id).then(
+    api.getReviews(null,this.props.item.id).then(
       response => {
         const {data: {results}} = response
         if(results.length > 0)
