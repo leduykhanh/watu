@@ -21,3 +21,6 @@ export function getPaymentInfo() {
 export function addPaymentInfo(data) {
   return serverCall.post(constants.GET_PAYMENT_API, data);
 }
+export function forgetPassword() {
+
+}

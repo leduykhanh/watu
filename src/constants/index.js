@@ -33,7 +33,9 @@ export const GET_HIGHRATINGSHOPS_API = BASE_API_URL + '?type=highratingshops';
 export const GET_NEARBYSHOPS_API = BASE_API_URL + '?type=nearbyshops';
 export const GET_PAYMENT_API = BASE_API_URL + '?type=paymentinfo';
 export const GET_CAT_API = BASE_API_URL + '?type=category';
+export const FOGET_PASSWORD_API = BASE_API_URL + '?type=forgetpwd';
 export const GET_NOTIFICATION_API = BASE_API_URL + '?type=notification&cmd=get';
+export const RATING_API = BASE_API_URL + '?type=rating&cmd=set';
 export const DEVICE_API = BASE_API_URL + '/device';
 export const SIGNUP_LINK = BASE_API_URL + '/account/signup';
 

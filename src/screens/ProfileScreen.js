@@ -31,6 +31,8 @@ var radio_props = [
 class ProfileScreen extends Component {
   state = {
     editPersonal: false,
+    changePwd: false,
+    editShipping: false,
     userObject: {
       usr_mobile: null,
       usr_fname: this.props.profile.fname ? this.props.profile.fname : '',
@@ -155,7 +157,7 @@ class ProfileScreen extends Component {
                 formHorizontal={true}
                 labelHorizontal={true}
                 buttonColor={'#000'}
-				buttonSize={10}
+				        buttonSize={6}
                 style={ProfileScreenStyle.checkbox}
               />
           <Radio />
@@ -186,14 +188,33 @@ class ProfileScreen extends Component {
           <Button onPress={this.onAddPayment.bind(this)} full small><Text bold>Add</Text></Button>
         </View>
         <View p-25 m-10 grey>
-          <Button transparent onPress={()=> this.setState({editPersonal: true})}
+          <Button transparent onPress={()=> { this.setState({editShipping: true})} }
                   style={{position: 'absolute', right: 10, top: 10, padding: 20}}>
             <Icon new-shop
               name="md-create"
             />
           </Button>
-          <Text bold fs14>Shipping bill</Text>
-          <Text fs12>12 Geylang Road</Text>
+          <Text bold fs14 >Shipping bill</Text>
+          {
+            this.state.editShipping ?
+            <View>
+              <Item login>
+                <Input style={ProfileScreenStyle.input}
+                  value={paymentObject.usr_address}
+                  onChangeText={(usr_address) => this.changePaymentAttribute('usr_address', usr_address)}
+                  secureTextEntry={true}
+                   />
+              </Item>
+              <View horizontal style={{ marginTop: 20 }}>
+                <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
+                <Text> </Text>
+                <Button onPress={() => this.setState({editShipping: false})} full small><Text bold>Cancel</Text></Button>
+              </View>
+            </View>
+            :
+            <Text fs12>12 Geylang Road</Text>
+          }
+
         </View>
       </View>
     ) ;
@@ -269,13 +290,33 @@ class ProfileScreen extends Component {
           </View>
         </View>
         <View p-25 m-10 grey>
-            <Text bold theme>Change password</Text>
+            <Text bold theme onPress={() => this.setState({changePwd: true}) }>Change password</Text>
+            {
+              this.state.changePwd ?
+              <View>
+                <Item login>
+                  <Input style={ProfileScreenStyle.input}
+                    value={userObject.usr_password}
+                    onChangeText={(usr_password) => this.changeAttribute('usr_password', usr_password)}
+                    secureTextEntry={true}
+                     />
+                </Item>
+                <View horizontal style={{ marginTop: 20 }}>
+                  <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
+                  <Text> </Text>
+                  <Button onPress={() => this.setState({changePwd: false})} full small><Text bold>Cancel</Text></Button>
+                </View>
+              </View> : null
+            }
         </View>
         <View p-25 m-10 grey>
-          <Text bold theme>Forgot password</Text>
+          <Text bold theme onPress={this.forgetPassword.bind(this)}>Forgot password</Text>
         </View>
       </View>
     );
+  }
+  forgetPassword() {
+    alert(`An email sent to ${this.props.profile.email}`)
   }
 
   render() {
