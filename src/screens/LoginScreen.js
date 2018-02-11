@@ -41,46 +41,33 @@ class LoginScreen extends Component {
     this.props.actions.register(this.state.username, this.state.password);
   }
 
-  renderLogin(){
-    return (
-      <View>
-
-        {/*<Form keyboardShouldPersistTaps={true} >*/}
-
-        <Text red fs12>{this.props.user.error} &nbsp;</Text>
-        <Text bold fs12>Email</Text>
-        <Item login error={this.props.user.error!==null && !this.state.typing} >
-          <Input value={this.state.username}
-                 onChangeText={(username) => this.setState({username,typing:true})}
-                 autoCapitalize='none'
-				 placeholder='Please enter email'
-                 />
-        </Item>
-        <Text bold fs12>Password</Text>
-        <Item login error={this.props.user.error!==null&&!this.state.typing} >
-          <Input value={this.state.password}
-                 onChangeText={(password) => this.setState({password,typing:true})}
-                 autoCapitalize='none'
-                 secureTextEntry={true}
-				 placeholder='Your password'
-			 />
-        </Item>
-
-        <View style={{ marginTop: 20 }}>
-          <Button onPress={this.onLogin.bind(this)} full small><Text bold>LOG IN</Text></Button>
-        </View>
-
-        <View style={{ marginTop: 20, justifyContent: 'flex-end'}}>
-
-          <View horizontal style={{ justifyContent: 'flex-end' }}>
-            <Text underline subtitle-inactive onPress={Actions.pop} fs12>Forgot password</Text>
-          </View>
-
-        </View>
-
-        {/*</Form>*/}
-      </View>
-    );
+  renderLogin() {
+    return <View style={LoginScreenStyle.container}>
+		<Text red fs12>{this.props.user.error} &nbsp;</Text>
+		<Text bold fs12>Email</Text>
+		<Item login error={this.props.user.error!==null && !this.state.typing}>
+  			<Input value={this.state.username}
+  			   onChangeText={(username) => this.setState({username,typing:true})}
+  			   autoCapitalize='none'
+  			   placeholder='Please enter email'
+  			   />
+  	  	</Item>
+		<Text bold fs12>Password</Text>
+  	  	<Item login error={this.props.user.error!==null&&!this.state.typing} >
+  			<Input value={this.state.password}
+  			   onChangeText={(password) => this.setState({password,typing:true})}
+  			   autoCapitalize='none'
+  			   secureTextEntry={true}
+  			   placeholder='Your password'
+  		   	/>
+  	  	</Item>
+  	  	<View style={LoginScreenStyle.buttons}>
+			<Button onPress={this.onLogin.bind(this)} full small><Text bold>LOG IN</Text></Button>
+		</View>
+  	  	<View horizontal style={LoginScreenStyle.forget_password}>
+			<Text onPress={Actions.pop} fs12 style={LoginScreenStyle.forget_password_text}>Forgot password</Text>
+	  	</View>
+	</View>
   }
 
   renderRegister(){
@@ -124,7 +111,6 @@ class LoginScreen extends Component {
           <Button onPress={this.onRegister.bind(this)} full small><Text bold>REGISTER</Text></Button>
         </View>
 
-
         {/*</Form>*/}
       </View>
     );
@@ -155,6 +141,9 @@ class LoginScreen extends Component {
             </Tab>
           </Tabs>
         </View>
+		<View>
+			<Button onPress={this.onLogin.bind(this)} full small style={LoginScreenStyle.login_with_facebook}><Text bold>Login with facebook</Text></Button>
+		</View>
       </BaseLightbox>
     );
   }

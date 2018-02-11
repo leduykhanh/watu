@@ -17,12 +17,16 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 
 import ProfileScreenStyle from '../../wat-themes/styles/ProfileScreen';
 
-const tabProps = {
-  tabBarUnderlineStyle: { backgroundColor: "rgb(249,174,24)",
-
-  },activeTextColor: 'rgb(67,72,77)'
+const tabsProps = {
+	tabBarUnderlineStyle: {
+		backgroundColor: "rgb(249,174,24)",
+    },
 };
-
+const tabProps = {
+	tabStyle: {backgroundColor: 'transparent'},
+	activeTabStyle: {backgroundColor: 'rgb(249,174,24)'},
+	activeTextStyle: {color: '#fff'}
+}
 var radio_props = [
   {label: 'Visa ', value: 'visa'},
   {label: 'Master ', value: 'master'},
@@ -140,6 +144,7 @@ class ProfileScreen extends Component {
             <Input style={ProfileScreenStyle.input}
               value={paymentObject.ucc_name}
               onChangeText={(ucc_name) => this.changePaymentAttribute('ucc_name', ucc_name)}
+			  placeholder='Your card name'
                />
           </Item>
           <Text bold fs12>Card Number</Text>
@@ -147,9 +152,10 @@ class ProfileScreen extends Component {
             <Input style={ProfileScreenStyle.input}
               value={paymentObject.ucc_num}
               onChangeText={(ucc_num) => this.changePaymentAttribute('ucc_num', ucc_num)}
+			  placeholder='Your card number'
                />
           </Item>
-          <Text bold fs12>Type of card</Text>
+          <Text bold fs12 m-b-10>Type of card</Text>
           <RadioForm
                 radio_props={radio_props}
                 initial={0}
@@ -168,6 +174,7 @@ class ProfileScreen extends Component {
                 <Input style={ProfileScreenStyle.input}
                   value={paymentObject.ucc_expire}
                   onChangeText={(ucc_expire) => this.changePaymentAttribute('ucc_expire', ucc_expire)}
+				  placeholder='Expire date'
                    />
               </Item>
             </View>
@@ -179,13 +186,14 @@ class ProfileScreen extends Component {
                 <Input style={ProfileScreenStyle.input}
                   value={paymentObject.ucc_cvc}
                   onChangeText={(ucc_cvc) => this.changePaymentAttribute('ucc_cvc', ucc_cvc)}
+				  placeholder='CVC'
                    />
               </Item>
             </View>
             <View style={{flex:1}}>
             </View>
           </View>
-          <Button onPress={this.onAddPayment.bind(this)} full small><Text bold>Add</Text></Button>
+          <Button onPress={this.onAddPayment.bind(this)} full small><Text bold>Update</Text></Button>
         </View>
         <View p-25 m-10 grey>
           <Button transparent onPress={()=> { this.setState({editShipping: true})} }
@@ -203,6 +211,7 @@ class ProfileScreen extends Component {
                   value={paymentObject.usr_address}
                   onChangeText={(usr_address) => this.changePaymentAttribute('usr_address', usr_address)}
                   secureTextEntry={true}
+
                    />
               </Item>
               <View horizontal style={{ marginTop: 20 }}>
@@ -232,6 +241,7 @@ class ProfileScreen extends Component {
               <Input style={ProfileScreenStyle.input}
                 value={userObject.usr_fname}
                 onChangeText={(usr_fname) => this.changeAttribute('usr_fname', usr_fname)}
+				placeholder='Please enter your name'
                  />
             </Item>
             <Text fs12>Phone</Text>
@@ -239,14 +249,15 @@ class ProfileScreen extends Component {
               <Input style={ProfileScreenStyle.input}
                 value={userObject.usr_mobile}
                 onChangeText={(usr_mobile) => this.changeAttribute('usr_mobile', usr_mobile)}
+				placeholder='Please enter your mobile'
                  />
             </Item>
             <Text fs12>Date of birth</Text>
             <DatePicker
-              style={{width: 200}}
+              style={{width: 200, height: 24}}
               date={userObject.usr_birthday}
               mode="date"
-              placeholder="select date"
+              placeholder="Please enter your birthday"
               format="YYYY-MM-DD"
               minDate="2016-05-01"
               maxDate="2016-06-01"
@@ -299,7 +310,8 @@ class ProfileScreen extends Component {
                     value={userObject.usr_password}
                     onChangeText={(usr_password) => this.changeAttribute('usr_password', usr_password)}
                     secureTextEntry={true}
-                     />
+					placeholder='Please enter your password'
+                    />
                 </Item>
                 <View horizontal style={{ marginTop: 20 }}>
                   <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
@@ -308,9 +320,6 @@ class ProfileScreen extends Component {
                 </View>
               </View> : null
             }
-        </View>
-        <View p-25 m-10 grey>
-          <Text bold theme onPress={this.forgetPassword.bind(this)}>Forgot password</Text>
         </View>
       </View>
     );
@@ -335,20 +344,19 @@ class ProfileScreen extends Component {
                 <Icon name="ios-log-out"/>
               </Button>
             </View>
-            <Tabs {...tabProps}>
-              <Tab heading={<TabHeading><Text small>History</Text></TabHeading>} >
+            <Tabs {...tabsProps}>
+              <Tab {...tabProps} heading='History'>
                 {this.renderHistory()}
               </Tab>
-              <Tab heading={<TabHeading><Text small>Loyality</Text></TabHeading>} >
+              <Tab {...tabProps} heading='Loyality'>
                 {this.renderLoyalty()}
               </Tab>
-                <Tab heading={<TabHeading><Text small>Payment</Text></TabHeading>} >
+              <Tab {...tabProps} heading='Payment'>
                   {this.renderPaymentInfo()}
               </Tab>
-                  <Tab heading={<TabHeading><Text small>Me</Text></TabHeading>} >
+              <Tab {...tabProps} heading='Me'>
                 {this.renderPersonalInfo() }
               </Tab>
-
             </Tabs>
 
           </Content>
