@@ -11,10 +11,11 @@
     "slug": "survis",
     "version": "0.2.0",
     "icon": "./assets/images/loading.png",
-    "loading": {
-      "backgroundImage": "./assets/images/loading.png",
-      "backgroundColor": "#222127"
-    }
+		"orientation": "portrait",
+		"primaryColor": "#fff",
+		"splash": {
+		  "image": "./assets/images/loading.png"
+		}
   },
   "name": "survis",
   "displayName": "SurVis"

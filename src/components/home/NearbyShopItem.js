@@ -22,7 +22,6 @@ const NearbyShopItem = props => {
     const distance = getDistance(latitude, longitude, props.location.latitude, props.location.longitude)
 
 	if (isfeatured) {
-		console.log(item)
 		return <TouchableOpacity onPress={() => Actions.s_detail({item})}>
 			<View horizontal style={NearbyShopItemStyle.container}>
 				<Image resizeMode='stretch' style={NearbyShopItemStyle.featured_image} source={{uri: promotion_image}}/>
