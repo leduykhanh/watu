@@ -11,6 +11,7 @@ import Image from '../common/Image';
 
 import itemHelper, {substr} from '../../utils/itemHelper';
 import HighRatingShopsStyle from '../../../wat-themes/styles/components/HighRatingShops';
+import Rating from '../common/Rating';
 
 const HighRatingShops = props => {
 	const items = props.items;
@@ -32,14 +33,7 @@ const HighRatingShops = props => {
 						<View horizontal space-between>
 							<View horizontal>
 								<View m-r-10>
-									<StarRating
-										disabled={false}
-										maxStars={5}
-										rating={totalrate}
-										starSize={15}
-										starColor={'rgb(249,174,24)'}
-										selectedStar={(rating) => console.log(rating)}
-									/>
+									<Rating totalrate={totalrate} shopid={id}/>
 								</View>
 								<Text white fs12>({totalreviews}) Reviews</Text>
 							</View>

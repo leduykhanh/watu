@@ -33,13 +33,13 @@ class FooterTabs extends Component {
             </Button>
 
             <StyleProvider style={getTheme({ iconFamily: 'Ionicons' })}>
-			<Button vertical onPress={() => Actions.replace('new_shop')}>
-			  <Icon active name="ios-podium" size={iconSize} style={getIconStyle('new_shop')}/>
-            </Button>
-			</StyleProvider>
+      			<Button vertical onPress={() => Actions.replace('new_shop')}>
+      			  <Icon active name="ios-podium" size={iconSize} style={getIconStyle('new_shop')}/>
+                  </Button>
+      			</StyleProvider>
 
             <Button vertical badge onPress={() => Actions.replace('notifications')}>
-              <Badge><Text>1</Text></Badge>
+              <Badge><Text>{this.props.notification.count}</Text></Badge>
               <Icon name="ios-notifications" size={iconSize} style={getIconStyle('notifications')}/>
             </Button>
 
@@ -58,6 +58,7 @@ function mapStateToProps(state) {
   return {
     profile: state.profile,
     device: state.device,
+    notification: state.notification,
   };
 }
 

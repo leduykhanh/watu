@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, Spinner, Icon, View, } from 'native-base'
 import { TouchableOpacity} from 'react-native'
 import PropTypes from 'prop-types'
-import StarRating from 'react-native-star-rating'
+import Rating from '../common/Rating';
 import {Actions} from "react-native-router-flux"
 import {Platform, Dimensions, PixelRatio} from "react-native"
 import {getDistance} from "../../utils/gpsHelper"
@@ -55,14 +55,7 @@ const NearbyShopItem = props => {
 				</View>
 				<View horizontal space-between style={NearbyShopItemStyle.statistic}>
 					<View>
-						<StarRating
-							disabled={false}
-							maxStars={5}
-							rating={totalrate}
-							starSize={15}
-							starColor={'rgb(249,174,24)'}
-							selectedStar={(rating) => console.log(rating)}
-						/>
+						<Rating totalrate={totalrate} shopid={item.id} />
 					</View>
 					<Text fs12>({totalreviews}) Reviews</Text>
 				</View>

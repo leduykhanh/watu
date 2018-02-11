@@ -13,13 +13,12 @@ export default initalState = {
     countries: []
   },
   profile: {
+    id: null,
     token: null,
     fname: null,
     lastName: '',
     email: '',
     avatarUrl: '',
-    subscriptions : [],
-    selectedSubscription: null,
     isProfileLoadCalled: false,
     isGettingProfile: false,
     history: {

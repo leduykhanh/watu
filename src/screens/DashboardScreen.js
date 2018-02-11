@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import {bindActionCreators} from 'redux';
 import Swiper from 'react-native-swiper';
 import StarRating from 'react-native-star-rating';
-import { ScrollView, TouchableOpacity, Dimensions, Linking, Alert, Platform } from 'react-native';
+import { RefreshControl, ListView, ScrollView, TouchableOpacity, Dimensions, Linking, Alert, Platform } from 'react-native';
 
 import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
@@ -28,6 +28,8 @@ import Image from '../components/common/Image';
 
 import itemHelper, {substr} from '../utils/itemHelper';
 import DashboardScreenStyle from '../../wat-themes/styles/screens/DashboardScreen';
+import InfiniteScroll from 'react-native-infinite-scroll';
+
 
 class DashboardScreen extends Component {
   state = {
@@ -97,17 +99,46 @@ class DashboardScreen extends Component {
 	  return <HighRatingShops items={this.props.home.highratingshops.list}/>
   }
 
-  renderNearbyShops(){
+  // renderNearbyShops(){
+  //   return (
+  //     <ScrollView containerStyle={DashboardScreenStyle.nearby_shops.container}>
+  //       {this.props.home.nearbyshops.list.map(
+  //           (item) => <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
+  //         )}
+  //       <View horizontal m-t-10 m-r-10 center-h center>
+  //         <Button small onPress={this.loadMoreNearByshops.bind(this)}><Text>Load more</Text></Button>
+  //       </View>
+  //     </ScrollView>
+  //   );
+  // }
+  renderRow(data) {
     return (
-      <ScrollView containerStyle={DashboardScreenStyle.nearby_shops.container}>
-        {this.props.home.nearbyshops.list.map(
-            (item) => <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
-          )}
-        <View horizontal m-t-10 m-r-10 center-h center>
-          <Button small onPress={this.loadMoreNearByshops.bind(this)}><Text>Load more</Text></Button>
-        </View>
-      </ScrollView>
-    );
+      <NearbyShopItem location={this.props.location} key={data.id} item={data}/>
+    )
+  }
+  // renderNearbyShops(){
+  //   return (
+  //     <InfiniteScroll
+  //       horizontal={false}
+  //       onLoadMoreAsync={this.loadMoreNearByshops.bind(this)}
+  //       distanceFromEnd={10}
+  //     >
+  //       <List
+  //         renderRow={data => this.renderRow(data)}
+  //          dataArray={this.props.home.nearbyshops.list}
+  //         canLoadMore={true}
+  //         />
+  //     </InfiniteScroll>
+  //   );
+  // }
+  renderNearbyShops() {
+    return (
+      <List
+        renderRow={data => this.renderRow(data)}
+        dataArray={this.props.home.nearbyshops.list}
+        canLoadMore={true}
+        />
+    )
   }
 
   render() {
@@ -115,13 +146,17 @@ class DashboardScreen extends Component {
     return (
       <Container>
           <Header />
-          <Content containerStyle={DashboardScreenStyle.container}>
+          <InfiniteScroll
+            horizontal={false}
+            onLoadMoreAsync={this.loadMoreNearByshops.bind(this)}
+            distanceFromEnd={10}
+          >
             {this.renderCategories()}
             {this.renderPromotions()}
             {this.renderNewShops()}
             {this.renderHighRatings()}
             {this.renderNearbyShops()}
-          </Content>
+          </InfiniteScroll>
           <Footer profile={this.props.profile}/>
       </Container>
     );
