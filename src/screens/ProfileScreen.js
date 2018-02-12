@@ -117,10 +117,25 @@ class ProfileScreen extends Component {
     this.setState({paymentObject,typing:true});
   }
 
-  onSave(){
+  onSaveProfile(){
     ProfileApi.updateProfile(this.state.userObject).then(
-      (res) => this.setState({editPersonal: false})
+      (res) => {
+		  console.log(res)
+		  this.setState({editPersonal: false})
+	  }
     )
+  }
+
+  onSaveShippingBill(){
+    //TODO
+  }
+
+  onSavePaymentInfo(){
+    //TODO
+  }
+
+  onSavePassword(){
+    //TODO
   }
 
   onAddPayment(){
@@ -219,7 +234,7 @@ class ProfileScreen extends Component {
                    />
               </Item>
               <View horizontal style={{ marginTop: 20 }}>
-                <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
+                <Button onPress={this.onSaveShippingBill.bind(this)} full small><Text bold>Save</Text></Button>
                 <Text> </Text>
                 <Button onPress={() => this.setState({editShipping: false})} full small><Text bold>Cancel</Text></Button>
               </View>
@@ -283,7 +298,7 @@ class ProfileScreen extends Component {
             />
           </View>
           <View horizontal style={{ marginTop: 20 }}>
-            <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
+            <Button onPress={this.onSaveProfile.bind(this)} full small><Text bold>Save</Text></Button>
             <Text> </Text>
             <Button onPress={() => this.setState({editPersonal: false})} full small><Text bold>Cancel</Text></Button>
           </View>
@@ -318,7 +333,7 @@ class ProfileScreen extends Component {
                     />
                 </Item>
                 <View horizontal style={{ marginTop: 20 }}>
-                  <Button onPress={this.onSave.bind(this)} full small><Text bold>Save</Text></Button>
+                  <Button onPress={this.onSavePassword.bind(this)} full small><Text bold>Save</Text></Button>
                   <Text> </Text>
                   <Button onPress={() => this.setState({changePwd: false})} full small><Text bold>Cancel</Text></Button>
                 </View>
