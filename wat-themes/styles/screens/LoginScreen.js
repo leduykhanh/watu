@@ -4,6 +4,10 @@ const width = Dimensions.get("window").width
 
 export default {
 	container: {
+		flex: 1,
+		marginLeft: 30,
+		marginRight: 30,
+		marginBottom: 15,
 	},
 	buttons: {
 		marginTop: 20,
