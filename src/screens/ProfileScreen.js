@@ -258,10 +258,9 @@ class ProfileScreen extends Component {
             </Item>
             <Text fs12>Date of birth</Text>
             <DatePicker
-              style={{width: 200, height: 24}}
               date={userObject.usr_birthday}
               mode="date"
-              placeholder="Please enter your birthday"
+              placeholder="Birthday"
               format="YYYY-MM-DD"
               minDate="2016-05-01"
               maxDate="2016-06-01"
@@ -275,9 +274,10 @@ class ProfileScreen extends Component {
                   marginLeft: 0
                 },
                 dateInput: {
-                  marginLeft: 36
+                  marginLeft: 36,
+				  height: 32,
+				  width: 200,
                 }
-                // ... You can check the source to find the other keys.
               }}
               onDateChange={(date) => {this.changeAttribute('usr_birthday', date)}}
             />
@@ -328,23 +328,19 @@ class ProfileScreen extends Component {
       </View>
     );
   }
-  forgetPassword() {
-    alert(`An email sent to ${this.props.profile.email}`)
-  }
 
   render() {
-
+	let name = this.props.profile.fname || this.props.profile.email || 'Not set'
+	let source = this.props.profile.avatar ? {uri: this.props.profile.avatar} : require('../../assets/images/default-person.jpg')
     return (
       <Container>
         <ImageBackground>
           <Header back/>
           <Content>
             <View horizontal center>
-              <Image source={require('../../assets/images/default-person.jpg')}
-                   style={ProfileScreenStyle.profileImage} />
-              <Text>{this.props.profile.fname? this.props.profile.fname: 'User 1'}</Text>
-              <Button transparent onPress={()=> this.props.userActions.logout()}
-                      style={ProfileScreenStyle.logoutIcon}>
+              <Image source={source} style={ProfileScreenStyle.profileImage} />
+              <Text>{name}</Text>
+              <Button transparent onPress={()=> this.props.userActions.logout()} style={ProfileScreenStyle.logoutIcon}>
                 <Icon name="ios-log-out"/>
               </Button>
             </View>

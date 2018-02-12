@@ -53,8 +53,6 @@ export function register(username:string, password:string, name:string) {
 
     userApi.register(username, password, name)
       .then((response) => {
-
-
         Alert.alert(
           'Account registered',
           'Please check your email to activate your account',
