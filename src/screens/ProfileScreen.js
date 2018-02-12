@@ -41,16 +41,16 @@ class ProfileScreen extends Component {
     editPersonal: false,
     changePwd: false,
     editShipping: false,
-    userObject: {
-      usr_mobile: null,
-      usr_fname: this.props.profile.fname ? this.props.profile.fname : '',
-      usr_lname: null,
-      usr_birthday: null,
-      usr_status: null,
-      usr_email: this.props.profile.email ? this.props.profile.email : '',
-      usr_password: null,
-      usr_avatar: null
-    },
+    userObject: Object.assign({
+      mobile: null,
+      fname: null,
+      lname: null,
+      birthday: null,
+      status: null,
+      email: null,
+      password: null,
+      avatar: null
+  	}, this.props.profile),
     paymentObject: {
       ucc_name: null,
       ucc_num: null,
@@ -67,10 +67,7 @@ class ProfileScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const userObject = Object.assign({}, this.state.userObject);
-    userObject.usr_fname = nextProps.profile.fname;
-    userObject.usr_email = nextProps.profile.email;
-    this.setState({userObject});
+    this.setState({userObject: Object.assign(this.state.userObject, nextProps.profile)});
   }
 
   renderHistory(){
@@ -108,19 +105,21 @@ class ProfileScreen extends Component {
   changeAttribute(attribute, value){
     const userObject = this.state.userObject;
     userObject[attribute] = value;
-    this.setState({userObject,typing:true});
+    this.setState({userObject, typing:true});
   }
 
   changePaymentAttribute(attribute, value){
     const paymentObject = this.state.paymentObject;
     paymentObject[attribute] = value;
-    this.setState({paymentObject,typing:true});
+    this.setState({paymentObject, typing:true});
   }
 
   onSaveProfile(){
     ProfileApi.updateProfile(this.state.userObject).then(
       (res) => {
-		  console.log(res)
+		  //Set state
+		  let profile = res.data.results
+		  Object.assign(this.state.userObject, profile)
 		  this.setState({editPersonal: false})
 	  }
     )
@@ -258,22 +257,22 @@ class ProfileScreen extends Component {
             <Text fs12>Name</Text>
             <Item login error={false} >
               <Input style={ProfileScreenStyle.input}
-                value={userObject.usr_fname}
-                onChangeText={(usr_fname) => this.changeAttribute('usr_fname', usr_fname)}
+                value={userObject.fname}
+                onChangeText={(fname) => this.changeAttribute('fname', fname)}
 				placeholder='Please enter your name'
                  />
             </Item>
             <Text fs12>Phone</Text>
             <Item login error={false} >
               <Input style={ProfileScreenStyle.input}
-                value={userObject.usr_mobile}
-                onChangeText={(usr_mobile) => this.changeAttribute('usr_mobile', usr_mobile)}
+                value={userObject.mobile}
+                onChangeText={(mobile) => this.changeAttribute('mobile', mobile)}
 				placeholder='Please enter your mobile'
                  />
             </Item>
             <Text fs12>Date of birth</Text>
             <DatePicker
-              date={userObject.usr_birthday}
+              date={userObject.birthday}
               mode="date"
               placeholder="Birthday"
               format="YYYY-MM-DD"
@@ -294,7 +293,7 @@ class ProfileScreen extends Component {
 				  width: 200,
                 }
               }}
-              onDateChange={(date) => {this.changeAttribute('usr_birthday', date)}}
+              onDateChange={(date) => {this.changeAttribute('birthday', date)}}
             />
           </View>
           <View horizontal style={{ marginTop: 20 }}>
@@ -315,8 +314,8 @@ class ProfileScreen extends Component {
             />
           </Button>
           <View m-t-10>
-            <Text fs12>{this.props.profile.fname? this.props.profile.fname: 'Not set'}</Text>
-            <Text fs12>{this.props.profile.email}</Text>
+            <Text fs12>{userObject.fname || 'Not set'}</Text>
+            <Text fs12>{userObject.email}</Text>
           </View>
         </View>
         <View p-25 m-10 grey>
@@ -326,8 +325,8 @@ class ProfileScreen extends Component {
               <View>
                 <Item login>
                   <Input style={ProfileScreenStyle.input}
-                    value={userObject.usr_password}
-                    onChangeText={(usr_password) => this.changeAttribute('usr_password', usr_password)}
+                    value={userObject.password}
+                    onChangeText={(password) => this.changeAttribute('password', password)}
                     secureTextEntry={true}
 					placeholder='Please enter your password'
                     />
@@ -345,8 +344,9 @@ class ProfileScreen extends Component {
   }
 
   render() {
-	let name = this.props.profile.fname || this.props.profile.email || 'Not set'
-	let source = this.props.profile.avatar ? {uri: this.props.profile.avatar} : require('../../assets/images/default-person.jpg')
+	let userObject = this.state.userObject
+	let name = userObject.fname || userObject.email || 'Not set'
+	let source = userObject.avatar ? {uri: userObject.avatar} : require('../../assets/images/default-person.jpg')
     return (
       <Container>
         <ImageBackground>
