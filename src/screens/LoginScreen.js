@@ -15,12 +15,12 @@ import LoginScreenStyle from '../../wat-themes/styles/screens/LoginScreen'
 class LoginScreen extends Component {
 
 	state = {
-		username: 'leejangkoo+1@gmail.com',
-		password: '123456',
-		name: 'Jangkoo',
-		// username: null,
-		// password: null,
-		// name: null,
+		// username: 'leejangkoo+1@gmail.com',
+		// password: '123456',
+		// name: 'Jangkoo',
+		username: null,
+		password: null,
+		name: null,
 	}
 
 	componentDidMount() {
