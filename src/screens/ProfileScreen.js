@@ -240,7 +240,7 @@ class ProfileScreen extends Component {
               </View>
             </View>
             :
-            <Text fs12>12 Geylang Road</Text>
+            <Text fs12>Not set</Text>
           }
 
         </View>
