@@ -23,9 +23,13 @@ const tabsProps = {
     },
 };
 const tabProps = {
-	tabStyle: {backgroundColor: 'transparent'},
-	activeTabStyle: {backgroundColor: 'rgb(249,174,24)'},
-	activeTextStyle: {color: '#fff'}
+	tabStyle: {backgroundColor: 'transparent',},
+	activeTabStyle: {
+		// backgroundColor: 'rgb(249,174,24)',
+	},
+	activeTextStyle: {
+		// color: '#fff'
+	},
 }
 var radio_props = [
   {label: 'Visa ', value: 'visa'},
