@@ -63,7 +63,7 @@ class LoginScreen extends Component {
 			<Item login error={this.props.user.error!==null && !this.state.typing}>
 				<Input value={this.state.username}
 				 onChangeText={(username) => this.setState({username,typing:true})}
-				 autoCapitalize='none'
+				 autoCapitalize='none' autoCorrect={false}
 				 placeholder='Please enter email'
 				 />
 			</Item>
@@ -93,7 +93,7 @@ class LoginScreen extends Component {
 		    <Item login error={this.props.user.error!==null && !this.state.typing} >
 		      <Input value={this.state.username}
 		             onChangeText={(username) => this.setState({username,typing:true})}
-		             autoCapitalize='none'
+		             autoCapitalize='none' autoCorrect={false}
 					 placeholder='Please enter email'
 		      />
 		    </Item>
