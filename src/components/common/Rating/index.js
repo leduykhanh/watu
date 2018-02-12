@@ -12,9 +12,6 @@ class Rating extends React.Component {
   }
   render(){
     const {itemid, shopid, reviewid, profile : { id }} = this.props;
-    const data = {
-      usr_id: id
-    };
     return (
       <StarRating
     		disabled={false}
@@ -23,10 +20,13 @@ class Rating extends React.Component {
     		starSize={15}
     		starColor={'rgb(249,174,24)'}
     		selectedStar={(rating) => {
-          data.usr_rating = rating;
+		  let data = {
+	        usr_id: id,
+			usr_rating: rating
+	      }
           RatingApi.rate(data, itemid, shopid, reviewid)
           .then(
-            response => alert('rating submmited')
+            res => console.log('Rating submitted', data, res)
           )
         }}
     	/>

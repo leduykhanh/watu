@@ -14,39 +14,27 @@ class FooterTabs extends Component {
     if(this.props.profile.id) Actions.profile();
     else Actions.login();
   }
-
+  getIconStyle = (n) => ({color: Actions.currentScene.toString() === n && iconColorActive || iconColor})
+  renderTab(screen, icon, text, badge, onPress) {
+	if (badge) return <Button vertical badge onPress={onPress || (e => Actions.replace(screen))}>
+  	  <Badge><Text>{badge}</Text></Badge>
+  	  <Icon name={icon} size={iconSize} style={this.getIconStyle(screen)}/>
+  	  <Text footer>{text}</Text>
+  	</Button>
+  	return <Button vertical onPress={onPress || (e => Actions.replace(screen))}>
+  	  <Icon name={icon} size={iconSize} style={this.getIconStyle(screen)}/>
+  	  <Text footer>{text}</Text>
+  	</Button>
+  }
   render() {
-
-    let currentScene =  Actions.currentScene.toString();
-	const getIconStyle = n => ({color: currentScene === n && iconColorActive || iconColor})
-
     return (
-        <Footer>
+        <Footer style={FooterStyle.container}>
           <FooterTab>
-
-            <Button active vertical onPress={() => {Actions.replace('dashboard')}} >
-              <Icon  name="home" size={iconSize} style={getIconStyle('dashboard')}/>
-            </Button>
-
-            <Button vertical onPress={() => Actions.replace('promotions')} >
-              <Icon name="flower" size={iconSize} style={getIconStyle('promotions')}/>
-            </Button>
-
-            <StyleProvider style={getTheme({ iconFamily: 'Ionicons' })}>
-      			<Button vertical onPress={() => Actions.replace('new_shop')}>
-      			  <Icon active name="ios-archive" size={iconSize} style={getIconStyle('new_shop')}/>
-                  </Button>
-      			</StyleProvider>
-
-            <Button vertical badge onPress={() => Actions.replace('notifications')}>
-              <Badge><Text>{this.props.notification.count}</Text></Badge>
-              <Icon name="ios-notifications" size={iconSize} style={getIconStyle('notifications')}/>
-            </Button>
-
-            <Button onPress={this.profileAction.bind(this)} vertical active={false}>
-              <Icon name="md-person" size={iconSize} style={getIconStyle('profile')}/>
-            </Button>
-
+			  {this.renderTab('dashboard', 'home', 'Home', false)}
+			  {this.renderTab('promotions', 'flower', 'Hot', false)}
+			  {this.renderTab('new_shop', 'ios-pin-outline', 'Nearby', false)}
+			  {this.renderTab('notifications', 'ios-notifications', 'Msg', this.props.notification.count)}
+			  {this.renderTab('profile', 'md-person', 'Me', false, this.profileAction.bind(this))}
           </FooterTab>
         </Footer>
 

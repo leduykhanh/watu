@@ -4,8 +4,8 @@ import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Ti
 import { Actions } from 'react-native-router-flux';
 import {bindActionCreators} from 'redux';
 import Swiper from 'react-native-swiper';
-import StarRating from 'react-native-star-rating';
 import { RefreshControl, ListView, ScrollView, TouchableOpacity, Dimensions, Linking, Alert, Platform } from 'react-native';
+import InfiniteScroll from 'react-native-infinite-scroll';
 
 import { BigButton, ImageBackground } from '../components/common';
 import Footer from '../components/layout/Footer';
@@ -28,13 +28,11 @@ import Image from '../components/common/Image';
 
 import itemHelper, {substr} from '../utils/itemHelper';
 import DashboardScreenStyle from '../../wat-themes/styles/screens/DashboardScreen';
-import InfiniteScroll from 'react-native-infinite-scroll';
-
 
 class DashboardScreen extends Component {
   state = {
       highratingshopsPage: 0,
-      nearbyshopsPage: 0,
+      autopage: 0,
   }
 
   loadMoreHighratingshops() {
@@ -45,12 +43,12 @@ class DashboardScreen extends Component {
     this.props.actions.getHighRatingsShop(highratingshopsPage + 1)
   }
 
-  loadMoreNearByshops() {
-    const { nearbyshopsPage } = this.state;
+  loadMoreShops() {
+    const { autopage } = this.state;
     this.setState({
-      nearbyshopsPage: nearbyshopsPage + 1
+      autopage: autopage + 1
     });
-    this.props.actions.getNearbyShop(null, null, nearbyshopsPage + 1)
+    this.props.actions.getNearbyShop(null, null, autopage + 1)
   }
 
   async componentDidMount() {
@@ -99,18 +97,6 @@ class DashboardScreen extends Component {
 	  return <HighRatingShops items={this.props.home.highratingshops.list}/>
   }
 
-  // renderNearbyShops(){
-  //   return (
-  //     <ScrollView containerStyle={DashboardScreenStyle.nearby_shops.container}>
-  //       {this.props.home.nearbyshops.list.map(
-  //           (item) => <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
-  //         )}
-  //       <View horizontal m-t-10 m-r-10 center-h center>
-  //         <Button small onPress={this.loadMoreNearByshops.bind(this)}><Text>Load more</Text></Button>
-  //       </View>
-  //     </ScrollView>
-  //   );
-  // }
   renderRow(data) {
     return (
       <NearbyShopItem location={this.props.location} key={data.id} item={data}/>
@@ -120,7 +106,7 @@ class DashboardScreen extends Component {
   //   return (
   //     <InfiniteScroll
   //       horizontal={false}
-  //       onLoadMoreAsync={this.loadMoreNearByshops.bind(this)}
+  //       onLoadMoreAsync={this.loadMoreShops.bind(this)}
   //       distanceFromEnd={10}
   //     >
   //       <List
@@ -142,13 +128,12 @@ class DashboardScreen extends Component {
   }
 
   render() {
-    // console.log(this.props.home.categories.list);
     return (
       <Container>
           <Header />
           <InfiniteScroll
             horizontal={false}
-            onLoadMoreAsync={this.loadMoreNearByshops.bind(this)}
+            onLoadMoreAsync={this.loadMoreShops.bind(this)}
             distanceFromEnd={10}
           >
             {this.renderCategories()}

@@ -1,6 +1,6 @@
 import { Platform, Dimensions, PixelRatio } from "react-native"
 
-const height = 240
+const height = 180
 const width = Dimensions.get("window").width
 
 export default {
@@ -16,7 +16,7 @@ export default {
 		width, height,
 	},
 	info: {
-		backgroundColor: "rgba(0, 0, 0, 0.6)", top: 170, padding: 10,
+		backgroundColor: "rgba(0, 0, 0, 0.6)", top: 110, padding: 10,
 		position: 'absolute', alignSelf: 'stretch', width
 	},
 }

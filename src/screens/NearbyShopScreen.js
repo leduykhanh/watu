@@ -8,21 +8,21 @@ import InfiniteScroll from 'react-native-infinite-scroll'
 
 import Footer from '../components/layout/Footer'
 import Header from '../components/layout/Header'
-import PromotionItem from '../components/home/PromotionItem'
+import NearbyShopItem from '../components/home/NearbyShopItem'
 import * as actions from '../actions/homeActions'
 import * as locationActions from '../actions/locationActions'
 
-class PromotionsScreen extends Component {
+class NearbyShopScreen extends Component {
 	state = {
 		autopage: 0,
 	}
 	renderRow(item) {
-		return <PromotionItem location={this.props.location} key={item.id} item={item}/>
+		return <NearbyShopItem location={this.props.location} key={item.id} item={item}/>
 	}
 	renderList() {
 		return <List
 	 	 renderRow={data => this.renderRow(data)}
-	 	 dataArray={this.props.home.promotions.list}
+	 	 dataArray={this.props.home.nearbyshops.list}
 	 	 canLoadMore={true}
 	 	 />
 	}
@@ -56,17 +56,17 @@ function mapStateToProps(state) {
     device: state.device,
     home: state.home,
     location: state.location,
-  };
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions : bindActionCreators(actions, dispatch),
     locationActions : bindActionCreators(locationActions, dispatch),
-  };
+  }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PromotionsScreen);
+)(NearbyShopScreen)

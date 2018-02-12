@@ -127,6 +127,9 @@ export default (variables = variable) => {
     '.theme' : {
       color: variables.toolbarDefaultBg
     },
+	'.footer' : {
+	  fontSize: 7
+    },
     backgroundColor:'transparent'
   };
 

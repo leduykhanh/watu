@@ -5,7 +5,6 @@ const fontSize = 30
 
 export default {
 	container: {
-      paddingBottom: 100
     },
 
     text: {
@@ -22,7 +21,7 @@ export default {
 	},
 	nearby_shops: {
 		container: {
-			width: 142, height: 542, flex:1, backgroundColor: 'grey'
+			flex:1, backgroundColor: 'grey'
 		}
 	},
 }

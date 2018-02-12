@@ -7,7 +7,7 @@ import ShopDetailScreen from './ShopDetailScreen';
 import CartScreen from './CartScreen';
 import ItemDetailScreen from './ItemDetailScreen';
 import SearchScreen from './SearchScreen';
-import NewShopsScreen from './NewShopsScreen';
+import NearbyShopScreen from './NearbyShopScreen';
 import PromotionsScreen from './PromotionsScreen';
 import NotificationScreen from './NotificationScreen';
 import LuckyDrawScreen from './LuckyDrawScreen';
@@ -22,7 +22,7 @@ export {
   CartScreen,
   ItemDetailScreen,
   SearchScreen,
-  NewShopsScreen,
+  NearbyShopScreen,
   PromotionsScreen,
   NotificationScreen,
   LuckyDrawScreen,
