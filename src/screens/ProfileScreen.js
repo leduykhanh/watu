@@ -7,7 +7,7 @@ import DatePicker from 'react-native-datepicker'
 import {StyleSheet, Image, ScrollView} from 'react-native';
 import Footer from '../components/layout/Footer';
 import Header from '../components/layout/Header';
-import { ImageBackground } from '../components/common';
+import { ImageBackground, LoadingButton } from '../components/common';
 import HistoryItem from '../components/profile/HistoryItem';
 import LoyaltyItem from '../components/profile/LoyaltyItem';
 import * as actions from "../actions/profileActions";
@@ -41,6 +41,7 @@ class ProfileScreen extends Component {
     editPersonal: false,
     changePwd: false,
     editShipping: false,
+    savingProfile: false,
     userObject: Object.assign({
       mobile: null,
       fname: null,
@@ -115,12 +116,13 @@ class ProfileScreen extends Component {
   }
 
   onSaveProfile(){
+    this.setState({savingProfile: true});
     ProfileApi.updateProfile(this.state.userObject).then(
       (res) => {
 		  //Set state
 		  let profile = res.data.results
 		  Object.assign(this.state.userObject, profile)
-		  this.setState({editPersonal: false})
+		  this.setState({editPersonal: false, savingProfile: false})
 	  }
     )
   }
@@ -297,7 +299,7 @@ class ProfileScreen extends Component {
             />
           </View>
           <View horizontal style={{ marginTop: 20 }}>
-            <Button onPress={this.onSaveProfile.bind(this)} full small><Text bold>Save</Text></Button>
+            <LoadingButton isLoading={this.state.savingProfile} onPress={this.onSaveProfile.bind(this)} full small text='Save'/>
             <Text> </Text>
             <Button onPress={() => this.setState({editPersonal: false})} full small><Text bold>Cancel</Text></Button>
           </View>
