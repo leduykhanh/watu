@@ -7,7 +7,7 @@ import {StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native'
 import * as actions from '../actions/userActions'
 
 import styles from './styles'
-import {BaseLightbox, GradientButton, InputView} from '../components/common'
+import {BaseLightbox, LoadingButton, InputView} from '../components/common'
 
 import itemHelper, {substr} from '../utils/itemHelper'
 import LoginScreenStyle from '../../wat-themes/styles/screens/LoginScreen'
@@ -88,7 +88,7 @@ class LoginScreen extends Component {
 	renderRegister(){
 		return (
 		  <View style={LoginScreenStyle.form}>
-		    <Text red small style={styles.heavyMargin}>{this.props.user.error}</Text>
+		    <Text red small style={styles.heavyMargin}>{this.props.user.registerError}</Text>
 		    <Text bold fs12>Email</Text>
 		    <Item login error={this.props.user.error!==null && !this.state.typing} >
 		      <Input value={this.state.username}
@@ -112,7 +112,7 @@ class LoginScreen extends Component {
 		      <Text fs12>I agree with terms and conditions</Text>
 		    </View>
 		    <View style={{ marginTop: 20 }}>
-		      <Button onPress={this.onRegister.bind(this)} full small><Text bold>REGISTER</Text></Button>
+		      <LoadingButton isLoading={this.props.user.isRegistering} text='REGISTER' onPress={this.onRegister.bind(this)} full small />
 		    </View>
 		  </View>
 		)

@@ -8,10 +8,10 @@ const LoadingButton = props => {
       <Spinner />
     );
   }
-  
+
   return (
-    <Button {...props}>
-      <Text>{props.text}</Text>
+    <Button {...props} full small>
+      <Text bold>{props.text}</Text>
     </Button>
   );
 };

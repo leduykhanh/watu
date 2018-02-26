@@ -29,7 +29,6 @@ export function userReducer(state = constant.initalState.user, action) {
         token: action.payload,
         isLoggingIn: false,
         error: null,
-        refreshTime: moment().add(constant.REFRESH_TOKEN_LIFESPAN, 's')
       };
     }
 
@@ -45,7 +44,6 @@ export function userReducer(state = constant.initalState.user, action) {
     case constant.STATE_LOGOUT_SUCCESS: {
       return {
         ...constant.initalState.user,
-        oidc: null,
         refreshTime: null
       };
     }
@@ -70,6 +68,20 @@ export function userReducer(state = constant.initalState.user, action) {
       return {
         ...state,
         isRefreshingToken: false
+      }
+    }
+
+    case constant.STATE_REGISTER_PENDING: {
+      return {
+        ...state,
+        isRegistering: true
+      }
+    }
+
+    case constant.STATE_REGISTER_SUCCESS: {
+      return {
+        ...state,
+        isRegistering: false
       }
     }
 

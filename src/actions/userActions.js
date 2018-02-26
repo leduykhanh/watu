@@ -19,8 +19,6 @@ export function login(username:string, password:string) {
       .then((response) => {
 
         const  token = (response.data.results.token);
-        // const token = 'UDgwU0hJSW9CZlQ2VmVGaXJ5R296cXVRS1B2Z1c2bXg0SDB4dU5mbDRPOD0=';
-        // setProfile({profile:{token}});
         serverCall.defaults.headers['token'] =  token;
         dispatch({
           type: constants.STATE_LOGIN_SUCCESS,
@@ -53,6 +51,9 @@ export function register(username:string, password:string, name:string) {
 
     userApi.register(username, password, name)
       .then((response) => {
+        dispatch({
+          type: constants.STATE_REGISTER_SUCCESS
+        });
         Alert.alert(
           'Account registered',
           'Please check your email to activate your account',

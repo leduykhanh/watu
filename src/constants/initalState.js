@@ -5,8 +5,9 @@ export default initalState = {
     oidc: null,
     isLoggingIn: false,
     error: null,
+    registerError: null,
     refreshTime: null,
-    isRefreshingToken: false
+    isRegistering: false
   },
   lookup: {
     currencies: [],
