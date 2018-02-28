@@ -41,8 +41,8 @@ if (Platform.OS === 'android') {
   styles.sceneHeaderStyle.marginLeft = -20;
 }
 
-const Routes = () => {
-
+const Routes = (props) => {
+  const { store } = props;
   return (
     <Router>
       <Overlay>
@@ -59,7 +59,7 @@ const Routes = () => {
           <Scene key="s_detail" hideNavBar component={ShopDetailScreen} />
           <Scene key="i_detail" hideNavBar component={ItemDetailScreen} />
           <Scene key="cart" hideNavBar component={CartScreen} />
-          <Scene key="search" hideNavBar component={SearchScreen} />
+          <Scene onExit={() => store.dispatch({type: 'UPDATE_SEARCH',payload: ''})} key="search" hideNavBar component={SearchScreen} />
           <Scene key="new_shop" hideNavBar component={NearbyShopScreen} />
           <Scene key="promotions" hideNavBar component={PromotionsScreen} />
           <Scene key="notifications" hideNavBar component={NotificationScreen} />

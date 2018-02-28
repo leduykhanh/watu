@@ -126,7 +126,7 @@ export default class App extends React.Component {
     return (
       <StyleProvider style={getTheme()}>
           <Provider store={this.state.store}>
-            <Routes/>
+            <Routes store={this.state.store}/>
           </Provider>
       </StyleProvider>
     );
