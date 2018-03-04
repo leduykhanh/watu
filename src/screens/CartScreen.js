@@ -40,31 +40,6 @@ class CartScreen extends Component {
     this.props.actions.clearCart();
   }
 
-  placeOrder(){
-    const payload = [];
-    if(!this.props.profile.id) return Actions.login();
-
-    this.props.cart.items.map(
-      item => {
-        payload.push({itemid: item.id, shopid: item.shop_id, qty: item.qty})
-      }
-    );
-    PlaceOrderApi.placeorder({items: payload}).then(
-      response => {
-        console.log(response.data)
-        Alert.alert(
-          'Order created',
-          'Confirm?',
-          [
-            {text: 'OK', onPress: () => {this.clearCart();Actions.replace('dashboard')}},
-          ],
-          { cancelable: false }
-        );
-      }
-    ).catch( error => console.log(error))
-
-  }
-
   render() {
     let total = 0;
     return (
@@ -104,18 +79,21 @@ class CartScreen extends Component {
           }
 
           </Content>
-
-          <Footer>
-            <FooterTab>
-              <View m-l-10 center horizontal>
-                <Text bold fs12>Total Amount  </Text>
-                <Text theme fs18>${total.toFixed(2)}</Text>
-              </View>
-              <View m-r-10 center center-h>
-                <Button small onPress={this.placeOrder.bind(this)}><Text>CHECK OUT</Text></Button>
-              </View>
-            </FooterTab>
-          </Footer>
+          {
+            this.props.cart.count > 0 ?
+            <Footer>
+              <FooterTab>
+                <View m-l-10 center horizontal>
+                  <Text bold fs12>Total Amount  </Text>
+                  <Text theme fs18>${total.toFixed(2)}</Text>
+                </View>
+                <View m-r-10 center center-h>
+                  <Button small onPress={Actions.checkout_shipping}><Text>CHECK OUT</Text></Button>
+                </View>
+              </FooterTab>
+            </Footer>
+            : null
+        }
 
       </Container>
     );

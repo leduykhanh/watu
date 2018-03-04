@@ -11,6 +11,9 @@ import NearbyShopScreen from './NearbyShopScreen';
 import PromotionsScreen from './PromotionsScreen';
 import NotificationScreen from './NotificationScreen';
 import LuckyDrawScreen from './LuckyDrawScreen';
+import CheckoutShippingScreens from './CheckoutShippingScreens';
+import CheckoutPaymentScreen from './CheckoutPaymentScreen';
+import CheckoutConfirmScreen from './CheckoutConfirmScreen';
 
 export {
   LoginScreen,
@@ -26,4 +29,7 @@ export {
   PromotionsScreen,
   NotificationScreen,
   LuckyDrawScreen,
+  CheckoutShippingScreens,
+  CheckoutPaymentScreen,
+  CheckoutConfirmScreen
 };

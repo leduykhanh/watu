@@ -14,7 +14,8 @@ import MessageBar from '../components/MessageBar';
 
 import {
   LoginScreen, DashboardScreen, ProfileScreen, QrScanScreen, PromotionDetailScreen, ShopDetailScreen, CartScreen,
-  ItemDetailScreen, SearchScreen, NearbyShopScreen, PromotionsScreen, NotificationScreen, LuckyDrawScreen
+  ItemDetailScreen, SearchScreen, NearbyShopScreen, PromotionsScreen, NotificationScreen, LuckyDrawScreen,
+  CheckoutShippingScreens, CheckoutPaymentScreen, CheckoutConfirmScreen
  } from '../screens';
 
 
@@ -59,6 +60,9 @@ const Routes = (props) => {
           <Scene key="s_detail" hideNavBar component={ShopDetailScreen} />
           <Scene key="i_detail" hideNavBar component={ItemDetailScreen} />
           <Scene key="cart" hideNavBar component={CartScreen} />
+          <Scene key="checkout_shipping" hideNavBar component={CheckoutShippingScreens} />
+          <Scene key="checkout_payment" hideNavBar component={CheckoutPaymentScreen} />
+          <Scene key="checkout_confirm" hideNavBar component={CheckoutConfirmScreen} />
           <Scene onExit={() => store.dispatch({type: 'UPDATE_SEARCH',payload: ''})} key="search" hideNavBar component={SearchScreen} />
           <Scene key="new_shop" hideNavBar component={NearbyShopScreen} />
           <Scene key="promotions" hideNavBar component={PromotionsScreen} />
