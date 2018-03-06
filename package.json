@@ -44,6 +44,7 @@
     "react-native-loading-placeholder": "0.0.5",
     "react-native-masked-input": "^1.0.3",
     "react-native-message-bar": "^2.0.4",
+    "react-native-onesignal": "^3.1.1",
     "react-native-pagination": "^1.2.8",
     "react-native-pie": "^0.4.0",
     "react-native-popup-dialog": "^0.9.38",
