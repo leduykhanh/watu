@@ -3,10 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>9G5J6M6FE8.org.reactjs.native.example.wat</string>
-	<key>keychain-access-groups</key>
-	<array>
-		<string>9G5J6M6FE8.org.reactjs.native.example.wat</string>
-	</array>
+	<string>83TU27P44N.com.survis.v1</string>
+	<key>aps-environment</key>
+	<string>development</string>
 </dict>
 </plist>
