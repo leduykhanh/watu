@@ -8,9 +8,14 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <RCTOneSignal.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
+@property (strong, nonatomic) RCTOneSignal* oneSignal;
 
 @end

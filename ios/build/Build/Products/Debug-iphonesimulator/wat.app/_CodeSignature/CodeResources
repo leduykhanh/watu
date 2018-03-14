@@ -16,6 +16,10 @@
 		<data>
 		QZrcvnS7qREj2zspB3XjYvIS8+U=
 		</data>
+		<key>Feather.ttf</key>
+		<data>
+		AiHzjp4t0CEzVCcxbr7QXuznQyM=
+		</data>
 		<key>FontAwesome.ttf</key>
 		<data>
 		E7HqtlqYPHpzvHmXxHnWaUP3xss=
@@ -67,11 +71,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		OtYzQsrZsiK25D9o4izWAjmZHd4=
+		ab25+SOAr5ReJv05zZP1i7SuOmk=
 		</data>
 		<key>Ionicons.ttf</key>
 		<data>
 		D3lWcE/mG0nEHqGiIFEkD3AKK0Q=
+		</data>
+		<key>MaterialCommunityIcons.ttf</key>
+		<data>
+		qsYaaEAlreJgw0cwmpP4T0ugnSE=
 		</data>
 		<key>MaterialIcons.ttf</key>
 		<data>
@@ -79,7 +87,7 @@
 		</data>
 		<key>Octicons.ttf</key>
 		<data>
-		XF4wYBlFFw56fAqk3ggmUtwnNQI=
+		43wPh5FmspBv+00q8kJl9AIbRBc=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -91,19 +99,19 @@
 		</data>
 		<key>PlugIns/watTests.xctest.dSYM/Contents/Resources/DWARF/watTests</key>
 		<data>
-		NFhFhV9QTKYmizO1qiw4uRCY/lU=
+		GxfhUwANnNQVIizIg2Vwy+1jyns=
 		</data>
 		<key>PlugIns/watTests.xctest/Info.plist</key>
 		<data>
-		Z+wJ9U8EI976aKIvJj3KErvnZT4=
+		SDEy4o7DLnuPb679O5Z78VI+kvs=
 		</data>
 		<key>PlugIns/watTests.xctest/_CodeSignature/CodeResources</key>
 		<data>
-		Vgfou9a0tw7Bcen0Nf8MN7J2/LQ=
+		xDQRL4xoIedqnhBPSgpgbrqXli8=
 		</data>
 		<key>PlugIns/watTests.xctest/watTests</key>
 		<data>
-		CJHlGA8CY6SvDZmNL5NrHvXG71c=
+		0fA9eg3YYUvclkOAxAUitpkQyB0=
 		</data>
 		<key>Roboto.ttf</key>
 		<data>
@@ -163,6 +171,17 @@
 			<key>hash2</key>
 			<data>
 			J9GohnZmGjoiaVdpUtb3ANoFZEvAMFUR3iO3D3HKVDY=
+			</data>
+		</dict>
+		<key>Feather.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AiHzjp4t0CEzVCcxbr7QXuznQyM=
+			</data>
+			<key>hash2</key>
+			<data>
+			sse5lKY8HPl6gBWzGq4njD9mmOqvSOduEWdc+dNdrHY=
 			</data>
 		</dict>
 		<key>FontAwesome.ttf</key>
@@ -299,6 +318,17 @@
 			u0dnmwuuuEgbf1HGitM65aUmc2y1CxcXzGD/a2X5CKM=
 			</data>
 		</dict>
+		<key>MaterialCommunityIcons.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qsYaaEAlreJgw0cwmpP4T0ugnSE=
+			</data>
+			<key>hash2</key>
+			<data>
+			q9ds9276vErG0wDQjAHtvPQadpxhrJDfPQ8UGJDid2g=
+			</data>
+		</dict>
 		<key>MaterialIcons.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -314,11 +344,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XF4wYBlFFw56fAqk3ggmUtwnNQI=
+			43wPh5FmspBv+00q8kJl9AIbRBc=
 			</data>
 			<key>hash2</key>
 			<data>
-			sw1aNDI0CqTWoFwAl/BoysSnzVrJqfoRSzi3y6/KJCM=
+			IDC914RgQrcm7e1pDO4UjqugvZKBAae3xLoaLztAPMg=
 			</data>
 		</dict>
 		<key>PlugIns/watTests.xctest.dSYM/Contents/Info.plist</key>
@@ -336,44 +366,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NFhFhV9QTKYmizO1qiw4uRCY/lU=
+			GxfhUwANnNQVIizIg2Vwy+1jyns=
 			</data>
 			<key>hash2</key>
 			<data>
-			bDVZ/RMRCxUE5x1Pv/ufQ3O/kGuMywzI66z9mAVl72A=
+			Lo5pwa5gb9IWt9phk7/DYFCwXCSvLXPXO+hqkj2dkvI=
 			</data>
 		</dict>
 		<key>PlugIns/watTests.xctest/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Z+wJ9U8EI976aKIvJj3KErvnZT4=
+			SDEy4o7DLnuPb679O5Z78VI+kvs=
 			</data>
 			<key>hash2</key>
 			<data>
-			XK793eAn2jkgQ/9GGQn09mUNPne55eZUClhjTbVd1X0=
+			s1hWNAa5R/lNkfTTg6Qm9JSuNuBRn6QJHS9b3c+BoCc=
 			</data>
 		</dict>
 		<key>PlugIns/watTests.xctest/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Vgfou9a0tw7Bcen0Nf8MN7J2/LQ=
+			xDQRL4xoIedqnhBPSgpgbrqXli8=
 			</data>
 			<key>hash2</key>
 			<data>
-			et9JaTy1AOQsdpWd5qZhDVV5JSzzcMRZ19/hjbVy1/E=
+			s8zoUgxs1pQrEKWuf3Qucn7NGivbr0d9DMYJFic18uQ=
 			</data>
 		</dict>
 		<key>PlugIns/watTests.xctest/watTests</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CJHlGA8CY6SvDZmNL5NrHvXG71c=
+			0fA9eg3YYUvclkOAxAUitpkQyB0=
 			</data>
 			<key>hash2</key>
 			<data>
-			rzZTenp/zqhiIuXCSL/aoTit3kcX0g1PJUILK+adYlY=
+			ARxho5myykB2DUuotFBo1xt1HoVFBNOw6VxWetnYpPs=
 			</data>
 		</dict>
 		<key>Roboto.ttf</key>

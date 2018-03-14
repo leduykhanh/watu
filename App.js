@@ -15,6 +15,7 @@ import { getProfile, setProfile } from './src/utils/persistStore';
 import { requestToken } from './src/utils/deviceTokenHelper';
 // import VersionCheck from 'react-native-version-check';
 import {GradientButton} from  './src/components/common';
+import OneSignal from 'react-native-onesignal';
 
 const platform = Platform.OS;
 
@@ -32,8 +33,12 @@ export default class App extends React.Component {
     };
   }
 
-  async componentWillMount() {
+  onReceived(notification) {
+        console.log("Notification received: ", notification);
+    }
 
+  async componentWillMount() {
+    OneSignal.addEventListener('received', this.onReceived);
     if (typeof Expo !== 'undefined') {
       await Expo.Font.loadAsync({
         Roboto: require("native-base/Fonts/Roboto.ttf"),

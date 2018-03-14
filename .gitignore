@@ -1,2 +1,7 @@
 node_modules
+.git
 .DS_Store
+.idea
+.expo
+.package-lock.json
+yarn.lock
