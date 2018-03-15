@@ -19,12 +19,12 @@ serverCall
   .interceptors
   .response
   .use(response => {
-    return response
+    return response;
   }, error => {
-    const {code, message} = error.response.data
+    const {code, message} = error.response.data;
     //console.log('HTTP Error Response', error, error.response)
     if (error.response.status === 400) {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
     // if (error.response.status === 401 || error.response.status === 403) {
     //   Actions.popTo('login')
@@ -32,12 +32,12 @@ serverCall
     // }
     serverCall
       .defaults
-      .headers['token'] = ''
+      .headers['token'] = '';
 
-    AsyncStorage.clear()
-    setOidc(null)
+    AsyncStorage.clear();
+    setOidc(null);
 
-    Actions.replace('login', {error: true})
+    Actions.replace('login', {error: true});
 
     // MessageBarManager.showAlert({
     //   position: 'bottom',
@@ -47,8 +47,7 @@ serverCall
     //   duration: 3000,
     //   alertType: 'error'
     // })
-
-  })
+  });
 export function addLocation(long, lat) {
   serverCall
     .interceptors
@@ -58,11 +57,11 @@ export function addLocation(long, lat) {
       config.params = {
         longtitude: long,
         latitude: lat
-      }
-      return config
+      };
+      return config;
     }, function(error) {
       // Do something with request error
-      return Promise.reject(error)
+      return Promise.reject(error);
     })
 }
 export default serverCall

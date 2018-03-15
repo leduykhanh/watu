@@ -28,26 +28,26 @@ import {mapStateToProps, mapDispatchToProps} from '../utils/reduxHelper'
 class QrScanScreen extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
-    this.state.permissions = new Map()
-    this.askForPermissions = 'CAMERA'
+    this.state = {};
+    this.state.permissions = new Map();
+    this.askForPermissions = 'CAMERA';
   }
   async componentDidMount() {
     // let askForPermissions = [].concat(this.askForPermissions)
     // for(let i = 0i < askForPermissions.lengthi++) {
     // 	await this.requestPermission(askForPermissions[i])
     // }
-    this.setState(this.state)
+    this.setState(this.state);
   }
   async requestPermission(p) {
-    const {status} = await Permissions.askAsync(Permissions[p])
+    const {status} = await Permissions.askAsync(Permissions[p]);
     this
       .state
       .permissions
-      .set(p, status === 'granted')
+      .set(p, status === 'granted');
   }
   onBarCodeRead(e) {
-    Actions.replace('luckydraw')
+    Actions.replace('luckydraw');
   }
 
   renderContent() {

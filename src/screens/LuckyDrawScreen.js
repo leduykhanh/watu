@@ -44,22 +44,22 @@ class LuckyDrawScreen extends Component {
     PrizeApi
       .getPrize()
       .then(response => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data || [];
         if (results.length > 0) 
-          this.setState({items: results})
-      })
-      .catch(err => console.log(err))
-    }
+          this.setState({items: results});
+        }
+      )
+      .catch(err => console.log(err));
+  }
 
   submitPrize() {
-    Actions.reset('lightbox')
+    Actions.reset('lightbox');
   }
 
   render() {
-    const grid = []
-    const {items} = this.state
+    const grid = [];
+    const {items} = this.state;
     for (let i = 0 i < items.length i = i + 2) {
       grid.push(<View horizontal="horizontal">
         <LuckyDrawItem selected={this.state.selectedId == items[i].id} onPress={() => this.setState({selectedId: items[i].id})} item={items[i]}/>

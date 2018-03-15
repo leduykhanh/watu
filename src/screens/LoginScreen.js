@@ -42,7 +42,7 @@ class LoginScreen extends Component {
 
   componentDidMount() {
     if (this.props.error !== true && this.props.user.oidc && this.props.user.oidc.access_token) {
-      Actions.reset('drawer')
+      Actions.reset('drawer');
     }
   }
 
@@ -51,7 +51,7 @@ class LoginScreen extends Component {
     this
       .props
       .actions
-      .login(this.state.username, this.state.password)
+      .login(this.state.username, this.state.password);
   }
 
   onRegister() {
@@ -59,7 +59,7 @@ class LoginScreen extends Component {
     this
       .props
       .actions
-      .register(this.state.username, this.state.password)
+      .register(this.state.username, this.state.password);
   }
 
   loginFB() {
@@ -164,8 +164,8 @@ class LoginScreen extends Component {
   render() {
     const isLoading = this.props.user.isLoggingIn
       ? this.props.user.isLoggingIn
-      : false
-    const {container, topView} = loginStyles
+      : false;
+    const {container, topView} = loginStyles;
     return (<BaseLightbox style={{
         flex: 1,
         height: 300

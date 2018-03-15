@@ -39,54 +39,40 @@ const tabProps = {
 }
 
 class CheckoutConfirmScreen extends Component {
-
   state = {
     checkingOut: false
   }
-
   componentWillMount() {}
-
   clearCart() {
     this
       .props
       .actions
-      .clearCart()
+      .clearCart();
   }
-
   placeOrder() {
-    const payload = []
+    const payload = [];
     if (!this.props.profile.id) 
-      return Actions.login()
-
+      return Actions.login();
     this
       .props
       .cart
       .items
       .map(item => {
         payload.push({itemid: item.id, shopid: item.shop_id, qty: item.qty})
-      })
-    this.setState({checkingOut: true})
+      });
+    this.setState({checkingOut: true});
     PlaceOrderApi
       .placeorder({items: payload})
       .then(response => {
-        this.setState({checkingOut: false})
-        this.clearCart()
-        Actions.replace('dashboard')
-        // Alert.alert(
-        //   'Order created',
-        //   'Confirm?',
-        //   [
-        //     {text: 'OK', onPress: () => {this.clearCart()Actions.replace('dashboard')}},
-        //   ],
-        //   { cancelable: false }
-        // )
+        this.setState({checkingOut: false});
+        this.clearCart();
+        Actions.replace('dashboard');
       })
-      .catch(error => console.log(error))
-
-    }
+      .catch(error => console.log(error));
+  }
 
   render() {
-    let total = 0
+    let total = 0;
     return (<Container>
       <Header back="back"/>
       <Content>
@@ -101,7 +87,7 @@ class CheckoutConfirmScreen extends Component {
               .cart
               .items
               .map((item, index) => {
-                total += item.price * item.qty
+                total += item.price * item.qty;
                 return (<View horizontal="horizontal" center="center" m-t-5="m-t-5" style={{
                     backgroundColor: index % 2 == 0
                       ? 'rgb(247, 247,247)'

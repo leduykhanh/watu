@@ -47,17 +47,17 @@ class PromotionDetailScreen extends Component {
     api
       .getPromotionDetail(this.props.item.id)
       .then(response => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data || [];
         if (results.length > 0) 
-          this.setState({item: results[0]})
-      })
-      .catch((error) => console.log(error))
-    }
+          this.setState({item: results[0]});
+        }
+      )
+      .catch((error) => console.log(error));
+  }
 
   render() {
-    const item = this.state.item
+    const item = this.state.item;
     if (item == null) 
       return <Text>Loading</Text>
     const {
@@ -78,8 +78,8 @@ class PromotionDetailScreen extends Component {
       smalltitle,
       address,
       items
-    } = itemHelper(item)
-    const topTexts = toptext.split(" ")
+    } = itemHelper(item);
+    const topTexts = toptext.split(" ");
     return (<Container>
       <ImageBackground>
         <Header back="back"/>

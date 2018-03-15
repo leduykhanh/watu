@@ -38,7 +38,7 @@ if (Platform.OS === 'android') {
 }
 
 const Routes = (props) => {
-  const {store} = props
+  const {store} = props;
   return (<Router>
     <Overlay>
       <Stack key='root'>

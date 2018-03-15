@@ -7,9 +7,8 @@ export function getFullProfile() {
     profileApi
       .getFullProfile()
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data;
         dispatch({type: constants.STATE_GET_PROFILE_SUCCESS, payload: results})
       })
       .catch((error) => {
@@ -24,9 +23,8 @@ export function getHistory() {
     profileApi
       .getHistory()
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data;
         dispatch({type: constants.STATE_HISTORY_SUCCESS, payload: results})
       })
       .catch((error) => {
@@ -41,11 +39,9 @@ export function addPaymentInfo(data) {
     profileApi
       .addPaymentInfo(data)
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data;
         dispatch({type: constants.STATE_PAYMENTINFO_SUCCESS, payload: results})
-
       })
       .catch((error) => {
         dispatch({type: constants.STATE_PAYMENTINFO_ERROR, error})
@@ -59,9 +55,8 @@ export function getLoyalty() {
     profileApi
       .getLoyalty()
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data;
         dispatch({type: constants.STATE_LOYALTY_SUCCESS, payload: results})
       })
       .catch((error) => {

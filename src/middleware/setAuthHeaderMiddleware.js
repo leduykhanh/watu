@@ -8,31 +8,31 @@ let refreshingToken = false
 
 export default setAuthenticationHeader = store => next => action => {
   if (refreshingToken === true) {
-    next(action)
+    next(action);
   }
-  const {user} = store.getState(), {oidc} = user
+  const {user} = store.getState(), {oidc} = user;
   if (oidc && oidc.access_token && !serverCall.defaults.headers['Authorization']) {
     serverCall
       .defaults
-      .headers['Authorization'] = 'Bearer ' + oidc.access_token
+      .headers['Authorization'] = 'Bearer ' + oidc.access_token;
   }
   if (oidc && user.isRefreshingToken === false && moment().diff(user.refreshTime, 's') > -1) {
-    refreshTokenCall(store.dispatch, oidc.refresh_token)
+    refreshTokenCall(store.dispatch, oidc.refresh_token);
   }
-  next(action)
+  next(action);
 }
 
 function refreshTokenCall(dispatch, refresh_token : string) {
-  refreshingToken = true
-  dispatch({type: constants.STATE_REFRESH_PENDING})
+  refreshingToken = true;
+  dispatch({type: constants.STATE_REFRESH_PENDING});
   refreshToken(refresh_token)
     .then(response => {
-      setOidc(response.data)
-      dispatch({type: constants.STATE_REFRESH_SUCCESS, payload: response.data})
-      refreshingToken = false
+      setOidc(response.data);
+      dispatch({type: constants.STATE_REFRESH_SUCCESS, payload: response.data});
+      refreshingToken = false;
     })
     .catch(error => {
-      refreshingToken = false
-      dispatch({type: constants.STATE_REFRESH_ERROR, error})
-    })
-  }
+      refreshingToken = false;
+      dispatch({type: constants.STATE_REFRESH_ERROR, error});
+    });
+}
