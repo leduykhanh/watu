@@ -13,7 +13,7 @@ export function mapStateToProps(state) {
   }
 }
 export function mapDispatchToProps(o) {
-  const {actions, locationActions, cartActions, userActions} = o
+  const {actions, locationActions, cartActions, userActions} = o || {}
   return function(dispatch) {
     const rs = {
       dispatch

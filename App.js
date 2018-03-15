@@ -81,12 +81,11 @@ export default class App extends Component {
     if (profile && profile.token) {
       serverCall
         .defaults
-        .headers['token'] = profile
-        .token
-        this
+        .headers['token'] = profile.token;
+      this
         .state
         .store
-        .dispatch({type: constants.STATE_GET_PROFILE_SUCCESS, payload: profile})
+        .dispatch({type: constants.STATE_GET_PROFILE_SUCCESS, payload: profile});
     }
   }
 
