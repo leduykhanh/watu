@@ -43,7 +43,7 @@ export default initalState = {
     token: null,
     deviceId: null
   },
-  location: { latitude:0, longitude:0 },
+  location: { latitude:0, longtitude:0 },
   home: {
     categories: {
       list: [],

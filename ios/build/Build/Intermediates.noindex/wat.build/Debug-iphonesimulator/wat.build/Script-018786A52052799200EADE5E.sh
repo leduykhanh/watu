@@ -1,2 +1,0 @@
-#!/bin/sh
-./Fabric.framework/run b683698b6de7e2b236765cb2d9cb1c92256b8bef d9dbd65ac38c0b1bb8e6803f2ad7cee3cd98187ebd6a5f885a08108657ccf272

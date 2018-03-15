@@ -1,57 +1,61 @@
-import {Alert, Linking, Platform} from "react-native";
+import {Alert, Linking, Platform} from "react-native"
 
 export function getDistance(lat1, lon1, lat2, lon2, unit = 'N') {
-	var radlat1 = Math.PI * lat1/180
-	var radlat2 = Math.PI * lat2/180
-	var theta = lon1-lon2
-	var radtheta = Math.PI * theta/180
-	var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-	dist = Math.acos(dist)
-	dist = dist * 180/Math.PI
-	dist = dist * 60 * 1.1515
-	if (unit=="K") { dist = dist * 1.609344 }
-	if (unit=="N") { dist = dist * 0.8684 }
-	return dist.toFixed(1)
+  var radlat1 = Math.PI * lat1 / 180
+  var radlat2 = Math.PI * lat2 / 180
+  var theta = lon1 - lon2
+  var radtheta = Math.PI * theta / 180
+  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta)
+  dist = Math.acos(dist)
+  dist = dist * 180 / Math.PI
+  dist = dist * 60 * 1.1515
+  if (unit == "K") {
+    dist = dist * 1.609344
+  }
+  if (unit == "N") {
+    dist = dist * 0.8684
+  }
+  return dist.toFixed(1)
 }
 
 openExternalApp = (url) => {
-  Linking.canOpenURL(url).then(supported => {
-    if (supported) {
-      Linking.openURL(url);
-    } else {
-      Alert.alert(
-        'ERROR',
-        'Unable to open: ' + url,
-        [
-          {text: 'OK'},
-        ]
-      );
-    }
-  });
+  Linking
+    .canOpenURL(url)
+    .then(supported => {
+      if (supported) {
+        Linking.openURL(url)
+      } else {
+        Alert.alert('ERROR', 'Unable to open: ' + url, [
+          {
+            text: 'OK'
+          }
+        ])
+      }
+    })
 }
 
 export default openGps = (lat, lng) => {
-  const scheme = Platform.OS === 'ios' ? 'maps:0,0?q=' : 'geo:0,0?q=:';
-  const latLng = `${lat},${lng}`;
-  const label = 'Wat';
-  const url = Platform.OS === 'ios' ? `${scheme}${label}@${latLng}` : `${scheme}${latLng}(${label})`;
+  const scheme = Platform.OS === 'ios'
+    ? 'maps:0,0?q='
+    : 'geo:0,0?q=:'
+  const latLng = `${lat},${lng}`
+  const label = 'SurVis'
+  const url = Platform.OS === 'ios'
+    ? `${scheme}${label}@${latLng}`
+    : `${scheme}${latLng}(${label})`
   openExternalApp(url)
 }
 
-export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-  var R = 6371; // Radius of the earth in km
-  var dLat = deg2rad(lat2-lat1);  // deg2rad below
-  var dLon = deg2rad(lon2-lon1);
-  var a =
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon/2) * Math.sin(dLon/2)
-  ;
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  var d = R * c; // Distance in km
-  return Math.floor(d);
+export function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  var R = 6371 // Radius of the earth in km
+  var dLat = deg2rad(lat2 - lat1) // deg2rad below
+  var dLon = deg2rad(lon2 - lon1)
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  var d = R * c // Distance in km
+  return Math.floor(d)
 }
 
 function deg2rad(deg) {
-  return deg * (Math.PI/180)
+  return deg * (Math.PI / 180)
 }

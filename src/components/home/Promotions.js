@@ -10,7 +10,7 @@ import openGps from "../../utils/gpsHelper"
 import Image from '../common/Image'
 
 import itemHelper, {substr} from '../../utils/itemHelper'
-import PromotionsStyle from '../../../wat-themes/styles/components/Promotions'
+import PromotionsStyle from '../../../survis-themes/styles/components/Promotions'
 
 import PromotionItem from './PromotionItem'
 
