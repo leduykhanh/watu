@@ -11,6 +11,6 @@ export function getPrize() {
       })
       .catch((error) => {
         dispatch({type: constants.STATE_LUCKYDRAW_ERROR, error})
-      })
-    }
+      });
+  }
 }

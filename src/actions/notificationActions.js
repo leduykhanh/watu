@@ -11,6 +11,6 @@ export function getNotification() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_NOTIFICATION_ERROR, error})
-      })
-    }
+      });
+  }
 }

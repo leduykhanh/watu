@@ -11,8 +11,8 @@ export function getPromotions() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_PROMOTION_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
 export function getNewshops() {
@@ -25,8 +25,8 @@ export function getNewshops() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_NEWSHOP_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
 export function getCategories() {
@@ -39,8 +39,8 @@ export function getCategories() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_CAT_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
 export function getHighRatingsShop() {
@@ -53,8 +53,8 @@ export function getHighRatingsShop() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_HIGHRATINGSHOPS_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
 export function getNearbyShop(params) {
@@ -67,6 +67,6 @@ export function getNearbyShop(params) {
       })
       .catch((error) => {
         dispatch({type: constants.GET_NEARBYSHOPS_FAILED, error})
-      })
-    }
+      });
+  }
 }

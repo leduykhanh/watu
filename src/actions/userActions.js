@@ -29,8 +29,8 @@ export function login(username : string, password : string) {
             message: `Invalid Username or Password`
           }
         })
-      })
-    }
+      });
+  }
 }
 
 export function register(username : string, password : string, name : string) {
