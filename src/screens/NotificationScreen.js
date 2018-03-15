@@ -42,7 +42,7 @@ class NotificationScreen extends Component {
     this
       .props
       .actions
-      .getNotification()
+      .getNotification();
   }
   render() {
     return (<Container>

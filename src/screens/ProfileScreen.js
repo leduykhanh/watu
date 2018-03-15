@@ -91,17 +91,17 @@ class ProfileScreen extends Component {
     this
       .props
       .actions
-      .getHistory()
+      .getHistory();
     this
       .props
       .actions
-      .getLoyalty()
+      .getLoyalty();
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       userObject: Object.assign(this.state.userObject, nextProps.profile)
-    })
+    });
   }
 
   renderHistory() {
@@ -131,29 +131,26 @@ class ProfileScreen extends Component {
   }
 
   changeAttribute(attribute, value) {
-    const userObject = this.state.userObject
-    userObject[attribute] = value
-    this.setState({userObject, typing: true})
+    const userObject = this.state.userObject;
+    userObject[attribute] = value;
+    this.setState({userObject, typing: true});
   }
 
   changePaymentAttribute(attribute, value) {
-    const paymentObject = this.state.paymentObject
-    paymentObject[attribute] = value
-    this.setState({paymentObject, typing: true})
+    const paymentObject = this.state.paymentObject;
+    paymentObject[attribute] = value;
+    this.setState({paymentObject, typing: true});
   }
 
   onSaveProfile() {
-    this.setState({savingProfile: true})
+    this.setState({savingProfile: true});
     ProfileApi
       .updateProfile(this.state.userObject)
       .then((res) => {
         //Set state
-        let profile = res
-          .data
-          .results
-          Object
-          .assign(this.state.userObject, profile)
-        this.setState({editPersonal: false, savingProfile: false})
+        let profile = res.data.results;
+        Object.assign(this.state.userObject, profile);
+        this.setState({editPersonal: false, savingProfile: false});
       })
   }
 
@@ -173,7 +170,7 @@ class ProfileScreen extends Component {
     this
       .props
       .actions
-      .addPaymentInfo(this.state.paymentObject)
+      .addPaymentInfo(this.state.paymentObject);
   }
 
   renderSingleCard() {
@@ -185,7 +182,7 @@ class ProfileScreen extends Component {
   }
 
   renderPaymentInfo() {
-    const {paymentObject} = this.state
+    const {paymentObject} = this.state;
     return (<View>
       {this.renderSingleCard()}
       <View p-25="p-25" m-10="m-10" grey="grey">
@@ -272,7 +269,7 @@ class ProfileScreen extends Component {
   }
 
   renderPersonalInfo() {
-    const userObject = this.state.userObject
+    const userObject = this.state.userObject;
     if (this.state.editPersonal) 
       return (<View m-10="m-10" p-25="p-25" grey="grey">
         <Text fs12="fs12" bold="bold">Profile</Text>
@@ -359,13 +356,13 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    let userObject = this.state.userObject
-    let name = userObject.fname || userObject.email || 'Not set'
+    let userObject = this.state.userObject;
+    let name = userObject.fname || userObject.email || 'Not set';
     let source = userObject.avatar
       ? {
         uri: userObject.avatar
       }
-      : require('../../assets/images/default-person.jpg')
+      : require('../../assets/images/default-person.jpg');
     return (<Container>
       <ImageBackground>
         <Header back="back"/>

@@ -27,11 +27,11 @@ export default class Screen extends Component {
         this
           .props
           .locationActions
-          .updateLocation({latitude, longitude})
+          .updateLocation({latitude, longitude});
       }, (error) => this.setState({error: error.message}), {
         enableHighAccuracy: true,
         timeout: 20000,
         maximumAge: 1000
-      })
+      });
   }
 }

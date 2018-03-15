@@ -50,32 +50,34 @@ class ShopDetailScreen extends Component {
     api
       .getShopDetail(this.props.item.id)
       .then(response => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data || [];
         if (results.length > 0) 
-          this.setState({item: results[0]})
-      })
-      .catch((error) => console.log(error))api
+          this.setState({item: results[0]});
+        }
+      )
+      .catch((error) => console.log(error));
+    api
       .getShopItems(this.props.item.id)
       .then(response => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data || [];
         if (results.length > 0) 
-          this.setState({items: results})
-      })
-      .catch((error) => console.log(error))api
+          this.setState({items: results});
+        }
+      )
+      .catch((error) => console.log(error));
+    api
       .getReviews({shop_id: this.props.item.id})
       .then(response => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data || [];
         if (results.length > 0) 
-          this.setState({reviews: results})
-      })
-      .catch((error) => console.log(error))
-    }
+          this.setState({reviews: results});
+        }
+      )
+      .catch((error) => console.log(error));
+  }
 
   renderReviews() {
     return (<View p-25="p-25" grey="grey">
@@ -93,7 +95,7 @@ class ShopDetailScreen extends Component {
   }
 
   render() {
-    const item = this.state.item
+    const item = this.state.item;
     if (item == null) 
       return <Text>Loading</Text>
     const {

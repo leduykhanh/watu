@@ -53,30 +53,30 @@ class ItemDetailScreen extends Component {
     api
       .getItemDetail(this.props.item.id)
       .then(response => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data || [];
         if (results.length > 0) 
-          this.setState({item: results[0], loading: false})
-      })
-      .catch((error) => console.log(error))api
+          this.setState({item: results[0], loading: false});
+        }
+      )
+      .catch((error) => console.log(error));
+    api
       .getReviews({item_id: this.props.item.id})
       .then(response => {
-        const {data: {
-            results
-          }} = response
+        const {data} = response || {};
+        const {results} = data || [];
         if (results.length > 0) 
-          this.setState({reviews: results})
-      })
-      .catch((error) => console.log(error))
-    }
-
+          this.setState({reviews: results});
+        }
+      )
+      .catch((error) => console.log(error));
+  }
   addToCart() {
     this
       .props
       .cartActions
-      .addToCart(this.props.item)
-    Actions.cart()
+      .addToCart(this.props.item);
+    Actions.cart();
   }
   renderReviews() {
     return (<View p-25="p-25" grey="grey">
@@ -94,15 +94,14 @@ class ItemDetailScreen extends Component {
   }
 
   render() {
-    const item = this.state.item
-    const shop = this.props.shop
+    const item = this.state.item;
+    const shop = this.props.shop;
     if (item == null || shop == null) 
       return <Text>Loading</Text>
-    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item
-    const {name, price, description, image, totalrate} = itemHelper(item)
+    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item;
+    const {name, price, description, image, totalrate} = itemHelper(item);
 
     return (<Container>
-
       <ImageBackground>
         <Header back="back"/>
         <Content>
@@ -129,7 +128,6 @@ class ItemDetailScreen extends Component {
             <Text fs12="fs12">{description}</Text>
           </View>
           {this.renderReviews()}
-
         </Content>
         <Footer>
           <FooterTab>

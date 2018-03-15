@@ -52,18 +52,16 @@ class SearchScreen extends Component {
   }
 
   loadMoreNearByshops() {
-    const {nearbyshopsPage} = this
-      .state
-      this
-      .setState({
-        nearbyshopsPage: nearbyshopsPage + 1
-      })
+    const {nearbyshopsPage} = this.state;
+    this.setState({
+      nearbyshopsPage: nearbyshopsPage + 1
+    });
     this
       .props
       .actions
       .getNearbyShop({
         page: nearbyshopsPage + 1
-      })
+      });
   }
 
   render() {

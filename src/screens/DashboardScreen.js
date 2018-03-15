@@ -56,71 +56,64 @@ class DashboardScreen extends Component {
   }
 
   loadMoreHighratingshops() {
-    const {highratingshopsPage} = this
-      .state
-      this
-      .setState({
-        highratingshopsPage: highratingshopsPage + 1
-      })
+    const {highratingshopsPage} = this.state;
+    this.setState({
+      highratingshopsPage: highratingshopsPage + 1
+    });
     this
       .props
       .actions
-      .getHighRatingsShop(highratingshopsPage + 1)
+      .getHighRatingsShop(highratingshopsPage + 1);
   }
 
   loadMoreShops() {
-    const {autopage} = this
-      .state
-      this
-      .setState({
-        autopage: autopage + 1
-      })
+    const {autopage} = this.state;
+    this.setState({
+      autopage: autopage + 1
+    });
     this
       .props
       .actions
       .getNearbyShop({
         page: autopage + 1
-      })
+      });
   }
 
   async componentDidMount() {
-    const {highratingshopsPage} = this
-      .state
-      this
-      .props
-      .actions
-      .getCategories()
+    const {highratingshopsPage} = this.state;
     this
       .props
       .actions
-      .getPromotions()
+      .getCategories();
     this
       .props
       .actions
-      .getNewshops()
+      .getPromotions();
     this
       .props
       .actions
-      .getHighRatingsShop(highratingshopsPage)
+      .getNewshops();
     this
       .props
       .actions
-      .getNearbyShop()
+      .getHighRatingsShop(highratingshopsPage);
+    this
+      .props
+      .actions
+      .getNearbyShop();
     navigator
       .geolocation
       .getCurrentPosition((position) => {
-        const {latitude, longitude} = position
-          .coords
-          this
+        const {latitude, longitude} = position.coords;
+        this
           .props
           .locationActions
-          .updateLocation({latitude, longitude})
+          .updateLocation({latitude, longitude});
       }, (error) => this.setState({error: error.message}), {
         enableHighAccuracy: true,
         timeout: 20000,
         maximumAge: 1000
       },)
-
   }
 
   renderCategories() {
@@ -173,7 +166,6 @@ class DashboardScreen extends Component {
       <Footer profile={this.props.profile}/>
     </Container>)
   }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps({actions, locationActions}))(DashboardScreen)

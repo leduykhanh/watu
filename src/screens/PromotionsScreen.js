@@ -45,18 +45,16 @@ class PromotionsScreen extends Component {
     return <List renderRow={data => this.renderRow(data)} dataArray={this.props.home.promotions.list} canLoadMore={true}/>
   }
   loadMoreShops() {
-    const {autopage} = this
-      .state
-      this
-      .setState({
-        autopage: autopage + 1
-      })
+    const {autopage} = this.state;
+    this.setState({
+      autopage: autopage + 1
+    });
     this
       .props
       .actions
       .getNearbyShop({
         page: autopage + 1
-      })
+      });
   }
   render() {
     return <Container>

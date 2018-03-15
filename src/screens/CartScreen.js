@@ -38,35 +38,30 @@ const tabProps = {
 }
 
 class CartScreen extends Component {
-
   componentWillMount() {}
-
   add(id) {
     this
       .props
       .actions
-      .addItem(id)
+      .addItem(id);
   }
-
   remove(id) {
     this
       .props
       .actions
-      .removeItem(id)
+      .removeItem(id);
   }
-
   delete(id) {
     this
       .props
       .actions
-      .deleteItem(id)
+      .deleteItem(id);
   }
-
   clearCart() {
     this
       .props
       .actions
-      .clearCart()
+      .clearCart();
   }
 
   render() {
@@ -94,7 +89,7 @@ class CartScreen extends Component {
             .cart
             .items
             .map((item, index) => {
-              total += item.price * item.qty
+              total += item.price * item.qty;
               return (<View horizontal="horizontal" center="center" m-t-5="m-t-5" style={{
                   backgroundColor: index % 2 == 0
                     ? 'rgb(247, 247,247)'
@@ -128,7 +123,6 @@ class CartScreen extends Component {
               </View>)
             })
         }
-
       </Content>
       {
         this.props.cart.count > 0
@@ -148,7 +142,6 @@ class CartScreen extends Component {
             </Footer>
           : null
       }
-
     </Container>)
   }
 }
