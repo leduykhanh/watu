@@ -7,12 +7,12 @@ import Image from '../common/Image';
 import Rating from '../common/Rating';
 
 import itemHelper, {substr} from '../../utils/itemHelper'
-import ShopSummaryStyle from '../../../wat-themes/styles/components/ShopSummary'
+import ShopSummaryStyle from '../../../survis-themes/styles/components/ShopSummary'
 
 const ShopSummary = props => {
   const item = props.item
   const {
-	  id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+	  id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
 	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 	  address
   } = itemHelper(item)
@@ -32,7 +32,7 @@ const ShopSummary = props => {
 	  <Text theme fs12 onPress={props.openReview}>({totalreviews}) Reviews</Text>
 	  <View horizontal>
 		<Icon new-shop name="ios-send" />
-		<Text theme fs12 theme onPress={() => openGps(latitude, longitude)}>Get direction</Text>
+		<Text theme fs12 theme onPress={() => openGps(latitude, longtitude)}>Get direction</Text>
 	  </View>
 	</View>
   </View>

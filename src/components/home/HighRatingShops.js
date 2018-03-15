@@ -10,7 +10,7 @@ import openGps from "../../utils/gpsHelper";
 import Image from '../common/Image';
 
 import itemHelper, {substr} from '../../utils/itemHelper';
-import HighRatingShopsStyle from '../../../wat-themes/styles/components/HighRatingShops';
+import HighRatingShopsStyle from '../../../survis-themes/styles/components/HighRatingShops';
 import Rating from '../common/Rating';
 
 const HighRatingShops = props => {
@@ -19,7 +19,7 @@ const HighRatingShops = props => {
 		<Swiper autoplay height={HighRatingShopsStyle.container.height} showsPagination={false} loop>
 		{items.map(item => {
 			const {
-				id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+				id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
 				toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 				address
 		    } = itemHelper(item);
@@ -39,7 +39,7 @@ const HighRatingShops = props => {
 							</View>
 							<View horizontal>
 								<Icon new-shop name="ios-send" />
-								<Text white fs12 theme onPress={() => openGps(latitude, longitude)}>Get direction</Text>
+								<Text white fs12 theme onPress={() => openGps(latitude, longtitude)}>Get direction</Text>
 							</View>
 						</View>
 					</View>

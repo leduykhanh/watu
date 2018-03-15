@@ -1,5 +1,12 @@
-import * as constants from '../constants';
-import serverCall from '../utils/serverCall';
-export function rate(data, itemid = null, shopid= null, reviewid=null) {
-  return serverCall.post(`${constants.RATING_API}&itemid=${itemid}&shopid=${shopid}&reviewid=${reviewid}`, data);
+import * as constants from '../constants'
+import serverCall from '../utils/serverCall'
+import {query, url} from '../utils/urlHelper'
+
+export function rate(data, itemid = '', shopid = '', reviewid = '') {
+  const query = query({
+    itemid, //
+    shopid,
+    reviewid
+  })
+  return serverCall.post(url(constants.RATING_API, query), data)
 }

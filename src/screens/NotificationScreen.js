@@ -1,61 +1,67 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import { Container, View, Content, Form, Item, Input, Spinner, Label, Button, Title, Text, H2, Tabs, Tab,
-  TabHeading, Icon, FooterTab } from 'native-base';
-import {Alert, Image, ScrollView} from 'react-native';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {
+  Container,
+  View,
+  Content,
+  Form,
+  Item,
+  Input,
+  Spinner,
+  Label,
+  Button,
+  Title,
+  Text,
+  H2,
+  Tabs,
+  Tab,
+  TabHeading,
+  Icon,
+  FooterTab
+} from 'native-base'
+import {Alert, Image, ScrollView} from 'react-native'
+import {Actions} from "react-native-router-flux"
 
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
-import { ImageBackground } from '../components/common';
-import * as actions from "../actions/notificationActions";
-import * as PlaceOrderApi from "../api/PlaceOrderApi";
-import {Actions} from "react-native-router-flux";
-import NotificationItem from '../components/notification/NotificationItem';
+import * as PlaceOrderApi from "../api/PlaceOrderApi"
+import * as actions from "../actions/notificationActions"
+import Header from '../components/layout/Header'
+import Footer from '../components/layout/Footer'
+import {ImageBackground} from '../components/common'
+import NotificationItem from '../components/notification/NotificationItem'
+import {mapStateToProps, mapDispatchToProps} from '../utils/reduxHelper'
 
 const tabProps = {
-  tabBarUnderlineStyle: { backgroundColor: "rgb(249,174,24)",
-
-  },activeTextColor: 'rgb(67,72,77)'
-};
+  tabBarUnderlineStyle: {
+    backgroundColor: "rgb(249,174,24)"
+  },
+  activeTextColor: 'rgb(67,72,77)'
+}
 
 class NotificationScreen extends Component {
   componentWillMount() {
-    this.props.actions.getNotification();
+    this
+      .props
+      .actions
+      .getNotification()
   }
   render() {
-    return (
-      <Container>
-          <Header />
-          <Content>
-            <View horizotal grey p-16>
-              <Text bold fs16>Notifications</Text>
-            </View>
-            {
-              this.props.notification.items.map(
-                item => <NotificationItem item={item} />
-              )
-            }
-          </Content>
-          <Footer />
-      </Container>
-    )
+    return (<Container>
+      <Header/>
+      <Content>
+        <View horizotal="horizotal" grey="grey" p-16="p-16">
+          <Text bold="bold" fs16="fs16">Notifications</Text>
+        </View>
+        {
+          this
+            .props
+            .notification
+            .items
+            .map(item => <NotificationItem item={item}/>)
+        }
+      </Content>
+      <Footer/>
+    </Container>)
   }
 }
-function mapStateToProps(state) {
-  return {
-    notification: state.notification,
-    profile: state.profile
-  };
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions : bindActionCreators(actions, dispatch)
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NotificationScreen);
+export default connect(mapStateToProps, mapDispatchToProps({actions}))(NotificationScreen)

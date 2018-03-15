@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import Image from '../common/Image';
 
 import itemHelper, {substr} from '../../utils/itemHelper';
-import HistoryItemStyle from '../../../wat-themes/styles/components/HistoryItem'
+import HistoryItemStyle from '../../../survis-themes/styles/components/HistoryItem'
 
 const HistoryItem = props => {
   const item = props.item;
   const {
-	id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+	id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
 	toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 	address, orderdate
   } = itemHelper(item);

@@ -4,5 +4,6 @@ ios/build
 .DS_Store
 .idea
 .expo
-.package-lock.json
+package-lock.json
 yarn.lock
+Podfile.lock

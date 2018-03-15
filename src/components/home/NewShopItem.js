@@ -7,16 +7,16 @@ import { getDistance } from '../../utils/gpsHelper';
 import Image from '../common/Image';
 
 import itemHelper, {substr} from '../../utils/itemHelper';
-import NewShopItemStyle from '../../../wat-themes/styles/components/NewShopItem';
+import NewShopItemStyle from '../../../survis-themes/styles/components/NewShopItem';
 
 const NewShopItem = props => {
 	const item = props.item;
     const {
-		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+		id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
 		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 		address
     } = itemHelper(item);
-    const distance = getDistance(latitude, longitude, props.location.latitude, props.location.longitude);
+    const distance = getDistance(latitude, longtitude, props.location.latitude, props.location.longtitude);
     return <TouchableOpacity onPress={() => Actions.s_detail({item})}>
    	 <View style={NewShopItemStyle.container}>
    		 <Image style={NewShopItemStyle.image} source={{uri: image}}/>
