@@ -31,7 +31,7 @@ import {
   CheckoutConfirmScreen
 } from '../screens'
 
-import RoutesStyle from '../../survis-themes/styles/screens/Routes'
+import RoutesStyle from '../../survis-themes/styles/Routes'
 
 if (Platform.OS === 'android') {
   RoutesStyle.sceneHeaderStyle.marginLeft = -20
