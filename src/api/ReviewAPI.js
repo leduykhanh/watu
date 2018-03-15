@@ -2,10 +2,10 @@ import * as constants from '../constants'
 import serverCall from '../utils/serverCall'
 import {query, url} from '../utils/urlHelper'
 
-export function getReviews(shop_id = '', item_id = '') {
+export function getReviews(params) {
   const query = query({
-    shop_id, //
-    item_id
+    ...params,
+    cmd: 'get'
   })
   return serverCall.get(url(constants.GET_REVIEW_API, query))
 }

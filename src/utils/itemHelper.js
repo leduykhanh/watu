@@ -10,7 +10,7 @@ export default normalize = (item) => {
     totalrate: parseFloat(item.totalrate) || 0,
     totalreviews: parseInt(item.totalreviews) || 0,
     latitude: parseFloat(item.latitude) || 0,
-    longtitude: parseFloat(item.longtitude) || 0,
+    longitude: parseFloat(item.longitude || item.longtitude) || 0,
     toptext_color: item.toptext_color || 'white',
     toptext_fontsize: item.toptext_fontsize || 12,
     toptext: item.toptext || '',

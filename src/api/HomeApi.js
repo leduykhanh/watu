@@ -23,7 +23,7 @@ export function getNearbyShop(params) {
     catid: '',
     page: '',
     latitude: '',
-    longtitude: ''
+    longitude: ''
   }, ...params || {})
   return serverCall.get(url(constants.GET_NEARBYSHOPS_API, query))
 }

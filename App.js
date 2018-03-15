@@ -1,11 +1,6 @@
 import React, {Component} from 'react'
 import {AsyncStorage, Platform, Linking, Image} from 'react-native'
 import {Provider} from 'react-redux'
-import configureStore from './src/store/configureStore'
-import {getLookupData} from './src/actions/lookupActions'
-
-import Routes from './src/routes'
-import getTheme from './survis-themes/components'
 import {
   StyleProvider,
   Spinner,
@@ -14,15 +9,20 @@ import {
   Container,
   Content
 } from 'native-base'
+// import VersionCheck from 'react-native-version-check'
+import OneSignal from 'react-native-onesignal'
 
+import configureStore from './src/store/configureStore'
+import {getLookupData} from './src/actions/lookupActions'
+
+import getTheme from './survis-themes/components'
+import Routes from './src/routes'
 import {refreshToken} from './src/api/UserApi'
 import * as constants from './src/constants'
+import {GradientButton} from './src/components/common'
 import serverCall from './src/utils/serverCall'
 import {getProfile, setProfile} from './src/utils/persistStore'
 import {requestToken} from './src/utils/deviceTokenHelper'
-// import VersionCheck from 'react-native-version-check'
-import {GradientButton} from './src/components/common'
-import OneSignal from 'react-native-onesignal'
 
 const platform = Platform.OS
 
@@ -50,9 +50,9 @@ export default class App extends Component {
       await Expo
         .Font
         .loadAsync({ //
-          Roboto: require("native-base/Fonts/Roboto.ttf"), //
-          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"), //
-          Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"), //
+          Roboto: require("native-base/Fonts/Roboto.ttf"),
+          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+          Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
           FontAwesome: require("@expo/vector-icons/fonts/FontAwesome.ttf"),
           MaterialCommunityIcons: require("@expo/vector-icons/fonts/MaterialCommunityIcons.ttf")
         })
@@ -106,7 +106,6 @@ export default class App extends Component {
     //       }
     //   }).catch(err => console.error('An error occurred', err))
     // requestToken()
-
   }
 
   renderNewVersion() {
@@ -140,7 +139,6 @@ export default class App extends Component {
     if (!this.state.isReady) {
       return <Spinner/>
     }
-
     return (<StyleProvider style={getTheme()}>
       <Provider store={this.state.store}>
         <Routes store={this.state.store}/>

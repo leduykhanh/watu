@@ -10,7 +10,7 @@ import ItemSummaryStyle from '../../../survis-themes/styles/components/ItemSumma
 const ItemSummary = props => {
   const item = props.item
   const {
-	  id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
+	  id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
 	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 	  address, images
   } = itemHelper(item)

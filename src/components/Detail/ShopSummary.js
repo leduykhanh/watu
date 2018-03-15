@@ -12,7 +12,7 @@ import ShopSummaryStyle from '../../../survis-themes/styles/components/ShopSumma
 const ShopSummary = props => {
   const item = props.item
   const {
-	  id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
+	  id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
 	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 	  address
   } = itemHelper(item)
@@ -32,7 +32,7 @@ const ShopSummary = props => {
 	  <Text theme fs12 onPress={props.openReview}>({totalreviews}) Reviews</Text>
 	  <View horizontal>
 		<Icon new-shop name="ios-send" />
-		<Text theme fs12 theme onPress={() => openGps(latitude, longtitude)}>Get direction</Text>
+		<Text theme fs12 theme onPress={() => openGps(latitude, longitude)}>Get direction</Text>
 	  </View>
 	</View>
   </View>

@@ -66,7 +66,7 @@ class ShopDetailScreen extends Component {
           this.setState({items: results})
       })
       .catch((error) => console.log(error))api
-      .getReviews(this.props.item.id, null)
+      .getReviews({shop_id: this.props.item.id})
       .then(response => {
         const {data: {
             results
@@ -105,7 +105,7 @@ class ShopDetailScreen extends Component {
       totalrate,
       totalreviews,
       latitude,
-      longtitude,
+      longitude,
       toptext_color,
       toptext_fontsize,
       toptext,
