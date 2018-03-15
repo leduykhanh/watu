@@ -18,7 +18,7 @@ const Promotions = props => {
   const items = props.items
   return (
     <View style={PromotionsStyle.container}>
-      <Swiper autoplay height={PromotionsStyle.container.height} showsPagination={false} loop>
+      <Swiper autoplayTimeout={10} autoplay height={PromotionsStyle.container.height} showsPagination={false} loop>
         {items.map(item => <PromotionItem item={item}/>)}
       </Swiper>
     </View>
