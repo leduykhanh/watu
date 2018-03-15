@@ -34,7 +34,7 @@ class QrScanScreen extends Component {
   }
   async componentDidMount() {
     // let askForPermissions = [].concat(this.askForPermissions)
-    // for(let i = 0i < askForPermissions.lengthi++) {
+    // for(let i = 0;i < askForPermissions.length;i++) {
     // 	await this.requestPermission(askForPermissions[i])
     // }
     this.setState(this.state);
