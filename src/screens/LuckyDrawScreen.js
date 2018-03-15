@@ -60,7 +60,7 @@ class LuckyDrawScreen extends Component {
   render() {
     const grid = [];
     const {items} = this.state;
-    for (let i = 0 i < items.length i = i + 2) {
+    for (let i = 0; i < items.length; i = i + 2) {
       grid.push(<View horizontal="horizontal">
         <LuckyDrawItem selected={this.state.selectedId == items[i].id} onPress={() => this.setState({selectedId: items[i].id})} item={items[i]}/>
         <LuckyDrawItem selected={this.state.selectedId == items[i + 1].id} onPress={() => this.setState({
