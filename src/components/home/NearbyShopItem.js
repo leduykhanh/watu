@@ -15,11 +15,11 @@ import NearbyShopItemStyle from '../../../survis-themes/styles/components/Nearby
 const NearbyShopItem = props => {
 	const item = props.item
     const {
-  	  id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
+  	  id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
   	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
   	  address, isfeatured, promotion_image
     } = itemHelper(item)
-    const distance = getDistance(latitude, longtitude, props.location.latitude, props.location.longtitude)
+    const distance = getDistance(latitude, longitude, props.location.latitude, props.location.longitude)
 
 	if (isfeatured) {
 		return <TouchableOpacity onPress={() => Actions.s_detail({item})}>
@@ -50,7 +50,7 @@ const NearbyShopItem = props => {
 					<Text fs12>{distance || 0} km</Text>
 					<View horizontal>
 						<Icon new-shop name="ios-send" />
-						<Text white fs12 theme onPress={() => openGps(latitude, longtitude)}>Get direction</Text>
+						<Text white fs12 theme onPress={() => openGps(latitude, longitude)}>Get direction</Text>
 					</View>
 				</View>
 				<View horizontal space-between style={NearbyShopItemStyle.statistic}>

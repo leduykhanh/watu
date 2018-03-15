@@ -69,7 +69,7 @@ class PromotionDetailScreen extends Component {
       totalrate,
       totalreviews,
       latitude,
-      longtitude,
+      longitude,
       toptext_color,
       toptext_fontsize,
       toptext,

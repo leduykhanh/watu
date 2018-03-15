@@ -14,14 +14,10 @@ export function getItemDetail(id) {
   return serverCall.get(url(constants.GET_ITEM_DETAIL_API, `itemid=${id}`))
 }
 
-export function getReviews(shop_id, item_id, cmd = 'get') {
-  const params = {
-    cmd
-  }
-  if (shop_id) 
-    params.shop_id = shop_id
-  if (item_id) 
-    params.item_id = item_id
-  const query = query(params)
+export function getReviews(params) {
+  const query = query({
+    ...params,
+    cmd: 'get'
+  })
   return serverCall.get(url(constants.GET_REVIEW_API, query))
 }

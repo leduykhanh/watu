@@ -12,11 +12,11 @@ import NewShopItemStyle from '../../../survis-themes/styles/components/NewShopIt
 const NewShopItem = props => {
 	const item = props.item;
     const {
-		id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
+		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
 		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 		address
     } = itemHelper(item);
-    const distance = getDistance(latitude, longtitude, props.location.latitude, props.location.longtitude);
+    const distance = getDistance(latitude, longitude, props.location.latitude, props.location.longitude);
     return <TouchableOpacity onPress={() => Actions.s_detail({item})}>
    	 <View style={NewShopItemStyle.container}>
    		 <Image style={NewShopItemStyle.image} source={{uri: image}}/>

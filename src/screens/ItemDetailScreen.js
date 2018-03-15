@@ -60,7 +60,7 @@ class ItemDetailScreen extends Component {
           this.setState({item: results[0], loading: false})
       })
       .catch((error) => console.log(error))api
-      .getReviews(null, this.props.item.id)
+      .getReviews({item_id: this.props.item.id})
       .then(response => {
         const {data: {
             results

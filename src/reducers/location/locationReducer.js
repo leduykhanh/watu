@@ -8,7 +8,7 @@ export function locationReducer(state = constant.initalState.location, action) {
         return {
           ...state,
           latitude: action.payload.latitude,
-          longtitude: action.payload.longtitude
+          longitude: action.payload.longitude
         }
       }
     default:

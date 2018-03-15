@@ -9,7 +9,7 @@ import HistoryItemStyle from '../../../survis-themes/styles/components/HistoryIt
 const HistoryItem = props => {
   const item = props.item;
   const {
-	id, name, description, price, image, totalrate, totalreviews, latitude, longtitude,
+	id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
 	toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 	address, orderdate
   } = itemHelper(item);

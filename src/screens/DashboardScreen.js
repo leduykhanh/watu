@@ -109,12 +109,12 @@ class DashboardScreen extends Component {
     navigator
       .geolocation
       .getCurrentPosition((position) => {
-        const {latitude, longtitude} = position
+        const {latitude, longitude} = position
           .coords
           this
           .props
           .locationActions
-          .updateLocation({latitude, longtitude})
+          .updateLocation({latitude, longitude})
       }, (error) => this.setState({error: error.message}), {
         enableHighAccuracy: true,
         timeout: 20000,
