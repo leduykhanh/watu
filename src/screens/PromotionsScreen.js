@@ -31,7 +31,7 @@ class PromotionsScreen extends Component {
 		this.setState({
 			autopage: autopage + 1
 		})
-		this.props.actions.getNearbyShop(null, null, autopage + 1)
+		this.props.actions.getPromotions(null, null, autopage + 1)
 	}
 	render(){
 		return <Container>

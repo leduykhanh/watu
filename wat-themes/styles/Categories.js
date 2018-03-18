@@ -6,16 +6,17 @@ const blockWidth = width/blockNumItem, blockHeight = 52, iconSize = 36
 
 export default {
 	blockNumItem,
-	containerStyle: {
+	container: {
 		width: width, height: blockHeight, marginTop: 12, marginBottom: 12
 	},
-	blockStyle: {
+	block: {
 		width: width, height: blockHeight, justifyContent: 'center'
 	},
-	itemStyle: {
-		width: blockWidth, height: blockHeight
+	item: {
+		width: blockWidth, height: blockHeight, flex: 1
 	},
-	iconStyle: {
-		width: iconSize, height: iconSize, marginBottom: 4
+	icon: {
+		width: iconSize, height: iconSize, marginBottom: 4,
+    backgroundColor: 'red'
 	}
 }

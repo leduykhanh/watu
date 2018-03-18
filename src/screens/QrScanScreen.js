@@ -31,7 +31,7 @@ class QrScanScreen extends Component {
         this.state.permissions.set(p, status === 'granted')
     }
 	onBarCodeRead(e) {
-		Actions.replace('luckydraw');
+		Actions.replace('luckydraw', {data: e});
 	}
 
 	renderContent() {

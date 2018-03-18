@@ -16,21 +16,23 @@ const Categories = props => {
 	while(cats.length) {
 		blocks.push(cats.splice(0, blockNumItem))
 	}
+  const renderCategory = (item, j) => {
+    return <TouchableOpacity key={j} onPress={() => {
+      let currentScene =  Actions.currentScene.toString();
+      if (currentScene !== 'search') Actions.search();
+      props.actions.getNearbyShop('', item.id);
+    }}>
+    <View center style={CategoriesStyle.item}>
+      <Image source={{uri: item.image}} style={CategoriesStyle.icon}/>
+      <Text bold fs12>{substr(item.name, 7)}</Text>
+    </View>
+  </TouchableOpacity>
+  }
 	return (
-		<View style={CategoriesStyle.containerStyle}>
+		<View style={CategoriesStyle.container}>
 			<Swiper showsPagination={false} loop>
-				{blocks.map((b,i) => <View horizontal style={CategoriesStyle.blockStyle}>
-					{b.map((item,j) =>
-						<TouchableOpacity onPress={() => {
-							let currentScene =  Actions.currentScene.toString();
-							if (currentScene !== 'search') Actions.search();
-							props.actions.getNearbyShop('a', item.id);
-						}}>
-						<View center style={CategoriesStyle.itemStyle}>
-							<Image key={item.id} source={{uri: item.image}} style={CategoriesStyle.iconStyle}/>
-							<Text bold fs12>{substr(item.name, 7)}</Text>
-						</View>
-					</TouchableOpacity>)}
+				{blocks.map((b,i) => <View key={i} horizontal style={CategoriesStyle.block}>
+					{b.map((item,j) => renderCategory(item, j))}
 				</View>)}
 			</Swiper>
 		</View>

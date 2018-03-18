@@ -11,8 +11,4 @@ const Img = (props) =>
     />
 )
 
-Img.propTypes = {
-
-}
-
 export default Img;
