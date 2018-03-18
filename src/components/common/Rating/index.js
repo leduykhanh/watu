@@ -16,14 +16,11 @@ class Rating extends React.Component {
       <StarRating
     		disabled={false}
     		maxStars={5}
-    		rating={this.state.totalrate}
+    		rating={parseFloat(this.state.totalrate)}
     		starSize={15}
     		starColor={'rgb(249,174,24)'}
     		selectedStar={(rating) => {
-		  let data = {
-	        usr_id: id,
-			usr_rating: rating
-	      }
+          let data = {usr_id: id, usr_rating: rating}
           RatingApi.rate(data, itemid, shopid, reviewid)
           .then(
             res => console.log('Rating submitted', data, res)

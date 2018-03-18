@@ -87,7 +87,7 @@ class ItemDetailScreen extends Component {
         <StarRating
           disabled={false}
           maxStars={5}
-          rating={totalrate}
+          rating={parseFloat(totalrate)}
           starSize={15}
           starColor={'rgb(249,174,24)'}
           selectedStar={(rating) => console.log(rating)}

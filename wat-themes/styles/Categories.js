@@ -15,8 +15,10 @@ export default {
 	item: {
 		width: blockWidth, height: blockHeight, flex: 1
 	},
+  icon_container: {
+    width: iconSize, height: iconSize, marginBottom: 4,
+  },
 	icon: {
-		width: iconSize, height: iconSize, marginBottom: 4,
-    backgroundColor: 'red'
+		width: iconSize, height: iconSize,
 	}
 }

@@ -23,7 +23,9 @@ const Categories = props => {
       props.actions.getNearbyShop('', item.id);
     }}>
     <View center style={CategoriesStyle.item}>
-      <Image source={{uri: item.image}} style={CategoriesStyle.icon}/>
+      <View style={CategoriesStyle.icon_container}>
+        <Image source={{uri: item.image}} style={CategoriesStyle.icon}/>
+      </View>
       <Text bold fs12>{substr(item.name, 7)}</Text>
     </View>
   </TouchableOpacity>
