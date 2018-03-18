@@ -83,7 +83,7 @@ class ItemDetailScreen extends Component {
           <Text bold fs16 theme>${price}</Text>
         </View>
       </View>,
-      <View horizontal m-b-10>
+      <View horizontal m-b-10 m-t-10>
         <StarRating
           disabled={false}
           maxStars={5}
