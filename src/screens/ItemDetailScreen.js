@@ -75,7 +75,9 @@ class ItemDetailScreen extends Component {
     const {name, price, description, image, totalrate} = itemHelper(item)
     return [
       <View horizontal>
-        <Image resizeMode='stretch' style={ItemDetailScreenStyle.itemImage} source={{uri: image}}/>
+        <View style={ItemDetailScreenStyle.image_container}>
+          <Image style={ItemDetailScreenStyle.image} source={{uri: image}}/>
+        </View>
         <View m-l-10 p-t-10>
           <Text bold>{name}</Text>
           <Text bold fs16 theme>${price}</Text>
