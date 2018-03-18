@@ -1,60 +1,55 @@
-import axios from 'axios';
-import querystring from 'querystring';
-import * as constants from '../constants';
-import serverCall from '../utils/serverCall';
+import axios from 'axios'
+import querystring from 'querystring'
+import * as constants from '../constants'
+import serverCall from '../utils/serverCall'
+import {query, url} from '../utils/urlHelper'
 
 const config = {
   headers: {
     'Accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/json'
   }
-};
-
-export function login(username:string, password:string) {
-
-  const data = {
-    email: username,
-    password: password,
-  };
-
-  return axios.post(constants.LOGIN_API, querystring.stringify(data), config);
-
 }
 
-export function register(username:string, password:string, name:string) {
-
-  const data = {
-    email: username,
-    password: password,
-    username: name
-  };
-
-  return axios.post(constants.REGISTER_API, querystring.stringify(data), config);
-
-}
-
-export function refreshToken(refreshToken:string) {
-
-  const data = {
-    grant_type: 'refresh_token',
-    refresh_token: refreshToken
-  };
-
-  return axios.post(constants.LOGIN_API, querystring.stringify(data), config);
-}
-
-export function change_password(data){
-  let payload = {
-    "oldPassword": data.currentPassword,
-    "newPassword": data.newPassword,
-    "confirmPassword": data.confirmPassword
+export function login(email = '', password = '') {
+  const payload = {
+    email,
+    password
   }
-  return serverCall.post(constants.CHANGE_PASSWORD_API, payload);
-
+  return axios.post(url(constants.LOGIN_API), querystring.stringify(payload), config)
 }
 
-export function contact_us(name, email, contactNo){
-  const data ={name, email, contactNo}
-  return axios.post(constants.SIGNUP_LINK, data, {headers:{'Content-Type':'application/json'}});
-
+export function register(email = '', password = '', username = '') {
+  const payload = {
+    email,
+    password,
+    username
   }
+  return axios.post(url(constants.REGISTER_API), querystring.stringify(payload), config)
+}
+
+export function refreshToken(refresh_token = '', grant_type = 'refresh_token') {
+  const payload = {
+    grant_type,
+    refresh_token
+  }
+  return axios.post(url(constants.LOGIN_API), querystring.stringify(payload), config)
+}
+
+export function change_password(payload) {
+  const {oldPassword, newPassword, confirmPassword} = payload
+  return serverCall.post(url(constants.CHANGE_PASSWORD_API), {
+    oldPassword, //
+    newPassword,
+    confirmPassword
+  })
+}
+
+export function contact_us(name = '', email = '', contactNo = '') {
+  const payload = {
+    name,
+    email,
+    contactNo
+  }
+  return axios.post(url(constants.SIGNUP_LINK), payload, config)
+}

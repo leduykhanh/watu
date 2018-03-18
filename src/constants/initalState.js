@@ -1,5 +1,4 @@
 export default initalState = {
-
   user: {
     rehydated: false,
     oidc: null,
@@ -31,19 +30,22 @@ export default initalState = {
       list: [],
       loading: false,
       loaded: false
-    },
+    }
   },
-  rule:{
-    currencies:null
+  rule: {
+    currencies: null
   },
-  rate:{
+  rate: {
     rates: []
   },
   device: {
     token: null,
     deviceId: null
   },
-  location: { latitude:0, longitude:0 },
+  location: {
+    latitude: 0,
+    longitude: 0
+  },
   home: {
     categories: {
       list: [],
@@ -79,13 +81,13 @@ export default initalState = {
     items: [],
     count: 0,
     loading: false,
-    loaded: false,
+    loaded: false
   },
   luckydraw: {
     items: [],
     count: 0,
     loading: false,
-    loaded: false,
+    loaded: false
   },
   search: {
     searchString: ''

@@ -11,8 +11,8 @@ export function getPromotions() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_PROMOTION_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
 export function getNewshops() {
@@ -25,8 +25,8 @@ export function getNewshops() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_NEWSHOP_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
 export function getCategories() {
@@ -39,8 +39,8 @@ export function getCategories() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_CAT_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
 export function getHighRatingsShop() {
@@ -53,20 +53,20 @@ export function getHighRatingsShop() {
       })
       .catch((error) => {
         dispatch({type: constants.GET_HIGHRATINGSHOPS_FAILED, error})
-      })
-    }
+      });
+  }
 }
 
-export function getNearbyShop(q, catid, page) {
+export function getNearbyShop(params) {
   return dispatch => {
     dispatch({type: constants.GET_NEARBYSHOPS_PENDING})
     HomeApi
-      .getNearbyShop(q, catid, page)
+      .getNearbyShop(params)
       .then((response) => {
         dispatch({type: constants.GET_NEARBYSHOPS_SUCCESS, payload: response.data.results})
       })
       .catch((error) => {
         dispatch({type: constants.GET_NEARBYSHOPS_FAILED, error})
-      })
-    }
+      });
+  }
 }

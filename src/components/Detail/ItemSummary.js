@@ -5,7 +5,7 @@ import StarRating from 'react-native-star-rating'
 import Swiper from 'react-native-swiper';
 
 import itemHelper, {substr} from '../../utils/itemHelper'
-import ItemSummaryStyle from '../../../wat-themes/styles/components/ItemSummary'
+import ItemSummaryStyle from '../../../survis-themes/styles/components/ItemSummary'
 
 const ItemSummary = props => {
   const item = props.item

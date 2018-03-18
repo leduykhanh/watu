@@ -7,7 +7,7 @@ import Image from '../common/Image';
 import Rating from '../common/Rating';
 
 import itemHelper, {substr} from '../../utils/itemHelper'
-import ShopSummaryStyle from '../../../wat-themes/styles/components/ShopSummary'
+import ShopSummaryStyle from '../../../survis-themes/styles/components/ShopSummary'
 
 const ShopSummary = props => {
   const item = props.item

@@ -1,33 +1,38 @@
-export default capitalize = (item) => {
-	let description = item.description || ''
-    let name = item.name || ''
-	let price = item.price ? `$${item.price}` : ''
-	let image = item.image || ''
-	let totalrate = item.totalrate || 0
-	let id = item.id
-	let totalreviews = item.totalreviews || 0
-	let latitude = item.latitude
-	let longitude = item.longtitude
-	let toptext_color = item.toptext_color || 'white'
-	let toptext_fontsize = item.toptext_fontsize || 12
-	let toptext = item.toptext || ''
-	let toptext_bgcolor = item.toptext_bgcolor || 'red'
-	let bigtitle = item.bigtitle || ''
-	let smalltitle = item.smalltitle || ''
-	let address = item.address || ''
-	let items = [].concat(item.items).filter(o => o)
-	let images = [].concat(item.images).filter(o => o)
-	let orderdate = item.orderdate || ''
-	let isfeatured = item.isfeatured == "1"
-	let promotion_image = item.promotion_image || ''
-	return {
-		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-		address, items, images, orderdate, isfeatured, promotion_image
-	}
+export default normalize = (item) => {
+  return {
+    id: item.id || '',
+    name: item.name || '',
+    description: item.description || '',
+    price: item.price
+      ? `$${item.price}`
+      : '',
+    image: item.image || '',
+    totalrate: parseFloat(item.totalrate) || 0,
+    totalreviews: parseInt(item.totalreviews) || 0,
+    latitude: parseFloat(item.latitude) || 0,
+    longitude: parseFloat(item.longitude || item.longtitude) || 0,
+    toptext_color: item.toptext_color || 'white',
+    toptext_fontsize: item.toptext_fontsize || 12,
+    toptext: item.toptext || '',
+    toptext_bgcolor: item.toptext_bgcolor || 'red',
+    bigtitle: item.bigtitle || '',
+    smalltitle: item.smalltitle || '',
+    address: item.address || '',
+    items: []
+      .concat(item.items)
+      .filter(o => o),
+    images: []
+      .concat(item.images)
+      .filter(o => o),
+    orderdate: item.orderdate || '',
+    isfeatured: parseInt(item.isfeatured) && parseInt(item.isfeatured) > 0,
+    promotion_image: item.promotion_image || ''
+  }
 }
 
 export const substr = (s, max) => {
-	s = `${s || ''}`
-	return s.length > max ? `${s.substr(0, max - 2)}..` : s
+  s = `${s || ''}`
+  return s.length > max
+    ? `${s.substr(0, max - 2)}..`
+    : s
 }

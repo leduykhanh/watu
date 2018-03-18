@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { Image } from 'react-native';
 import {connect} from "react-redux";
 
-import FooterStyle from '../../../wat-themes/styles/components/Footer';
+import FooterStyle from '../../../survis-themes/styles/components/Footer';
 
 const {iconSize, iconColorActive, iconColor} = FooterStyle
 

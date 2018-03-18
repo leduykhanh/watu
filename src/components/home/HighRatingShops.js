@@ -10,7 +10,7 @@ import openGps from "../../utils/gpsHelper";
 import Image from '../common/Image';
 
 import itemHelper, {substr} from '../../utils/itemHelper';
-import HighRatingShopsStyle from '../../../wat-themes/styles/components/HighRatingShops';
+import HighRatingShopsStyle from '../../../survis-themes/styles/components/HighRatingShops';
 import Rating from '../common/Rating';
 
 const HighRatingShops = props => {

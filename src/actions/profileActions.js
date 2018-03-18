@@ -7,15 +7,11 @@ export function getFullProfile() {
     profileApi
       .getFullProfile()
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {results} = response.data || {};
         dispatch({type: constants.STATE_GET_PROFILE_SUCCESS, payload: results})
       })
-      .catch((error) => {
-        dispatch({type: constants.STATE_GET_PROFILE_ERROR, error})
-      })
-    }
+      .catch((error) => dispatch({type: constants.STATE_GET_PROFILE_ERROR, error}));
+  }
 }
 
 export function getHistory() {
@@ -24,15 +20,11 @@ export function getHistory() {
     profileApi
       .getHistory()
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {results} = response.data || {};
         dispatch({type: constants.STATE_HISTORY_SUCCESS, payload: results})
       })
-      .catch((error) => {
-        dispatch({type: constants.STATE_HISTORY_ERROR, error})
-      })
-    }
+      .catch((error) => dispatch({type: constants.STATE_HISTORY_ERROR, error}));
+  }
 }
 
 export function addPaymentInfo(data) {
@@ -41,16 +33,11 @@ export function addPaymentInfo(data) {
     profileApi
       .addPaymentInfo(data)
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {results} = response.data || {};
         dispatch({type: constants.STATE_PAYMENTINFO_SUCCESS, payload: results})
-
       })
-      .catch((error) => {
-        dispatch({type: constants.STATE_PAYMENTINFO_ERROR, error})
-      })
-    }
+      .catch((error) => dispatch({type: constants.STATE_PAYMENTINFO_ERROR, error}));
+  }
 }
 
 export function getLoyalty() {
@@ -59,13 +46,9 @@ export function getLoyalty() {
     profileApi
       .getLoyalty()
       .then((response) => {
-        const {data: {
-            results
-          }} = response
+        const {results} = response.data || {};
         dispatch({type: constants.STATE_LOYALTY_SUCCESS, payload: results})
       })
-      .catch((error) => {
-        dispatch({type: constants.STATE_LOYALTY_ERROR, error})
-      })
-    }
+      .catch((error) => dispatch({type: constants.STATE_LOYALTY_ERROR, error}));
+  }
 }

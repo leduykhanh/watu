@@ -11,6 +11,6 @@ export function getLookupData() {
       })
       .catch((error) => {
         dispatch({type: constants.STATE_GET_LOOKUP_ERROR, error})
-      })
-    }
+      });
+  }
 }
