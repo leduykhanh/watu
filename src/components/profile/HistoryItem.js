@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Image from '../common/Image';
 
 import itemHelper, {substr} from '../../utils/itemHelper';
-import HistoryItemStyle from '../../../survis-themes/styles/components/HistoryItem'
+import HistoryItemStyle from '../../../wat-themes/styles/components/HistoryItem'
 
 const HistoryItem = props => {
   const item = props.item;

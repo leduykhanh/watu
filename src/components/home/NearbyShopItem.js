@@ -10,7 +10,7 @@ import openGps from "../../utils/gpsHelper"
 import Image from '../common/Image'
 
 import itemHelper, {substr} from '../../utils/itemHelper'
-import NearbyShopItemStyle from '../../../survis-themes/styles/components/NearbyShopItem'
+import NearbyShopItemStyle from '../../../wat-themes/styles/components/NearbyShopItem'
 
 const NearbyShopItem = props => {
 	const item = props.item

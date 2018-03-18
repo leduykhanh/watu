@@ -1,21 +1,20 @@
-export default function populateColor(status) {
+export default function populateColor(status: string) {
+  let color;
+  
   switch (status) {
-    case 'PENDING':
-      {
-        return '#d8a430'
-      }
-    case 'COMPLETED':
-      {
-        return '#4ccc45'
-        break
-      }
-    case 'CANCELLED':
-      {
-        return '#cfcfcf'
-      }
-    default:
-      {
-        return
-      }
+    case 'PENDING': {
+      color = '#d8a430';
+      break;
+    }
+    case 'COMPLETED': {
+      color = '#4ccc45';
+      break;
+    }
+    case 'CANCELLED': {
+      color = '#cfcfcf';
+      break;
+    }
   }
+  
+  return color;
 }

@@ -14,13 +14,13 @@ export function login(username : string, password : string) {
     userApi
       .login(username, password)
       .then((response) => {
-        const token = (response.data.results.token);
+        const token = (response.data.results.token)
         serverCall
           .defaults
-          .headers['token'] = token;
-        dispatch({type: constants.STATE_LOGIN_SUCCESS, payload: token});
-        dispatch(profileActions.getFullProfile());
-        Actions.pop();
+          .headers['token'] = token
+        dispatch({type: constants.STATE_LOGIN_SUCCESS, payload: token})
+        dispatch(profileActions.getFullProfile())
+        Actions.pop()
       })
       .catch((error) => {
         dispatch({
@@ -29,8 +29,8 @@ export function login(username : string, password : string) {
             message: `Invalid Username or Password`
           }
         })
-      });
-  }
+      })
+    }
 }
 
 export function register(username : string, password : string, name : string) {
@@ -39,15 +39,15 @@ export function register(username : string, password : string, name : string) {
     userApi
       .register(username, password, name)
       .then((response) => {
-        dispatch({type: constants.STATE_REGISTER_SUCCESS});
+        dispatch({type: constants.STATE_REGISTER_SUCCESS})
         Alert.alert('Account registered', 'Please check your email to activate your account', [
           {
             text: 'OK',
             onPress: () => {
-              Actions.pop();
+              Actions.pop()
             }
           }
-        ], {cancelable: false});
+        ], {cancelable: false})
       })
       .catch((error) => {
         dispatch({
@@ -55,20 +55,20 @@ export function register(username : string, password : string, name : string) {
           error: {
             message: `email exist`
           }
-        });
-      });
-  }
+        })
+      })
+    }
 }
 
 export function logout() {
   return dispatch => {
-    AsyncStorage.clear();
-    setProfile(null);
+    AsyncStorage.clear()
+    setProfile(null)
     serverCall
       .defaults
-      .headers['token'] = '';
-    dispatch({type: constants.STATE_LOGOUT_SUCCESS});
-    Actions.reset('lightbox');
+      .headers['token'] = ''
+    dispatch({type: constants.STATE_LOGOUT_SUCCESS})
+    Actions.reset('lightbox')
   }
 }
 
@@ -77,7 +77,7 @@ export function change_password() {
     userApi
       .change_passwprd()
       .then(response => {
-        logout()(dispatch);
-      });
+        logout()(dispatch)
+      })
   }
 }

@@ -1,7 +1,8 @@
-import * as constants from '../constants'
-import serverCall from '../utils/serverCall'
-import {query, url} from '../utils/urlHelper'
+import * as constants from '../constants';
+import serverCall from '../utils/serverCall';
+
 
 export function placeorder(payload) {
-  return serverCall.post(url(constants.PLACE_ORDER_API), payload)
+  console.log(payload)
+  return serverCall.post(constants.PLACE_ORDER_API, payload);
 }

@@ -5,13 +5,10 @@ const Platform = require('Platform')
 const constants = require('constants')
 const setDeviceId = require('setDeviceId')
 
-import {Platform, NativeModules} from 'react-native'
-
 import * as constants from '../constants'
 import * as DeviceApi from '../api/DeviceApi'
 import {setDeviceId} from '../utils/persistStore'
-
-const {OS} = Platform
+import {Platform, NativeModules} from 'react-native'
 
 export function setToken(token) {
   return dispatch => {
@@ -20,33 +17,40 @@ export function setToken(token) {
 }
 
 export function sendToken(token) {
-  const locale = OS === "ios"
+  const locale = Platform.OS === "ios"
     ? NativeModules.SettingsManager.settings.AppleLocale
     : NativeModules.I18nManager.localeIdentifier
   const data = {
     pushToken: token,
-    osType: OS.toUpperCase(),
+    osType: Platform
+      .OS
+      .toUpperCase(),
     language: locale
   }
+
   return dispatch => {
     DeviceApi
       .sendToken(data)
       .then(response => {
-        const {deviceId} = response.data || {}
-        setDeviceId(deviceId)
-        dispatch({type: constants.SET_DEVICE_ID, payload: deviceId})
+        setDeviceId(response.data.deviceId)
+        dispatch({
+          type: constants.SET_DEVICE_ID,
+          payload: (response.data.deviceId)
+        })
       })
-      .catch(error => dispatch({type: constants.SET_PUSH_TOKEN_FAIL}));
-  }
+      .catch(error => dispatch({type: constants.SET_PUSH_TOKEN_FAIL}))
+    }
 }
 
 export function updateToken(token, deviceId) {
-  const locale = OS === "ios"
+  const locale = Platform.OS === "ios"
     ? NativeModules.SettingsManager.settings.AppleLocale
     : NativeModules.I18nManager.localeIdentifier
   const data = {
     pushToken: token,
-    osType: OS.toUpperCase(),
+    osType: Platform
+      .OS
+      .toUpperCase(),
     language: locale,
     deviceId: deviceId
   }
@@ -54,10 +58,12 @@ export function updateToken(token, deviceId) {
     DeviceApi
       .updateToken(data)
       .then(response => {
-        const {deviceId} = response.data || {}
-        setDeviceId(deviceId)
-        dispatch({type: constants.SET_DEVICE_ID, payload: deviceId})
+        setDeviceId(response.data.deviceId)
+        dispatch({
+          type: constants.SET_DEVICE_ID,
+          payload: (response.data.deviceId)
+        })
       })
-      .catch(error => dispatch({type: constants.SET_PUSH_TOKEN_FAIL}));
-  }
+      .catch(error => dispatch({type: constants.SET_PUSH_TOKEN_FAIL}))
+    }
 }

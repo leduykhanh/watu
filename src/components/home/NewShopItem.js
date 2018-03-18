@@ -7,7 +7,7 @@ import { getDistance } from '../../utils/gpsHelper';
 import Image from '../common/Image';
 
 import itemHelper, {substr} from '../../utils/itemHelper';
-import NewShopItemStyle from '../../../survis-themes/styles/components/NewShopItem';
+import NewShopItemStyle from '../../../wat-themes/styles/components/NewShopItem';
 
 const NewShopItem = props => {
 	const item = props.item;

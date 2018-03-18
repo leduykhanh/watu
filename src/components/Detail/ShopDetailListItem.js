@@ -6,7 +6,7 @@ import { Platform, Dimensions, PixelRatio } from 'react-native'
 import Image from '../common/Image'
 
 import itemHelper, {substr} from '../../utils/itemHelper'
-import ShopDetailListItemStyle from '../../../survis-themes/styles/components/ShopDetailListItem'
+import ShopDetailListItemStyle from '../../../wat-themes/styles/components/ShopDetailListItem'
 
 const ShopDetailListItem = props => {
   const item = props.item

@@ -1,11 +1,7 @@
-import * as constants from '../constants'
-import serverCall from '../utils/serverCall'
-import {query, url} from '../utils/urlHelper'
+import * as constants from '../constants';
+import serverCall from '../utils/serverCall';
 
-export function getReviews(params) {
-  const query = query({
-    ...params,
-    cmd: 'get'
-  })
-  return serverCall.get(url(constants.GET_REVIEW_API, query))
+
+export function getReviews(shop_id, item_id) {
+  return serverCall.get(`${constants.GET_REVIEW_API}&shopid=${shop_id}&item_id=${item_id}`);
 }

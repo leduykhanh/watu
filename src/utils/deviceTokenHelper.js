@@ -1,38 +1,44 @@
-import {Platform, PushNotificationIOS} from 'react-native'
-import FCM from 'react-native-fcm'
+import { Platform, PushNotificationIOS } from 'react-native';
+import FCM from 'react-native-fcm';
 
 export default function getToken(callback) {
+  
   try {
+    
     if (typeof Expo === 'undefined') {
       if (Platform.OS === "ios") {
-        handleIOS(callback)
+        handleIOS(callback);
       } else if (Platform.OS === "android") {
-        handleAndriod(callback)
+        handleAndriod(callback);
       }
     }
-  } catch (err) {}
+    
+  } catch(err) {
+  }
+  
 }
 
 export function requestToken() {
   try {
+    
     if (typeof Expo === 'undefined') {
       if (Platform.OS === "ios") {
-        PushNotificationIOS.requestPermissions()
+        PushNotificationIOS.requestPermissions();
       } else if (Platform.OS === "android") {
-        FCM.requestPermissions()
+        FCM.requestPermissions();
       }
     }
-  } catch (err) {}
+    
+  } catch(err) {
+  }
 }
 
 function handleIOS(callback) {
-  PushNotificationIOS.requestPermissions()
-  PushNotificationIOS.addEventListener('register', callback)
+  PushNotificationIOS.requestPermissions();
+  PushNotificationIOS.addEventListener('register', callback);
 }
 
 function handleAndriod(callback) {
-  FCM.requestPermissions()
-  FCM
-    .getFCMToken()
-    .then(callback)
+  FCM.requestPermissions();
+  FCM.getFCMToken().then(callback);
 }

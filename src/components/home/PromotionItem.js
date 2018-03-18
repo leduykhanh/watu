@@ -10,7 +10,7 @@ import openGps from "../../utils/gpsHelper"
 import Image from '../common/Image'
 
 import itemHelper, {substr} from '../../utils/itemHelper'
-import PromotionItemStyle from '../../../survis-themes/styles/components/PromotionItem'
+import PromotionItemStyle from '../../../wat-themes/styles/components/PromotionItem'
 
 const PromotionItem = props => {
 	const item = props.item
