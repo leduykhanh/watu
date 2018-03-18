@@ -65,56 +65,55 @@ class ItemDetailScreen extends Component {
     );
   }
 
+  renderLoading() {
+    return <View style={{flex: 1}}><Spinner/></View>
+  }
+  renderContent() {
+    const item = this.state.item
+    const shop = this.props.shop
+    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item
+    const {name, price, description, image, totalrate} = itemHelper(item)
+    return [
+      <View horizontal>
+        <Image resizeMode='stretch' style={ItemDetailScreenStyle.itemImage} source={{uri: image}}/>
+        <View m-l-10 p-t-10>
+          <Text bold>{name}</Text>
+          <Text bold fs16 theme>${price}</Text>
+        </View>
+      </View>,
+      <View horizontal m-b-10>
+        <StarRating
+          disabled={false}
+          maxStars={5}
+          rating={totalrate}
+          starSize={15}
+          starColor={'rgb(249,174,24)'}
+          selectedStar={(rating) => console.log(rating)}
+        />
+        <Text theme fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
+      </View>,
+      <ShopSummary item={shop} />,
+      <View p-25>
+        <Text fs14 bold>Voucher details</Text>
+        <Text fs12>{description}</Text>
+      </View>,
+      this.renderReviews()
+    ]
+  }
   render() {
     const item = this.state.item
     const shop = this.props.shop
-    if(item == null || shop == null) return <Text>Loading</Text>
-    const {toptext_color, toptext_fontsize, toptext, toptext_bgcolor} = item
-	const {name, price, description, image, totalrate} = itemHelper(item)
-
     return (
       <Container>
-
         <ImageBackground>
           <Header back/>
           <Content>
-			<View horizontal>
-			  <Image resizeMode='stretch' style={ItemDetailScreenStyle.itemImage} source={{uri: image}}/>
-		      <View m-l-10 p-t-10>
-		        <Text bold>{name}</Text>
-		        <Text bold fs16 theme>${price}</Text>
-		      </View>
-		    </View>
-            <View horizontal m-b-10>
-              <StarRating
-                disabled={false}
-                maxStars={5}
-                rating={totalrate}
-                starSize={15}
-                starColor={'rgb(249,174,24)'}
-                selectedStar={(rating) => console.log(rating)}
-              />
-              <Text theme fs12>({item.totalreviews?item.totalreviews:0}) Reviews</Text>
-            </View>
-            <ShopSummary item={shop} />
-            <View p-25>
-              <Text fs14 bold>Voucher details</Text>
-              <Text fs12>{description}</Text>
-            </View>
-            {/*<ScrollView containerStyle={{width: 142, height: 542, flex:1, backgroundColor: 'grey'}}>*/}
-              {/*{*/}
-                {/*this.state.items.map(*/}
-                  {/*(item) => <ShopDetailItem key={item.id} item={item}/>*/}
-                {/*)*/}
-              {/*}*/}
-            {/*</ScrollView>*/}
-            {this.renderReviews()}
-
+            {!item ? this.renderLoading() : this.renderContent()}
           </Content>
           <Footer>
             <FooterTab>
               <View m-l-10 center-h>
-                <Text theme fs18>${item.price}</Text>
+                <Text theme fs18>${item && item.price || 0}</Text>
               </View>
               <View m-r-10 center center-h>
                 <Button small onPress={this.addToCart.bind(this)}><Text>ADD TO CART</Text></Button>

@@ -62,32 +62,37 @@ class ShopDetailScreen extends Component {
       </View>
     );
   }
+  renderLoading() {
+    return <View style={{flex: 1}}><Spinner/></View>
+  }
+  renderContent() {
+    const item = this.state.item
+  	const {
+  		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+  		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
+  		address, items
+  	} = itemHelper(item)
+    return <ScrollView containerStyle={ShopDetailScreenStyle.container}>
+      <ShopSummary openReview={() => this.setState({showReview: true})} item={item} />
+      {
+        this.state.showReview ? this.renderReviews() :
 
+        <View>
+          <Image style={ShopDetailScreenStyle.image} source={{uri: image}}/>
+          {this.state.items.map(sitem => <TouchableOpacity onPress={() => Actions.i_detail({item: sitem, shop: item})}>
+            <ShopDetailListItem key={sitem.id} item={sitem}/>
+          </TouchableOpacity>)}
+        </View>
+      }
+    </ScrollView>
+  }
   render() {
     const item = this.state.item
-    if(item == null) return <Text>Loading</Text>
-	const {
-		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-		address, items
-	} = itemHelper(item)
     return (
       <Container>
           <Header back/>
           <Content>
-            <ScrollView containerStyle={ShopDetailScreenStyle.container}>
-  				    <ShopSummary openReview={() => this.setState({showReview: true})} item={item} />
-              {
-                this.state.showReview ? this.renderReviews() :
-
-                <View>
-          	      <Image style={ShopDetailScreenStyle.image} source={{uri: image}}/>
-          				{this.state.items.map(sitem => <TouchableOpacity onPress={() => Actions.i_detail({item: sitem, shop: item})}>
-          					<ShopDetailListItem key={sitem.id} item={sitem}/>
-          				</TouchableOpacity>)}
-                </View>
-              }
-            </ScrollView>
+            {!item ? this.renderLoading() : this.renderContent()}
           </Content>
           <Footer />
       </Container>

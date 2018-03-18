@@ -29,41 +29,47 @@ class PromotionDetailScreen extends Component {
     ).catch( (error) => console.log(error))
   }
 
+  renderLoading() {
+    return <View style={{flex: 1}}><Spinner/></View>
+  }
+  renderContent() {
+    const item = this.state.item
+  	const {
+  		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
+  		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
+  		address, items
+  	} = itemHelper(item)
+    const topTexts = toptext.split(" ")
+    return <ScrollView containerStyle={PromotionDetailScreenStyle.container}>
+      <View key={id} style={PromotionDetailScreenStyle.slide}>
+        <Image  style={PromotionDetailScreenStyle.image} source={{uri: image}}/>
+        <View style={PromotionDetailScreenStyle.slideInfo}>
+          <Text white fs20>{substr(bigtitle, 40)}</Text>
+          <Text white fs12>{substr(smalltitle, 60)}</Text>
+        </View>
+        <View style={{...PromotionDetailScreenStyle.slideTopText, backgroundColor: toptext_bgcolor}}>
+          {topTexts.map(t =>
+          <Text key={t} style={{
+            color:toptext_color,
+            fontSize:parseInt(toptext_fontsize),
+            backgroundColor: toptext_bgcolor
+          }}>{t}</Text>)}
+        </View>
+      </View>
+      <ShopSummary item={item.shop_info}/>
+      {items.map(sitem => <TouchableOpacity onPress={() => Actions.s_detail({item: sitem, shop : item})}>
+        <PromotionDetailItem key={sitem.id} item={sitem}/>
+      </TouchableOpacity>)}
+    </ScrollView>
+  }
   render() {
     const item = this.state.item
-    if(item == null) return <Text>Loading</Text>
-	const {
-		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-		address, items
-	} = itemHelper(item)
-    const topTexts = toptext.split(" ")
     return (
       <Container>
         <ImageBackground>
           <Header back/>
           <Content>
-			  <ScrollView containerStyle={PromotionDetailScreenStyle.container}>
-				  <View key={id} style={PromotionDetailScreenStyle.slide}>
-					  <Image  style={PromotionDetailScreenStyle.image} source={{uri: image}}/>
-					  <View style={PromotionDetailScreenStyle.slideInfo}>
-						  <Text white fs20>{substr(bigtitle, 40)}</Text>
-						  <Text white fs12>{substr(smalltitle, 60)}</Text>
-					  </View>
-					  <View style={{...PromotionDetailScreenStyle.slideTopText, backgroundColor: toptext_bgcolor}}>
-						  {topTexts.map(t =>
-						  <Text key={t} style={{
-							  color:toptext_color,
-							  fontSize:parseInt(toptext_fontsize),
-							  backgroundColor: toptext_bgcolor
-						  }}>{t}</Text>)}
-					  </View>
-				  </View>
-				  <ShopSummary item={item.shop_info}/>
-				  {items.map(sitem => <TouchableOpacity onPress={() => Actions.s_detail({item: sitem, shop : item})}>
-					  <PromotionDetailItem key={sitem.id} item={sitem}/>
-				  </TouchableOpacity>)}
-			  </ScrollView>
+            {!item ? this.renderLoading() : this.renderContent()}
           </Content>
           <Footer />
         </ImageBackground>
