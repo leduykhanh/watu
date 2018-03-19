@@ -14,30 +14,26 @@ import PromotionItemStyle from '../../../wat-themes/styles/components/PromotionI
 
 const PromotionItem = props => {
 	const item = props.item
-    const {
-  	  id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-  	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-  	  address, isfeatured, promotion_image
-    } = itemHelper(item)
+  const {
+	  image,
+	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
+  } = itemHelper(item)
 	const topTexts = toptext.split(" ")
-
-	return <TouchableOpacity onPress={() => Actions.p_detail({item})}>
-		<View key={id} style={PromotionItemStyle.slide}>
-			<Image  style={PromotionItemStyle.image} source={{uri: image}}/>
-			<View style={PromotionItemStyle.slideInfo}>
-				<Text white fs20>{substr(bigtitle, 40)}</Text>
-				<Text white fs12>{substr(smalltitle, 60)}</Text>
-			</View>
-			<View style={{...PromotionItemStyle.slideTopText, backgroundColor: toptext_bgcolor}}>
-				{topTexts.map(t =>
-				<Text key={t} style={{
-					color:toptext_color,
-					fontSize:parseInt(toptext_fontsize),
-					backgroundColor: toptext_bgcolor
-				}}>{t}</Text>)}
-			</View>
+  const style = {
+    color: toptext_color,
+    fontSize: parseInt(toptext_fontsize),
+    backgroundColor: toptext_bgcolor
+  }
+	return <View style={PromotionItemStyle.slide}>
+		<Image style={PromotionItemStyle.image} source={{uri: image}}/>
+		<View style={PromotionItemStyle.slideInfo}>
+			<Text white fs20>{substr(bigtitle, 40)}</Text>
+			<Text white fs12>{substr(smalltitle, 60)}</Text>
 		</View>
-	</TouchableOpacity>
+		<View style={{...PromotionItemStyle.slideTopText, backgroundColor: toptext_bgcolor}}>
+			{topTexts.map(t => <Text key={t} style={style}>{t}</Text>)}
+		</View>
+	</View>
 }
 
 PromotionItem.propTypes = {

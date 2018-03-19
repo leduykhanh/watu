@@ -17,7 +17,7 @@ const LoyaltyItem = props => {
           <Text fs14 bold>{item.name}</Text>
         </View>
         <View horizontal>
-          <Text fs12 style={{flexWrap: "wrap"}}>{item.address}</Text>
+          <Text fs12>{item.address}</Text>
         </View>
         <View horizontal>
           <Icon new-shop name="ios-send" />

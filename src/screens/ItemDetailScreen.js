@@ -66,7 +66,7 @@ class ItemDetailScreen extends Component {
   }
 
   renderLoading() {
-    return <View style={{flex: 1}}><Spinner/></View>
+    return <View style={{flex: 1, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner/></View>
   }
   renderContent() {
     const item = this.state.item
@@ -78,7 +78,7 @@ class ItemDetailScreen extends Component {
         <View style={ItemDetailScreenStyle.image_container}>
           <Image style={ItemDetailScreenStyle.image} source={{uri: image}}/>
         </View>
-        <View m-l-10 p-t-10>
+        <View style={ItemDetailScreenStyle.info_container}>
           <Text bold>{name}</Text>
           <Text bold fs16 theme>${price}</Text>
         </View>

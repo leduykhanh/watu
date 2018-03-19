@@ -26,7 +26,7 @@ class PromotionsScreen extends Component {
 	 	 canLoadMore={true}
 	 	 />
 	}
-	loadMoreShops() {
+	loadmore() {
 		const { autopage } = this.state
 		this.setState({
 			autopage: autopage + 1
@@ -39,7 +39,7 @@ class PromotionsScreen extends Component {
 			<Content>
 				<InfiniteScroll
 					horizontal={false}
-					onLoadMoreAsync={this.loadMoreShops.bind(this)}
+					onLoadMoreAsync={this.loadmore.bind(this)}
 					distanceFromEnd={10}
 				  >
 				 {this.renderList()}

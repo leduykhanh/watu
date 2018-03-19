@@ -1,0 +1,3 @@
+Device ID	Device Name
+55d99059c44394ecf691b29545de01510a134272	Andrew - iPhone 7 Plus
+4ef9056603c6d90a4c32b640f74c6698fe44a70b	Binh - iPhone 7 Plus

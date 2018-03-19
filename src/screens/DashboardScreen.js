@@ -102,21 +102,6 @@ class DashboardScreen extends Component {
       <NearbyShopItem location={this.props.location} key={data.id} item={data}/>
     )
   }
-  // renderNearbyShops(){
-  //   return (
-  //     <InfiniteScroll
-  //       horizontal={false}
-  //       onLoadMoreAsync={this.loadMoreShops.bind(this)}
-  //       distanceFromEnd={10}
-  //     >
-  //       <List
-  //         renderRow={data => this.renderRow(data)}
-  //          dataArray={this.props.home.nearbyshops.list}
-  //         canLoadMore={true}
-  //         />
-  //     </InfiniteScroll>
-  //   );
-  // }
   renderNearbyShops() {
     return (
       <List
@@ -150,7 +135,6 @@ class DashboardScreen extends Component {
 }
 
 function mapStateToProps(state) {
-//   console.log(state)
   return {
     user: state.user,
     profile: state.profile,

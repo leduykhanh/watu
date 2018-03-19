@@ -22,9 +22,9 @@ const HighRatingShops = props => {
 				id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
 				toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
 				address
-		    } = itemHelper(item);
-			return <TouchableOpacity onPress={() => Actions.s_detail({item})}>
-				<View key={id} style={HighRatingShopsStyle.slice}>
+	    } = itemHelper(item);
+			return <TouchableOpacity key={item.id} onPress={() => Actions.s_detail({item})}>
+				<View style={HighRatingShopsStyle.slice}>
 					<Image  style={HighRatingShopsStyle.image} source={{uri: image}}/>
 					<View style={HighRatingShopsStyle.info}>
 						<View style={{flex:1}}>

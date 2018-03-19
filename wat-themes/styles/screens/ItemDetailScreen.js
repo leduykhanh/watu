@@ -9,9 +9,9 @@ export default {
 		flex: 1,
 		alignItems: 'flex-start'
 	},
-    image: {
+  image: {
 		width, height,
-    },
+  },
 	shop_image: {
 		width: 80, height: 80, marginTop: 10, marginBottom: 10, marginLeft: 10, borderRadius: 40
 	},

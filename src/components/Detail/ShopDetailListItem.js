@@ -24,7 +24,7 @@ const ShopDetailListItem = props => {
           <Text fs14 bold>{substr(name, 20)}</Text>
         </View>
         <View horizontal style={ShopDetailListItemStyle.description}>
-          <Text fs12 style={{flexWrap: 'wrap'}}>{substr(description, 150)}</Text>
+          <Text fs12>{substr(description, 150)}</Text>
         </View>
         <Text fs14 bold theme>{price}</Text>
       </View>

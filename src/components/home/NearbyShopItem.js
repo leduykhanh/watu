@@ -17,7 +17,7 @@ const NearbyShopItem = props => {
     const {
   	  id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
   	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-  	  address, isfeatured, promotion_image
+  	  address, isfeatured, promotion_image, highlight
     } = itemHelper(item)
     const distance = getDistance(latitude, longitude, props.location.latitude, props.location.longitude)
 
@@ -44,7 +44,7 @@ const NearbyShopItem = props => {
 					<Text fs12>{substr(address, 80)}</Text>
 				</View>
 				<View horizontal m-t-5>
-					<Text fs14 bold theme>80% OFF</Text>
+					<Text fs14 bold theme>{highlight}</Text>
 				</View>
 				<View horizontal space-between>
 					<Text fs12>{distance || 0} km</Text>

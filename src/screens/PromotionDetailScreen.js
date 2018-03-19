@@ -30,7 +30,7 @@ class PromotionDetailScreen extends Component {
   }
 
   renderLoading() {
-    return <View style={{flex: 1}}><Spinner/></View>
+    return <View style={{flex: 1, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner/></View>
   }
   renderContent() {
     const item = this.state.item

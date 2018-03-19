@@ -53,34 +53,27 @@ class ShopDetailScreen extends Component {
         <View horizontal space-between>
           <Text bold>Reviews</Text>
           <Text onPress={() => this.setState({showReview: false})}theme>Go back</Text>
-          {
-            this.state.reviews.map(
-              review => <Review item={review} />
-            )
-          }
+          {this.state.reviews.map((review,i) => <Review key={review.id} item={review}/>)}
         </View>
       </View>
     );
   }
   renderLoading() {
-    return <View style={{flex: 1}}><Spinner/></View>
+    return <View style={{flex: 1, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Spinner/></View>
   }
   renderContent() {
     const item = this.state.item
   	const {
-  		id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-  		toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-  		address, items
+  		image,
   	} = itemHelper(item)
     return <ScrollView containerStyle={ShopDetailScreenStyle.container}>
       <ShopSummary openReview={() => this.setState({showReview: true})} item={item} />
       {
         this.state.showReview ? this.renderReviews() :
-
         <View>
           <Image style={ShopDetailScreenStyle.image} source={{uri: image}}/>
-          {this.state.items.map(sitem => <TouchableOpacity onPress={() => Actions.i_detail({item: sitem, shop: item})}>
-            <ShopDetailListItem key={sitem.id} item={sitem}/>
+          {this.state.items.map(sitem => <TouchableOpacity key={item.id} onPress={() => Actions.i_detail({item: sitem, shop: item})}>
+            <ShopDetailListItem item={sitem}/>
           </TouchableOpacity>)}
         </View>
       }

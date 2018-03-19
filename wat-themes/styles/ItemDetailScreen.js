@@ -9,5 +9,8 @@ export default {
     },
     image: {
 		    width: size, height: size, borderRadius: size/2
+    },
+    info_container: {
+      width: '100%', paddingTop: 10, marginLeft: 10, 
     }
 }

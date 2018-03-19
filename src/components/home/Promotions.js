@@ -19,7 +19,9 @@ const Promotions = props => {
   return (
     <View style={PromotionsStyle.container}>
       <Swiper autoplay height={PromotionsStyle.container.height} showsPagination={false} loop>
-        {items.map(item => <PromotionItem item={item}/>)}
+        {items.map(item => <TouchableOpacity key={item.id} onPress={() => Actions.p_detail({item})}>
+          <PromotionItem key={item.id} item={item}/>
+          </TouchableOpacity>)}
       </Swiper>
     </View>
   )

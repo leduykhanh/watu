@@ -12,23 +12,20 @@ import ShopSummaryStyle from '../../../wat-themes/styles/components/ShopSummary'
 const ShopSummary = props => {
   const item = props.item
   const {
-	  id, name, description, price, image, totalrate, totalreviews, latitude, longitude,
-	  toptext_color, toptext_fontsize, toptext, toptext_bgcolor, bigtitle, smalltitle,
-	  address
+    id, name, image, totalrate, totalreviews, latitude, longitude, address
   } = itemHelper(item)
-  return <View grey m-b-10 style={ShopSummaryStyle.container}>
+  return <View grey style={ShopSummaryStyle.container}>
 	<View horizontal>
-	  <View style={ShopSummaryStyle.imageContainer}	>
-		<Image resizeMode='stretch' style={ShopSummaryStyle.image} source={{uri: image}}/>
+	  <View style={ShopSummaryStyle.image_container}>
+		    <Image resizeMode='stretch' style={ShopSummaryStyle.image} source={{uri: image}}/>
 	  </View>
-	  <View m-l-10 m-t-10>
-		<Text bold m-b-10>{substr(name, 30)}</Text>
-		<Text small style={{flexWrap: 'wrap'}}>{substr(address, 150)}</Text>
+	  <View style={ShopSummaryStyle.info_container}>
+		    <Text bold m-b-10>{substr(name, 30)}</Text>
+        <Text small>{substr(address, 150)}</Text>
 	  </View>
 	</View>
 	<View horizontal space-between p-l-5 p-r-5>
-	  <Rating totalrate={totalrate} shopid={id}
-	  />
+	  <Rating totalrate={totalrate} shopid={id}/>
 	  <Text theme fs12 onPress={props.openReview}>({totalreviews}) Reviews</Text>
 	  <View horizontal>
 		<Icon new-shop name="ios-send" />

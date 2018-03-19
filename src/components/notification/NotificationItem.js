@@ -21,7 +21,7 @@ const NotificationItem = props => {
           <Text fs14 bold>{item.title}</Text>
         </View>
         <View horizontal>
-          <Text fs12 style={{flexWrap: "wrap"}}>{item.message}</Text>
+          <Text fs12>{item.message}</Text>
         </View>
 
         <View m-t-5>

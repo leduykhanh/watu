@@ -5,6 +5,8 @@ export default (variables = variable) => {
     fontSize: variables.DefaultFontSize - 1,
     fontFamily: variables.fontFamily,
     color: variables.textColor,
+    backgroundColor:'transparent',
+    flexWrap: 'wrap',
     ".note": {
       color: "#a7a7a7",
       fontSize: variables.noteFontSize
@@ -130,7 +132,6 @@ export default (variables = variable) => {
 	'.footer' : {
 	  fontSize: 7
     },
-    backgroundColor:'transparent'
   };
 
   return textTheme;
