@@ -6,7 +6,6 @@ import com.facebook.react.ReactApplication;
 import org.reactnative.camera.RNCameraPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
-import io.xogus.reactnative.versioncheck.RNVersionCheckPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -31,7 +30,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNCameraPackage(),
             new VectorIconsPackage(),
             new ReactNativeOneSignalPackage(),
-            new RNVersionCheckPackage(),
             new LinearGradientPackage()
       );
     }
